@@ -866,7 +866,7 @@ BEGIN
 	SET @CONT=@CONT+1
 	IF @Cant_KM >0
 	SET @CONT=@CONT+1
-	IF ([DESCONOCIDOS4].FN_VIAJE_RANGO_OK(@Clie,@Fecha_hora_ini,@Fecha_hora_fin )) =0
+	IF ([DESCONOCIDOS4].FN_VIAJE_RANGO_OK(@Clie,@Fecha_hora_ini,@Fecha_hora_fin )) =1
 	SET @CONT=@CONT+1
 	IF @CONT=4 
 	SET @RESUL='SI'
