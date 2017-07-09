@@ -824,6 +824,32 @@ AS
 END
 GO
 
+IF OBJECT_ID('[DESCONOCIDOS4].FN_VIAJE_RANGO_OK','FN') IS NOT NULL
+	DROP FUNCTION [DESCONOCIDOS4].FN_VIAJE_RANGO_OK;
+GO
+
+-- Devuelve '1' si el rango horario no se superpone con el de otro turno y 'NO' por el contrario
+CREATE FUNCTION [DESCONOCIDOS4].FN_VIAJE_RANGO_OK(@Clie INT,@Hini DATETIME,@Hfin DATETIME)
+RETURNS  BIT
+AS
+BEGIN
+  DECLARE @RESUL BIT
+  DECLARE @CONT INT	
+  SET @CONT=0
+  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].VIAJE WHERE Viaje_Cliente=@Clie and  Viaje_Fecha_Hora_Inicio>=@Hini AND @Hini<=Viaje_Fecha_Hora_Fin)>0
+  SET @CONT=@CONT+1
+  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].VIAJE WHERE Viaje_Cliente=@Clie  and Viaje_Fecha_Hora_Inicio>=@Hfin AND @Hfin<=Viaje_Fecha_Hora_Fin)>0
+  SET @CONT=@CONT+1
+  IF @CONT=0
+  SET @RESUL=1
+  ELSE 
+  SET @RESUL=0
+  RETURN @RESUL
+END
+GO
+
+
+
 IF OBJECT_ID('[DESCONOCIDOS4].FN_REGISTRO_VIAJE_OK','FN') IS NOT NULL
 	DROP FUNCTION [DESCONOCIDOS4].FN_REGISTRO_VIAJE_OK;
 GO
@@ -840,7 +866,7 @@ BEGIN
 	SET @CONT=@CONT+1
 	IF @Cant_KM >0
 	SET @CONT=@CONT+1
-	IF (SELECT COUNT(*) FROM[DESCONOCIDOS4].VIAJE WHERE Viaje_Cliente=@Clie AND Viaje_Fecha_Hora_Inicio=@Fecha_hora_ini AND Viaje_Fecha_Hora_Fin=@Fecha_hora_fin ) =0
+	IF ([DESCONOCIDOS4].FN_VIAJE_RANGO_OK(@Clie,@Fecha_hora_ini,@Fecha_hora_fin )) =0
 	SET @CONT=@CONT+1
 	IF @CONT=4 
 	SET @RESUL='SI'
@@ -854,7 +880,7 @@ IF OBJECT_ID('[DESCONOCIDOS4].FN_TURNO_RANGO_OK','FN') IS NOT NULL
 	DROP FUNCTION [DESCONOCIDOS4].FN_TURNO_RANGO_OK;
 GO
 
--- Devuelve 'SI' si el rango horario no se superpone con el de otro turno y 'NO' por el contrario
+-- Devuelve '1' si el rango horario no se superpone con el de otro turno y 'NO' por el contrario
 CREATE FUNCTION [DESCONOCIDOS4].FN_TURNO_RANGO_OK(@Hini INT,@Hfin INT)
 RETURNS  BIT
 AS
