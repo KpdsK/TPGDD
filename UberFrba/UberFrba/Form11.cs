@@ -66,15 +66,15 @@ namespace UberFrba
 
         private void construirFormularioGrilla(DataTable tblListadoChoferesMayorRecaudacion)
         {
-            frmResultadoBusquedaUsuarioABM formularioListado = new frmResultadoBusquedaUsuarioABM();
-            DataGridView grillaListados = (DataGridView)formularioListado.Controls["grillaDatosResultadoBusqueda"];
+            frmGrilla formularioListado = new frmGrilla();
+            DataGridView grillaListados = (DataGridView)formularioListado.Controls["grillaDatos"];
             grillaListados.DataSource = tblListadoChoferesMayorRecaudacion;
             grillaListados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             grillaListados.AutoGenerateColumns = true;
             formularioListado.Controls["btnSeleccionar"].Visible = false;
-            ((DataGridView)formularioListado.Controls["grillaDatosResultadoBusqueda"]).ReadOnly = true;
+            ((DataGridView)formularioListado.Controls["grillaDatos"]).ReadOnly = true;
             formularioListado.Controls["btnCancelar"].Text = "Salir";
-            formularioListado.frmListados = this; 
+            formularioListado.formulario = this; 
             formularioListado.Controls["btnCancelar"].Left =
                 (this.ClientSize.Width -
                 formularioListado.Controls["btnCancelar"].Width) / 2;

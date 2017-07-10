@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace UberFrba
 {
-    public partial class frmRendirViaje : Form
+    public partial class frmRendirViaje : Form, IGrilla
     {
         public frmRendirViaje()
         {
@@ -74,19 +74,21 @@ namespace UberFrba
             DataTable tblViajesARendir = adaptador.viajesARendir((int)this.comboChofer.SelectedValue,
                 this.selectorDiaRendicionAChofer.Value.ToString("MM/dd/yyyy"),
                 (int)this.comboTurno.SelectedValue);
-            frmResultadoBusquedaUsuarioABM formularioResultadoBusqueda = new frmResultadoBusquedaUsuarioABM();
-            DataGridView grillaBusquedaUsuarios = (DataGridView)formularioResultadoBusqueda.Controls["grillaDatosResultadoBusqueda"];
-            grillaBusquedaUsuarios.DataSource = tblViajesARendir;
-            grillaBusquedaUsuarios.ReadOnly = true;
-            grillaBusquedaUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            grillaBusquedaUsuarios.AutoGenerateColumns = true;
-            formularioResultadoBusqueda.Controls["btnSeleccionar"].Text = "Rendir Viajes";
-            formularioResultadoBusqueda.Controls["btnSeleccionar"].Click += (senders, es) => 
-                rendirViajes(sender, e, formularioResultadoBusqueda);
-            formularioResultadoBusqueda.Show();
+            frmGrilla formularioGrilla = new frmGrilla();
+            DataGridView grillaInformacionRendicion = (DataGridView)formularioGrilla.Controls["grillaDatos"];
+            grillaInformacionRendicion.DataSource = tblViajesARendir;
+            grillaInformacionRendicion.ReadOnly = true;
+            grillaInformacionRendicion.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            grillaInformacionRendicion.AutoGenerateColumns = true;
+            formularioGrilla.formulario = this;
+            formularioGrilla.Controls["btnSeleccionar"].Text = "Rendir Viajes";
+            formularioGrilla.Controls["btnSeleccionar"].Click += (senders, es) => 
+                rendirViajes(sender, e, formularioGrilla);
+            formularioGrilla.Show();
+            this.Close();
         }
 
-        private void rendirViajes(object sender, EventArgs e, frmResultadoBusquedaUsuarioABM formulario)
+        private void rendirViajes(object sender, EventArgs e, frmGrilla formulario)
         {
             GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
                new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
@@ -95,6 +97,10 @@ namespace UberFrba
             (int)this.comboTurno.SelectedValue
             );
             formulario.Close();
+        }
+
+        public void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filaDeDatos)
+        {
         }
     }
 }

@@ -139,12 +139,12 @@ namespace UberFrba
             DataTable tblListadoAutomoviles = obtenerTablaDeDatos();
             if (tblListadoAutomoviles != null && tblListadoAutomoviles.Rows.Count > 0)
             {
-                frmResultadoBusquedaUsuarioABM formularioResultadoBusqueda = new frmResultadoBusquedaUsuarioABM();
-                DataGridView grillaBusquedaUsuarios = (DataGridView)formularioResultadoBusqueda.Controls["grillaDatosResultadoBusqueda"];
-                grillaBusquedaUsuarios.DataSource = tblListadoAutomoviles;
-                grillaBusquedaUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                grillaBusquedaUsuarios.AutoGenerateColumns = true;
-                formularioResultadoBusqueda.frmAutomovil = this;
+                frmGrillaParaBusquedaConSeleccionDeFilas formularioResultadoBusqueda = new frmGrillaParaBusquedaConSeleccionDeFilas();
+                DataGridView grillaBusquedaAutomoviles = (DataGridView)formularioResultadoBusqueda.Controls["grillaDatos"];
+                grillaBusquedaAutomoviles.DataSource = tblListadoAutomoviles;
+                grillaBusquedaAutomoviles.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                grillaBusquedaAutomoviles.AutoGenerateColumns = true;
+                formularioResultadoBusqueda.formulario = this;
                 formularioResultadoBusqueda.Controls["btnSeleccionar"].Text = "Seleccionar Automovil";
                 formularioResultadoBusqueda.Show();
             }

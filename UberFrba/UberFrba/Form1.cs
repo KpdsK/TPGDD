@@ -842,7 +842,7 @@ namespace UberFrba
         public const string NOMBRE_ROL_ADMINISTRADOR = "ADMINISTRATIVO";
     }
 
-    interface IGrilla
+    public interface IGrilla
     {
         void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filaDeDatos);
     }

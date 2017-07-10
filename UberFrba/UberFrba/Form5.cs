@@ -10,60 +10,57 @@ using System.Windows.Forms;
 
 namespace UberFrba
 {
-    public partial class frmResultadoBusquedaUsuarioABM : Form
+    public partial class frmGrilla : Form
     {
-        public frmABM formularioABM { set; get; }
-        public frmAutomovil frmAutomovil { set; get; }
-        public frmABMTurno frmTurno { set; get; }
-        public frmListados frmListados { set; get; }
+        //public frmABM formularioABM { set; get; }
+        //public frmAutomovil frmAutomovil { set; get; }
+        //public frmABMTurno frmTurno { set; get; }
+        //public frmListados frmListados { set; get; }
 
-        public frmResultadoBusquedaUsuarioABM()
+        public IGrilla formulario { set; get; }
+
+        public frmGrilla()
         {
             InitializeComponent();
         }
 
-        private void grillaDatosResultadoBusqueda_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            completarFormularioABMConDatosDeUsuarioSeleccionado();
-        }
+        //private void completarFormularioABMConDatosDeUsuarioSeleccionado()
+        //{
+        //    ////System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
+        //    //DataRowView row = ((DataRowView)(this.grillaDatosResultadoBusqueda.CurrentRow).DataBoundItem);
 
-        private void completarFormularioABMConDatosDeUsuarioSeleccionado()
-        {
-            System.Text.StringBuilder messageBoxCS = new System.Text.StringBuilder();
-            DataRowView row = ((DataRowView)(this.grillaDatosResultadoBusqueda.CurrentRow).DataBoundItem);
+        //    //obtenerFormulario().completarFormularioConDatosDeUsuarioSeleccionado(row);
 
-            obtenerFormulario().completarFormularioConDatosDeUsuarioSeleccionado(row);
+        //    //this.Close();
+        //}
 
-            this.Close();
-        }
-
-        private IGrilla obtenerFormulario()
-        {
-            Form formulario;
-            if (formularioABM != null)
-            {
-                formulario = formularioABM;
-            }
-            else
-            {
-                if (frmAutomovil != null)
-                {
-                    formulario = frmAutomovil;
-                }
-                else
-                {
-                    if (frmTurno != null)
-                    {
-                        formulario = frmTurno;
-                    }
-                    else
-                    {
-                        formulario = frmListados;
-                    }
-                }
-            }
-            return (IGrilla)formulario;
-        }
+        //private IGrilla obtenerFormulario()
+        //{
+        //    Form formulario;
+        //    if (formularioABM != null)
+        //    {
+        //        formulario = formularioABM;
+        //    }
+        //    else
+        //    {
+        //        if (frmAutomovil != null)
+        //        {
+        //            formulario = frmAutomovil;
+        //        }
+        //        else
+        //        {
+        //            if (frmTurno != null)
+        //            {
+        //                formulario = frmTurno;
+        //            }
+        //            else
+        //            {
+        //                formulario = frmListados;
+        //            }
+        //        }
+        //    }
+        //    return (IGrilla)formulario;
+        //}
 
         private void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -72,7 +69,12 @@ namespace UberFrba
 
         private void btnSeleccionar_Click(object sender, EventArgs e)
         {
-            completarFormularioABMConDatosDeUsuarioSeleccionado();
+            //completarFormularioABMConDatosDeUsuarioSeleccionado();
+            ejecutarEventoSeleccionDeFila();
+        }
+
+        public virtual void ejecutarEventoSeleccionDeFila()
+        {
         }
 
         private void frmResultadoBusquedaUsuarioABM_Load(object sender, EventArgs e)
@@ -81,5 +83,26 @@ namespace UberFrba
             this.AutoSize = true;
             this.AutoSizeMode = AutoSizeMode.GrowAndShrink;
         }
+
+        private void grillaDatos_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ejecutarEventoSeleccionDeFila();
+        }
     }
+
+    public partial class frmGrillaParaBusquedaConSeleccionDeFilas : frmGrilla
+    {
+        public override void ejecutarEventoSeleccionDeFila()
+        {
+            DataRowView row = ((DataRowView)(this.grillaDatos.CurrentRow).DataBoundItem);
+            this.formulario.completarFormularioConDatosDeUsuarioSeleccionado(row);
+            this.Close();
+        }
+
+    }
+
+    //public partial class frmGrillaParaVisualizarInformacionSinSeleccion : frmGrilla
+    //{
+
+    //}
 }

@@ -1,6 +1,6 @@
 ﻿namespace UberFrba
 {
-    partial class frmResultadoBusquedaUsuarioABM
+    partial class frmGrilla
     {
         /// <summary>
         /// Required designer variable.
@@ -28,28 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.grillaDatosResultadoBusqueda = new System.Windows.Forms.DataGridView();
+            this.grillaDatos = new System.Windows.Forms.DataGridView();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnSeleccionar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.grillaDatosResultadoBusqueda)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grillaDatos)).BeginInit();
             this.SuspendLayout();
             // 
-            // grillaDatosResultadoBusqueda
+            // grillaDatos
             // 
-            this.grillaDatosResultadoBusqueda.AllowUserToAddRows = false;
-            this.grillaDatosResultadoBusqueda.AllowUserToDeleteRows = false;
-            this.grillaDatosResultadoBusqueda.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
-            this.grillaDatosResultadoBusqueda.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
-            this.grillaDatosResultadoBusqueda.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.grillaDatosResultadoBusqueda.Location = new System.Drawing.Point(6, 9);
-            this.grillaDatosResultadoBusqueda.MultiSelect = false;
-            this.grillaDatosResultadoBusqueda.Name = "grillaDatosResultadoBusqueda";
-            this.grillaDatosResultadoBusqueda.ReadOnly = true;
-            this.grillaDatosResultadoBusqueda.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
-            this.grillaDatosResultadoBusqueda.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grillaDatosResultadoBusqueda.Size = new System.Drawing.Size(725, 234);
-            this.grillaDatosResultadoBusqueda.TabIndex = 0;
-            this.grillaDatosResultadoBusqueda.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grillaDatosResultadoBusqueda_CellContentDoubleClick);
+            this.grillaDatos.AllowUserToAddRows = false;
+            this.grillaDatos.AllowUserToDeleteRows = false;
+            this.grillaDatos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.grillaDatos.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedHeaders;
+            this.grillaDatos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.grillaDatos.Location = new System.Drawing.Point(6, 9);
+            this.grillaDatos.MultiSelect = false;
+            this.grillaDatos.Name = "grillaDatos";
+            this.grillaDatos.ReadOnly = true;
+            this.grillaDatos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
+            this.grillaDatos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.grillaDatos.Size = new System.Drawing.Size(725, 234);
+            this.grillaDatos.TabIndex = 0;
+            this.grillaDatos.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grillaDatos_CellContentDoubleClick);
             // 
             // btnCancelar
             // 
@@ -71,7 +71,7 @@
             this.btnSeleccionar.UseVisualStyleBackColor = true;
             this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
             // 
-            // frmResultadoBusquedaUsuarioABM
+            // frmGrilla
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -80,18 +80,18 @@
             this.ControlBox = false;
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.btnCancelar);
-            this.Controls.Add(this.grillaDatosResultadoBusqueda);
-            this.Name = "frmResultadoBusquedaUsuarioABM";
+            this.Controls.Add(this.grillaDatos);
+            this.Name = "frmGrilla";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmResultadoBusquedaUsuarioABM_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.grillaDatosResultadoBusqueda)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.grillaDatos)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView grillaDatosResultadoBusqueda;
+        protected System.Windows.Forms.DataGridView grillaDatos;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnSeleccionar;
     }

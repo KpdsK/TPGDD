@@ -28,12 +28,12 @@ namespace UberFrba
 
             if (tblListadoTurnos != null && tblListadoTurnos.Rows.Count > 0)
             {
-                frmResultadoBusquedaUsuarioABM formularioResultadoBusqueda = new frmResultadoBusquedaUsuarioABM();
-                DataGridView grillaBusquedaTurnos = (DataGridView)formularioResultadoBusqueda.Controls["grillaDatosResultadoBusqueda"];
+                frmGrillaParaBusquedaConSeleccionDeFilas formularioResultadoBusqueda = new frmGrillaParaBusquedaConSeleccionDeFilas();
+                DataGridView grillaBusquedaTurnos = (DataGridView)formularioResultadoBusqueda.Controls["grillaDatos"];
                 grillaBusquedaTurnos.DataSource = tblListadoTurnos;
                 grillaBusquedaTurnos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 grillaBusquedaTurnos.AutoGenerateColumns = true;
-                formularioResultadoBusqueda.frmTurno = this;
+                formularioResultadoBusqueda.formulario = this;
                 formularioResultadoBusqueda.Controls["btnSeleccionar"].Text = "Seleccionar Turno";
                 formularioResultadoBusqueda.Show();
             }
@@ -51,7 +51,7 @@ namespace UberFrba
 
         public void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filaDeDatos)
         {
-
+            limpiarSelectoresHorario();
             this.selectorHoraInicio.Value = Convert.ToInt16(filaDeDatos.Row["Turno_Hora_Inicio"].ToString());
             this.selectorHoraFin.Value = Convert.ToInt16(filaDeDatos.Row["Turno_Hora_Fin"].ToString());
             ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtValorKilometro"]).Text = filaDeDatos.Row["Turno_Valor_Kilometro"].ToString();
@@ -60,6 +60,14 @@ namespace UberFrba
             ((Label)(this.Controls["grupoDatosTurno"]).Controls["lblIdTurno"]).Text = filaDeDatos.Row["Turno_Id"].ToString();
             ((CheckBox)(this.Controls["grupoDatosTurno"]).Controls["ccHabilitado"]).Checked = (Boolean)filaDeDatos.Row["Turno_Habilitado"];
             accionesAdicionales();
+        }
+
+        private void limpiarSelectoresHorario()
+        {
+            this.selectorHoraInicio.Minimum = 0;
+            this.selectorHoraInicio.Maximum = 23;
+            this.selectorHoraFin.Minimum = 1;
+            this.selectorHoraFin.Maximum = 24;
         }
 
         public virtual void construirBotonAccion()

@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace UberFrba
 {
-    public partial class frmFacturarViaje : Form
+    public partial class frmFacturarViaje : Form, IGrilla
     {
         public frmFacturarViaje()
         {
@@ -32,19 +32,21 @@ namespace UberFrba
             DataTable tblViajesAFacturar = adaptador.viajesAFacturar((int)this.comboCliente.SelectedValue,
                 //Convert.ToString(this.selectorFechaFacturacionHasta.Value.ToShortDateString()));
                 this.selectorFechaFacturacionHasta.Value.ToString("MM/dd/yyyy"));
-            frmResultadoBusquedaUsuarioABM formularioResultadoBusqueda = new frmResultadoBusquedaUsuarioABM();
-            DataGridView grillaBusquedaUsuarios = (DataGridView)formularioResultadoBusqueda.Controls["grillaDatosResultadoBusqueda"];
-            grillaBusquedaUsuarios.DataSource = tblViajesAFacturar;
-            grillaBusquedaUsuarios.ReadOnly = true;
-            grillaBusquedaUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            grillaBusquedaUsuarios.AutoGenerateColumns = true;
-            formularioResultadoBusqueda.Controls["btnSeleccionar"].Text = "Facturar Viajes";
-            formularioResultadoBusqueda.Controls["btnSeleccionar"].Click += (senders, es) =>
-                facturarViajes(sender, e, formularioResultadoBusqueda);
-            formularioResultadoBusqueda.Show();
+            frmGrilla formularioGrilla = new frmGrilla();
+            DataGridView grillaInformacionFacturacion = (DataGridView)formularioGrilla.Controls["grillaDatos"];
+            grillaInformacionFacturacion.DataSource = tblViajesAFacturar;
+            grillaInformacionFacturacion.ReadOnly = true;
+            grillaInformacionFacturacion.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            grillaInformacionFacturacion.AutoGenerateColumns = true;
+            formularioGrilla.formulario = this;
+            formularioGrilla.Controls["btnSeleccionar"].Text = "Facturar Viajes";
+            formularioGrilla.Controls["btnSeleccionar"].Click += (senders, es) =>
+                facturarViajes(sender, e, formularioGrilla);
+            formularioGrilla.Show();
+            this.Close();
         }
 
-        private void facturarViajes(object sender, EventArgs e, frmResultadoBusquedaUsuarioABM formularioResultadoBusqueda)
+        private void facturarViajes(object sender, EventArgs e, frmGrilla formularioResultadoBusqueda)
         {
             GD1C2017DataSetTableAdapters.QueriesTableAdapter adaptador =
                new GD1C2017DataSetTableAdapters.QueriesTableAdapter();
@@ -72,6 +74,10 @@ namespace UberFrba
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        public void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filaDeDatos)
+        {
         }
     }
 }

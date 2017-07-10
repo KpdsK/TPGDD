@@ -55,12 +55,12 @@ namespace UberFrba
                 }
                 if (tblDatosResultadoBusquedaUsuarios != null && tblDatosResultadoBusquedaUsuarios.Rows.Count > 0)
                 {
-                    frmResultadoBusquedaUsuarioABM formularioResultadoBusqueda = new frmResultadoBusquedaUsuarioABM();
-                    DataGridView grillaBusquedaUsuarios = (DataGridView)formularioResultadoBusqueda.Controls["grillaDatosResultadoBusqueda"];
+                    frmGrillaParaBusquedaConSeleccionDeFilas formularioResultadoBusqueda = new frmGrillaParaBusquedaConSeleccionDeFilas();
+                    DataGridView grillaBusquedaUsuarios = (DataGridView)formularioResultadoBusqueda.Controls["grillaDatos"];
                     grillaBusquedaUsuarios.DataSource = tblDatosResultadoBusquedaUsuarios;
                     grillaBusquedaUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                     grillaBusquedaUsuarios.AutoGenerateColumns = true;
-                    formularioResultadoBusqueda.formularioABM = this;
+                    formularioResultadoBusqueda.formulario = this;
                     formularioResultadoBusqueda.Controls["btnSeleccionar"].Text = "Seleccionar " + this.tipoUsuario;
                     formularioResultadoBusqueda.Show();
                 }
