@@ -30,7 +30,8 @@ namespace UberFrba
             GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter();
             DataTable tblViajesAFacturar = adaptador.viajesAFacturar((int)this.comboCliente.SelectedValue,
-                Convert.ToString(this.selectorFechaFacturacionHasta.Value.ToShortDateString()));
+                //Convert.ToString(this.selectorFechaFacturacionHasta.Value.ToShortDateString()));
+                this.selectorFechaFacturacionHasta.Value.ToString("MM/dd/yyyy"));
             frmResultadoBusquedaUsuarioABM formularioResultadoBusqueda = new frmResultadoBusquedaUsuarioABM();
             DataGridView grillaBusquedaUsuarios = (DataGridView)formularioResultadoBusqueda.Controls["grillaDatosResultadoBusqueda"];
             grillaBusquedaUsuarios.DataSource = tblViajesAFacturar;

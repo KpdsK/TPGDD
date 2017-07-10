@@ -72,7 +72,7 @@ namespace UberFrba
             GD1C2017DataSetTableAdapters.FN_VIAJES_A_RENDIRTableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.FN_VIAJES_A_RENDIRTableAdapter();
             DataTable tblViajesARendir = adaptador.viajesARendir((int)this.comboChofer.SelectedValue,
-                Convert.ToString(this.selectorDiaRendicionAChofer.Value.ToShortDateString()),
+                this.selectorDiaRendicionAChofer.Value.ToString("MM/dd/yyyy"),
                 (int)this.comboTurno.SelectedValue);
             frmResultadoBusquedaUsuarioABM formularioResultadoBusqueda = new frmResultadoBusquedaUsuarioABM();
             DataGridView grillaBusquedaUsuarios = (DataGridView)formularioResultadoBusqueda.Controls["grillaDatosResultadoBusqueda"];
