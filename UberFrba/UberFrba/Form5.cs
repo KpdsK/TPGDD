@@ -15,6 +15,7 @@ namespace UberFrba
         public frmABM formularioABM { set; get; }
         public frmAutomovil frmAutomovil { set; get; }
         public frmABMTurno frmTurno { set; get; }
+        public frmListados frmListados { set; get; }
 
         public frmResultadoBusquedaUsuarioABM()
         {
@@ -51,7 +52,14 @@ namespace UberFrba
                 }
                 else
                 {
-                    formulario = frmTurno;
+                    if (frmTurno != null)
+                    {
+                        formulario = frmTurno;
+                    }
+                    else
+                    {
+                        formulario = frmListados;
+                    }
                 }
             }
             return (IGrilla)formulario;

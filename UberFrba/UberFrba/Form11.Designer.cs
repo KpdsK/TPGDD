@@ -147,6 +147,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmListados";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Listados";
             ((System.ComponentModel.ISupportInitialize)(this.selectorTrimestre)).EndInit();
             this.ResumeLayout(false);
