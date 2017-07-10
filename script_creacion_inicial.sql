@@ -3645,13 +3645,16 @@ BEGIN
 	TOP 5
 		CH.Chofer_Id									AS [Id Chofer],
 		[DESCONOCIDOS4].DAME_DNI_CHOFER(CH.Chofer_Id)	AS [Dni Chofer],
+		P.Persona_Nombre								AS [Nombre],
+		P.Persona_Apellido								AS [Apellido],
 		SUM(CF.Cab_Fac_Total_Fac)						AS [Total Recaudacion]
 	FROM DESCONOCIDOS4.CHOFER CH
 	LEFT JOIN DESCONOCIDOS4.VIAJE VI ON VI.Viaje_Chofer = CH.Chofer_Id
 	LEFT JOIN DESCONOCIDOS4.ITEM_FACTURA IT ON IT.Item_Fac_Id_Viaje = VI.Viaje_Nro
 	LEFT JOIN DESCONOCIDOS4.CABECERO_FACTURA CF ON CF.Cab_Fac_Nro = IT.Item_Fac_Nro_Fac
+	LEFT JOIN DESCONOCIDOS4.PERSONA P ON P.Persona_Id= CH.Chofer_Per_Id
 	WHERE CH.Chofer_Habilitado = 1 AND CF.Cab_Fac_Nro IS NOT NULL AND DATEPART(QUARTER,CF.Cab_Fac_Fecha)= @QUARTER AND YEAR(CF.Cab_Fac_Fecha) = @AÑO
-	GROUP BY CH.Chofer_Id,[DESCONOCIDOS4].DAME_DNI_CHOFER(CH.Chofer_Id)
+	GROUP BY CH.Chofer_Id,[DESCONOCIDOS4].DAME_DNI_CHOFER(CH.Chofer_Id),P.Persona_Nombre,P.Persona_Apellido
 	ORDER BY [Total Recaudacion] DESC
 END
 
@@ -3674,11 +3677,13 @@ BEGIN
 		DISTINCT
 		TOP 5 
 			V1.Viaje_Chofer			AS [Chofer],
+			P.Persona_Nombre		AS [Nombre],
+			P.Persona_Apellido		AS [Apellido],
 			(SELECT TOP 1 Viaje_Nro FROM DESCONOCIDOS4.VIAJE V2 WHERE DATEPART(QUARTER,V2.Viaje_Fecha_Hora_Inicio) = @QUARTER AND YEAR(V2.Viaje_Fecha_Hora_Inicio) = @AÑO AND V2.Viaje_Chofer=V1.Viaje_Chofer ORDER BY V2.Viaje_Cantidad_Km DESC )		AS [Nro Viaje],
 			MAX(V1.Viaje_Cantidad_Km)		AS [Km Recorridos]
-		FROM DESCONOCIDOS4.VIAJE V1
+		FROM DESCONOCIDOS4.VIAJE V1 LEFT JOIN DESCONOCIDOS4.CHOFER CH ON V1.Viaje_Chofer=CH.Chofer_Id LEFT JOIN DESCONOCIDOS4.PERSONA P ON P.Persona_Id=CH.Chofer_Per_Id
 		WHERE DATEPART(QUARTER,V1.Viaje_Fecha_Hora_Inicio) = @QUARTER AND YEAR(V1.Viaje_Fecha_Hora_Inicio) = @AÑO
-		GROUP BY V1.Viaje_Chofer
+		GROUP BY V1.Viaje_Chofer,P.Persona_Nombre,P.Persona_Apellido
 		ORDER BY MAX(V1.Viaje_Cantidad_Km) DESC
 END
 GO
@@ -3701,10 +3706,14 @@ BEGIN
 	SELECT
 	TOP 5
 		DESCONOCIDOS4.CABECERO_FACTURA.Cab_Fac_Cliente			AS [Cliente],
+		P.Persona_Nombre										AS [Nombre],
+		P.Persona_Apellido										AS [Apellido],
 		SUM(DESCONOCIDOS4.CABECERO_FACTURA.Cab_Fac_Total_Fac)	AS [Total Facturado]
 	FROM DESCONOCIDOS4.CABECERO_FACTURA
+	LEFT JOIN DESCONOCIDOS4.CLIENTE CL ON Cab_Fac_Cliente=CL.Cliente_Id
+	LEFT JOIN DESCONOCIDOS4.PERSONA P ON P.Persona_Id=CL.Cliente_Per_ID
 	WHERE DATEPART(QUARTER,DESCONOCIDOS4.CABECERO_FACTURA.Cab_Fac_Fecha) = @QUARTER AND YEAR(DESCONOCIDOS4.CABECERO_FACTURA.Cab_Fac_Fecha) = @AÑO
-	GROUP BY DESCONOCIDOS4.CABECERO_FACTURA.Cab_Fac_Cliente
+	GROUP BY DESCONOCIDOS4.CABECERO_FACTURA.Cab_Fac_Cliente,P.Persona_Nombre,P.Persona_Apellido	
 	ORDER BY SUM(DESCONOCIDOS4.CABECERO_FACTURA.Cab_Fac_Total_Fac) DESC
 END
 
@@ -3728,10 +3737,17 @@ BEGIN
 	TOP 5
 		DESCONOCIDOS4.VIAJE.Viaje_Cliente		AS [Cliente],
 		DESCONOCIDOS4.VIAJE.Viaje_Automovil		AS [Automovil],
+		P.Persona_Nombre						AS [Nombre],
+		P.Persona_Apellido						AS [Apellido],
+		A.Auto_Detalle							AS [Marca y Modelo],
+		A.Auto_Patente							AS [Patente],
 		COUNT(*)								AS [Cantidad de Viajes]
 	FROM DESCONOCIDOS4.VIAJE
+	LEFT JOIN DESCONOCIDOS4.AUTO A ON Viaje_Automovil= A.Auto_Id
+	LEFT JOIN DESCONOCIDOS4.CLIENTE CL ON Viaje_Cliente=CL.Cliente_Id
+	LEFT JOIN DESCONOCIDOS4.PERSONA P ON P.Persona_Id=CL.Cliente_Per_ID
 	WHERE DATEPART(QUARTER,DESCONOCIDOS4.VIAJE.Viaje_Fecha_Hora_Inicio) = @QUARTER AND YEAR(DESCONOCIDOS4.VIAJE.Viaje_Fecha_Hora_Inicio) = @AÑO
-	GROUP BY DESCONOCIDOS4.VIAJE.Viaje_Cliente,DESCONOCIDOS4.VIAJE.Viaje_Automovil
+	GROUP BY DESCONOCIDOS4.VIAJE.Viaje_Cliente,DESCONOCIDOS4.VIAJE.Viaje_Automovil,P.Persona_Nombre,P.Persona_Apellido,A.Auto_Detalle,A.Auto_Patente	
 	ORDER BY  [Cantidad de Viajes] DESC
 
 END
