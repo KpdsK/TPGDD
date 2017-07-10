@@ -232,29 +232,8 @@ namespace UberFrba
             }
         }
     }
-
-    //public interface IFuncionalidadRoles
-    //{
-    //    Boolean soyAdministrador();
-    //    void agregarAutomovil();
-    //    void eliminarAutomovil();
-    //    void modificarAutomovil();
-    //    void agregarTurno();
-    //    void eliminarTurno();
-    //    void modificarTurno();
-    //    void agregarRol();
-    //    void eliminarRol();
-    //    void modificarRol();
-    //    void accionBotonAutomovil(object sender, EventArgs e, frmAutomovil formulario, String funcion, String rol, object datos);
-    //    void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos);
-    //    void accionBotonClienteChofer(object sender, EventArgs e, frmABM formulario, string funcion, string rol, object datos);
-    //    void rendicionAChofer();
-    //    void facturarACliente();
-
-    //    void ejecutarFuncion(string nombreMetodo);
-    //}
-
-    public class FuncionalidadSegunRol //: IFuncionalidadRoles
+   
+    public class FuncionalidadSegunRol
     {
         public FuncionalidadSegunRol(int idRol, int idUsuario, String nombreRol, Boolean esAdmin)
         {
@@ -1189,23 +1168,6 @@ namespace UberFrba
 
         public static bool validarCampoTelefono(string cadenaTelefono)
         {
-            //Boolean resultado;
-            //if (validarCampoNumerico(cadenaTelefono))
-            //{
-            //    if (!MetodosGlobales.esDuplicadoTelefono(cadenaTelefono))
-            //    {
-            //        resultado = true;
-            //    }
-            //    else
-            //    {
-            //        throw new DNIDuplicadoException();
-            //    }
-            //}
-            //else
-            //{
-            //    resultado = true;
-            //}
-            //return resultado;
             return validarCampoNumerico(cadenaTelefono) && !MetodosGlobales.esDuplicadoTelefono(cadenaTelefono);
         }
 

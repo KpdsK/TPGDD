@@ -138,13 +138,7 @@ namespace UberFrba
 
         private void selectorHoraInicio_ValueChanged(object sender, EventArgs e)
         {
-            
-            //if(this.selectorHoraInicio.Value != 23)
-            //{
-                this.selectorHoraFin.Minimum = this.selectorHoraInicio.Value + 1;
-            //} else {
-            //    this.selectorHoraFin.Maximum = 0;
-            //}
+            this.selectorHoraFin.Minimum = this.selectorHoraInicio.Value + 1;
         }
 
         private void selectorHoraFin_ValueChanged(object sender, EventArgs e)
@@ -196,7 +190,6 @@ namespace UberFrba
         {
             this.Text = "Eliminar Turno";
             this.Controls["grupoDatosTurno"].Visible = false;
-            //this.selectorHoraFin.Maximum = 24;
             construirBotonAccion();
             return true;
         }
@@ -247,7 +240,6 @@ namespace UberFrba
         {
             this.Text = "Modificar Turno";
             this.Controls["grupoDatosTurno"].Visible = false;
-            //this.selectorHoraFin.Maximum = 24;
             construirBotonAccion();
             return true;
         }
@@ -275,10 +267,5 @@ namespace UberFrba
             return adaptador.obtenerListadoTurnosCompleto(
                 this.Controls["grupoBusquedaTurno"].Controls["txtBusquedaDescripcion"].Text);
         }
-
-        //protected override decimal convertirHorarioFinDia(short numero)
-        //{
-        //    return (numero == 24) ? 0 :numero;
-        //}
     }
 }

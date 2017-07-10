@@ -30,7 +30,6 @@ namespace UberFrba
             GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter();
             DataTable tblViajesAFacturar = adaptador.viajesAFacturar((int)this.comboCliente.SelectedValue,
-                //Convert.ToString(this.selectorFechaFacturacionHasta.Value.ToShortDateString()));
                 this.selectorFechaFacturacionHasta.Value.ToString("MM/dd/yyyy"));
             frmGrilla formularioGrilla = new frmGrilla();
             DataGridView grillaInformacionFacturacion = (DataGridView)formularioGrilla.Controls["grillaDatos"];

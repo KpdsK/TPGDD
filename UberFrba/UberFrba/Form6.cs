@@ -103,19 +103,23 @@ namespace UberFrba
             frmAutomovilComboModelo.ValueMember = "Modelo_Id";
         }
 
-        protected Boolean construirComboChofer()
+        protected Boolean construirComboChofer(int idAuto)
         {
-            GD1C2017DataSetTableAdapters.PRC_LISTA_CHOFERES_NO_ASIGTableAdapter adaptador
-                    = new GD1C2017DataSetTableAdapters.PRC_LISTA_CHOFERES_NO_ASIGTableAdapter();
-            DataTable tblChofer = adaptador.obtenerChoferesHabilitados();
             ComboBox frmAutomovilComboChofer = (ComboBox)this.Controls["grupoDatosAutomovil"].Controls["comboChofer"];
-            if (!MetodosGlobales.armarComboSeleccionSegunRol(tblChofer, frmAutomovilComboChofer))
+            if (!MetodosGlobales.armarComboSeleccionSegunRol(obtenerAdaptadorParaConsulta(idAuto), frmAutomovilComboChofer))
             {
                 dispararMensajeYCancelarAccion();
                 this.Close();
                 return false;
             }
             return true;
+        }
+
+        protected virtual DataTable obtenerAdaptadorParaConsulta(int idAuto)
+        {
+            GD1C2017DataSetTableAdapters.PRC_LISTA_CHOFERES_POSIBLESTableAdapter adaptador =
+            new GD1C2017DataSetTableAdapters.PRC_LISTA_CHOFERES_POSIBLESTableAdapter();
+            return adaptador.obtenerChoferesHabilitados(idAuto);
         }
 
         public void dispararMensajeYCancelarAccion()
@@ -163,7 +167,7 @@ namespace UberFrba
 
         public void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filaDeDatos)
         {
-            construirComboChofer();
+            construirComboChofer((int)filaDeDatos.Row["Auto_id"]);
             habilitarGrupoDatosAutomovil();
             construirComboTurno();
             construirComboMarca("grupoDatosAutomovil", "comboMarca");
@@ -296,7 +300,7 @@ namespace UberFrba
         public override Boolean construite()
         {
             this.Text = "Agregar Automovil";
-            Boolean continua = construirComboChofer();
+            Boolean continua = construirComboChofer(0);
             if (continua)
             {
                 desabilitarGrupoControlesDeBusqueda();
@@ -330,6 +334,13 @@ namespace UberFrba
                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return resultado;
+        }
+
+        protected override DataTable obtenerAdaptadorParaConsulta(int datoNoUtilizado)
+        {
+            GD1C2017DataSetTableAdapters.PRC_LISTA_CHOFERES_NO_ASIGTableAdapter adaptador =
+            new GD1C2017DataSetTableAdapters.PRC_LISTA_CHOFERES_NO_ASIGTableAdapter();
+            return adaptador.obtenerChoferesHabilitados();
         }
     }
 
