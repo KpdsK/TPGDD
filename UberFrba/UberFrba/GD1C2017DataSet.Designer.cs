@@ -3879,13 +3879,13 @@ namespace UberFrba {
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class PRC_LISTA_CHOFERES_NO_ASIGDataTable : global::System.Data.TypedTableBase<PRC_LISTA_CHOFERES_NO_ASIGRow> {
             
-            private global::System.Data.DataColumn columnCHOFER_ID;
-            
             private global::System.Data.DataColumn columnCHOFER_DNI;
             
-            private global::System.Data.DataColumn columnCHOFER_NOMBRE;
+            private global::System.Data.DataColumn columnidEnTablaSegunRol;
             
-            private global::System.Data.DataColumn columnCHOFER_APELLIDO;
+            private global::System.Data.DataColumn columnnombre;
+            
+            private global::System.Data.DataColumn columnapellido;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -3922,14 +3922,6 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CHOFER_IDColumn {
-                get {
-                    return this.columnCHOFER_ID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn CHOFER_DNIColumn {
                 get {
                     return this.columnCHOFER_DNI;
@@ -3938,17 +3930,25 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CHOFER_NOMBREColumn {
+            public global::System.Data.DataColumn idEnTablaSegunRolColumn {
                 get {
-                    return this.columnCHOFER_NOMBRE;
+                    return this.columnidEnTablaSegunRol;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn CHOFER_APELLIDOColumn {
+            public global::System.Data.DataColumn nombreColumn {
                 get {
-                    return this.columnCHOFER_APELLIDO;
+                    return this.columnnombre;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn apellidoColumn {
+                get {
+                    return this.columnapellido;
                 }
             }
             
@@ -3989,13 +3989,13 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_LISTA_CHOFERES_NO_ASIGRow AddPRC_LISTA_CHOFERES_NO_ASIGRow(decimal CHOFER_DNI, string CHOFER_NOMBRE, string CHOFER_APELLIDO) {
+            public PRC_LISTA_CHOFERES_NO_ASIGRow AddPRC_LISTA_CHOFERES_NO_ASIGRow(decimal CHOFER_DNI, string nombre, string apellido) {
                 PRC_LISTA_CHOFERES_NO_ASIGRow rowPRC_LISTA_CHOFERES_NO_ASIGRow = ((PRC_LISTA_CHOFERES_NO_ASIGRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        null,
                         CHOFER_DNI,
-                        CHOFER_NOMBRE,
-                        CHOFER_APELLIDO};
+                        null,
+                        nombre,
+                        apellido};
                 rowPRC_LISTA_CHOFERES_NO_ASIGRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowPRC_LISTA_CHOFERES_NO_ASIGRow);
                 return rowPRC_LISTA_CHOFERES_NO_ASIGRow;
@@ -4003,9 +4003,9 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_LISTA_CHOFERES_NO_ASIGRow FindByCHOFER_ID(int CHOFER_ID) {
+            public PRC_LISTA_CHOFERES_NO_ASIGRow FindByidEnTablaSegunRol(int idEnTablaSegunRol) {
                 return ((PRC_LISTA_CHOFERES_NO_ASIGRow)(this.Rows.Find(new object[] {
-                            CHOFER_ID})));
+                            idEnTablaSegunRol})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4025,31 +4025,33 @@ namespace UberFrba {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             internal void InitVars() {
-                this.columnCHOFER_ID = base.Columns["CHOFER_ID"];
                 this.columnCHOFER_DNI = base.Columns["CHOFER_DNI"];
-                this.columnCHOFER_NOMBRE = base.Columns["CHOFER_NOMBRE"];
-                this.columnCHOFER_APELLIDO = base.Columns["CHOFER_APELLIDO"];
+                this.columnidEnTablaSegunRol = base.Columns["idEnTablaSegunRol"];
+                this.columnnombre = base.Columns["nombre"];
+                this.columnapellido = base.Columns["apellido"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             private void InitClass() {
-                this.columnCHOFER_ID = new global::System.Data.DataColumn("CHOFER_ID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCHOFER_ID);
                 this.columnCHOFER_DNI = new global::System.Data.DataColumn("CHOFER_DNI", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCHOFER_DNI);
-                this.columnCHOFER_NOMBRE = new global::System.Data.DataColumn("CHOFER_NOMBRE", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCHOFER_NOMBRE);
-                this.columnCHOFER_APELLIDO = new global::System.Data.DataColumn("CHOFER_APELLIDO", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCHOFER_APELLIDO);
+                this.columnidEnTablaSegunRol = new global::System.Data.DataColumn("idEnTablaSegunRol", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnidEnTablaSegunRol);
+                this.columnnombre = new global::System.Data.DataColumn("nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnombre);
+                this.columnapellido = new global::System.Data.DataColumn("apellido", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnapellido);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnCHOFER_ID}, true));
-                this.columnCHOFER_ID.AutoIncrement = true;
-                this.columnCHOFER_ID.AllowDBNull = false;
-                this.columnCHOFER_ID.ReadOnly = true;
-                this.columnCHOFER_ID.Unique = true;
-                this.columnCHOFER_NOMBRE.MaxLength = 255;
-                this.columnCHOFER_APELLIDO.MaxLength = 255;
+                                this.columnidEnTablaSegunRol}, true));
+                this.columnidEnTablaSegunRol.AutoIncrement = true;
+                this.columnidEnTablaSegunRol.AutoIncrementSeed = -1;
+                this.columnidEnTablaSegunRol.AutoIncrementStep = -1;
+                this.columnidEnTablaSegunRol.AllowDBNull = false;
+                this.columnidEnTablaSegunRol.ReadOnly = true;
+                this.columnidEnTablaSegunRol.Unique = true;
+                this.columnnombre.MaxLength = 255;
+                this.columnapellido.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10568,17 +10570,6 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int CHOFER_ID {
-                get {
-                    return ((int)(this[this.tablePRC_LISTA_CHOFERES_NO_ASIG.CHOFER_IDColumn]));
-                }
-                set {
-                    this[this.tablePRC_LISTA_CHOFERES_NO_ASIG.CHOFER_IDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public decimal CHOFER_DNI {
                 get {
                     try {
@@ -10596,35 +10587,46 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CHOFER_NOMBRE {
+            public int idEnTablaSegunRol {
                 get {
-                    try {
-                        return ((string)(this[this.tablePRC_LISTA_CHOFERES_NO_ASIG.CHOFER_NOMBREColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CHOFER_NOMBRE\' de la tabla \'PRC_LISTA_CHOFERES_NO_ASIG\' e" +
-                                "s DBNull.", e);
-                    }
+                    return ((int)(this[this.tablePRC_LISTA_CHOFERES_NO_ASIG.idEnTablaSegunRolColumn]));
                 }
                 set {
-                    this[this.tablePRC_LISTA_CHOFERES_NO_ASIG.CHOFER_NOMBREColumn] = value;
+                    this[this.tablePRC_LISTA_CHOFERES_NO_ASIG.idEnTablaSegunRolColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string CHOFER_APELLIDO {
+            public string nombre {
                 get {
                     try {
-                        return ((string)(this[this.tablePRC_LISTA_CHOFERES_NO_ASIG.CHOFER_APELLIDOColumn]));
+                        return ((string)(this[this.tablePRC_LISTA_CHOFERES_NO_ASIG.nombreColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("El valor de la columna \'CHOFER_APELLIDO\' de la tabla \'PRC_LISTA_CHOFERES_NO_ASIG\'" +
-                                " es DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'nombre\' de la tabla \'PRC_LISTA_CHOFERES_NO_ASIG\' es DBNul" +
+                                "l.", e);
                     }
                 }
                 set {
-                    this[this.tablePRC_LISTA_CHOFERES_NO_ASIG.CHOFER_APELLIDOColumn] = value;
+                    this[this.tablePRC_LISTA_CHOFERES_NO_ASIG.nombreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string apellido {
+                get {
+                    try {
+                        return ((string)(this[this.tablePRC_LISTA_CHOFERES_NO_ASIG.apellidoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'apellido\' de la tabla \'PRC_LISTA_CHOFERES_NO_ASIG\' es DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tablePRC_LISTA_CHOFERES_NO_ASIG.apellidoColumn] = value;
                 }
             }
             
@@ -10642,26 +10644,26 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCHOFER_NOMBRENull() {
-                return this.IsNull(this.tablePRC_LISTA_CHOFERES_NO_ASIG.CHOFER_NOMBREColumn);
+            public bool IsnombreNull() {
+                return this.IsNull(this.tablePRC_LISTA_CHOFERES_NO_ASIG.nombreColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCHOFER_NOMBRENull() {
-                this[this.tablePRC_LISTA_CHOFERES_NO_ASIG.CHOFER_NOMBREColumn] = global::System.Convert.DBNull;
+            public void SetnombreNull() {
+                this[this.tablePRC_LISTA_CHOFERES_NO_ASIG.nombreColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsCHOFER_APELLIDONull() {
-                return this.IsNull(this.tablePRC_LISTA_CHOFERES_NO_ASIG.CHOFER_APELLIDOColumn);
+            public bool IsapellidoNull() {
+                return this.IsNull(this.tablePRC_LISTA_CHOFERES_NO_ASIG.apellidoColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetCHOFER_APELLIDONull() {
-                this[this.tablePRC_LISTA_CHOFERES_NO_ASIG.CHOFER_APELLIDOColumn] = global::System.Convert.DBNull;
+            public void SetapellidoNull() {
+                this[this.tablePRC_LISTA_CHOFERES_NO_ASIG.apellidoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -15545,10 +15547,10 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
             tableMapping.SourceTable = "Table";
             tableMapping.DataSetTable = "PRC_LISTA_CHOFERES_NO_ASIG";
-            tableMapping.ColumnMappings.Add("CHOFER_ID", "CHOFER_ID");
             tableMapping.ColumnMappings.Add("CHOFER_DNI", "CHOFER_DNI");
-            tableMapping.ColumnMappings.Add("CHOFER_NOMBRE", "CHOFER_NOMBRE");
-            tableMapping.ColumnMappings.Add("CHOFER_APELLIDO", "CHOFER_APELLIDO");
+            tableMapping.ColumnMappings.Add("idEnTablaSegunRol", "idEnTablaSegunRol");
+            tableMapping.ColumnMappings.Add("nombre", "nombre");
+            tableMapping.ColumnMappings.Add("apellido", "apellido");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -19280,8 +19282,8 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[32])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Auto", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[32])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Turno", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[32])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Cant_KM", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[32])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Fecha_hora_ini_base", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[32])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Fecha_hora_fin_base", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[32])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Fecha_hora_ini", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[32])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Fecha_hora_fin", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 23, 3, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -20973,7 +20975,7 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int registrarViaje(global::System.Nullable<int> Chof, global::System.Nullable<int> Clie, global::System.Nullable<int> Auto, global::System.Nullable<int> Turno, global::System.Nullable<decimal> Cant_KM, global::System.Nullable<global::System.DateTime> Fecha_hora_ini_base, global::System.Nullable<global::System.DateTime> Fecha_hora_fin_base) {
+        public virtual int registrarViaje(global::System.Nullable<int> Chof, global::System.Nullable<int> Clie, global::System.Nullable<int> Auto, global::System.Nullable<int> Turno, global::System.Nullable<decimal> Cant_KM, global::System.Nullable<global::System.DateTime> Fecha_hora_ini, global::System.Nullable<global::System.DateTime> Fecha_hora_fin) {
             global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[32]));
             if ((Chof.HasValue == true)) {
                 command.Parameters[1].Value = ((int)(Chof.Value));
@@ -21005,14 +21007,14 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             else {
                 command.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((Fecha_hora_ini_base.HasValue == true)) {
-                command.Parameters[6].Value = ((System.DateTime)(Fecha_hora_ini_base.Value));
+            if ((Fecha_hora_ini.HasValue == true)) {
+                command.Parameters[6].Value = ((System.DateTime)(Fecha_hora_ini.Value));
             }
             else {
                 command.Parameters[6].Value = global::System.DBNull.Value;
             }
-            if ((Fecha_hora_fin_base.HasValue == true)) {
-                command.Parameters[7].Value = ((System.DateTime)(Fecha_hora_fin_base.Value));
+            if ((Fecha_hora_fin.HasValue == true)) {
+                command.Parameters[7].Value = ((System.DateTime)(Fecha_hora_fin.Value));
             }
             else {
                 command.Parameters[7].Value = global::System.DBNull.Value;
