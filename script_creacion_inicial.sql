@@ -828,7 +828,7 @@ IF OBJECT_ID('[DESCONOCIDOS4].FN_VIAJE_RANGO_OK','FN') IS NOT NULL
 	DROP FUNCTION [DESCONOCIDOS4].FN_VIAJE_RANGO_OK;
 GO
 
--- Devuelve '1' si el rango horario no se superpone con el de otro turno y 'NO' por el contrario
+-- Devuelve '1' si el rango horario no se superpone con el de otro viaje y '0' por el contrario
 CREATE FUNCTION [DESCONOCIDOS4].FN_VIAJE_RANGO_OK(@Clie INT,@Hini DATETIME,@Hfin DATETIME)
 RETURNS  BIT
 AS
@@ -845,6 +845,53 @@ BEGIN
   ELSE 
   SET @RESUL=0
   RETURN @RESUL
+END
+GO
+
+
+IF OBJECT_ID('[DESCONOCIDOS4].FN_VIAJE_RANGO_OK_CHO','FN') IS NOT NULL
+	DROP FUNCTION [DESCONOCIDOS4].FN_VIAJE_RANGO_OK_CHO;
+GO
+
+-- Devuelve '1' si el rango horario no se superpone con el de otro VIAJE y '0' por el contrario
+CREATE FUNCTION [DESCONOCIDOS4].FN_VIAJE_RANGO_OK_CHO(@Cho INT,@Hini DATETIME,@Hfin DATETIME)
+RETURNS  BIT
+AS
+BEGIN
+  DECLARE @RESUL BIT
+  DECLARE @CONT INT	
+  SET @CONT=0
+  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].VIAJE WHERE Viaje_Chofer=@Cho and  Viaje_Fecha_Hora_Inicio>=@Hini AND @Hini<=Viaje_Fecha_Hora_Fin)>0
+  SET @CONT=@CONT+1
+  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].VIAJE WHERE Viaje_Chofer=@Cho  and Viaje_Fecha_Hora_Inicio>=@Hfin AND @Hfin<=Viaje_Fecha_Hora_Fin)>0
+  SET @CONT=@CONT+1
+  IF @CONT=0
+  SET @RESUL=1
+  ELSE 
+  SET @RESUL=0
+  RETURN @RESUL
+END
+GO
+
+IF OBJECT_ID('[DESCONOCIDOS4].FN_VIAJE_RANGO_DENTRO_TURNO','FN') IS NOT NULL
+	DROP FUNCTION [DESCONOCIDOS4].FN_VIAJE_RANGO_DENTRO_TURNO;
+GO
+
+-- Devuelve '1' si el rango horario se encuentra dentro del turno seleccionado
+CREATE FUNCTION [DESCONOCIDOS4].FN_VIAJE_RANGO_DENTRO_TURNO(@Turno INT,@Hini DATETIME,@Hfin DATETIME)
+RETURNS  BIT
+AS
+BEGIN
+	DECLARE @horaIni INT
+	DECLARE @horaFin INT
+	DECLARE @RESUL BIT
+	SET @horaIni =DATEPART(HOUR,@Hini)
+	SET @horaFin =DATEPART(HOUR,@Hfin)
+	IF(SELECT count(*) FROM DESCONOCIDOS4.TURNO WHERE Turno_Id = @Turno AND Turno_Hora_Inicio<=@horaIni AND Turno_Hora_Fin>=@horaFin)=1
+	SET @RESUL=1
+	ELSE
+	SET @RESUL=0
+	RETURN @RESUL
 END
 GO
 
@@ -868,7 +915,11 @@ BEGIN
 	SET @CONT=@CONT+1
 	IF ([DESCONOCIDOS4].FN_VIAJE_RANGO_OK(@Clie,@Fecha_hora_ini,@Fecha_hora_fin )) =1
 	SET @CONT=@CONT+1
-	IF @CONT=4 
+	IF ([DESCONOCIDOS4].FN_VIAJE_RANGO_OK_CHO(@Chof,@Fecha_hora_ini,@Fecha_hora_fin))=1
+	SET @CONT=@CONT+1
+	IF([DESCONOCIDOS4].FN_VIAJE_RANGO_DENTRO_TURNO(@Turno,@Fecha_hora_ini,@Fecha_hora_fin))=1
+	SET @CONT=@CONT+1
+	IF @CONT=6
 	SET @RESUL='SI'
 	ELSE
 	SET @RESUL='NO'
@@ -2264,6 +2315,37 @@ WHERE [DESCONOCIDOS4].FN_CHOFER_YA_DESIGNADO(CH.Chofer_Id)='NO'
 COMMIT
 GO
 
+IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_LISTA_CHOFERES_POSIBLES', N'P') IS NOT NULL
+DROP PROCEDURE  [DESCONOCIDOS4].PRC_LISTA_CHOFERES_POSIBLES;
+GO
+
+CREATE PROCEDURE [DESCONOCIDOS4].PRC_LISTA_CHOFERES_POSIBLES
+@id_auto INT
+AS
+BEGIN 
+TRANSACTION
+SELECT 
+	CH.Chofer_Id	AS idEnTablaSegunRol,
+	PER.Persona_Dni AS CHOFER_DNI,
+	PER.Persona_Nombre	AS nombre,
+	PER.Persona_Apellido	AS apellido
+FROM DESCONOCIDOS4.CHOFER CH
+LEFT JOIN DESCONOCIDOS4.PERSONA PER ON PER.Persona_Id = CH.Chofer_Per_Id
+WHERE [DESCONOCIDOS4].FN_CHOFER_YA_DESIGNADO(CH.Chofer_Id)='NO'
+UNION
+SELECT 
+	CH.Chofer_Id	AS idEnTablaSegunRol,
+	PER.Persona_Dni AS CHOFER_DNI,
+	PER.Persona_Nombre	AS nombre,
+	PER.Persona_Apellido	AS apellido
+FROM DESCONOCIDOS4.AUTO A LEFT JOIN DESCONOCIDOS4.UNIDAD_DISPONIBLE U ON U.Uni_Dis_Auto=A.Auto_Id
+ LEFT JOIN   DESCONOCIDOS4.CHOFER CH ON U.Uni_Dis_Chofer=CH.Chofer_Id
+ LEFT JOIN DESCONOCIDOS4.PERSONA PER ON PER.Persona_Id = CH.Chofer_Per_Id
+WHERE A.Auto_Id=@id_auto
+COMMIT
+GO
+
+
 --BUSCAR MIS DATOS CHOFER
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_BUSCAR_MIS_DATOS_CHO', N'P') IS NOT NULL
 		DROP PROCEDURE  [DESCONOCIDOS4].PRC_BUSCAR_MIS_DATOS_CHO;
@@ -2603,6 +2685,7 @@ GO
 GO
 
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_MODIFICACION_AUTO_DIS
+@id_auto INT,
 @Marca INT,
 @Modelo INT,
 @Patente VARCHAR(10),
@@ -2616,10 +2699,10 @@ BEGIN TRAN
   BEGIN
 	  UPDATE [DESCONOCIDOS4].AUTO 
 		SET  Auto_Patente=@Patente,Auto_Marca_Modelo=[DESCONOCIDOS4].FN_MARCAMOD_X_MARCA_MODELO(@Marca, @Modelo),
-		Auto_Detalle=[DESCONOCIDOS4].FN_DETALLE_AUTO(@Marca, @Modelo),Auto_Habilitado=@Hab  
+		Auto_Detalle=[DESCONOCIDOS4].FN_DETALLE_AUTO(@Marca, @Modelo),Auto_Habilitado=@Hab WHERE Auto_Id=@id_auto
 	  UPDATE  [DESCONOCIDOS4].UNIDAD_DISPONIBLE 
 		SET 
-			Uni_Dis_Auto=[DESCONOCIDOS4].FN_ID_AUTO_X_PATENTE(@Patente),Uni_Dis_Chofer=@Chofer,Uni_Dis_Turno=@Turno
+			Uni_Dis_Auto=@id_auto,Uni_Dis_Chofer=@Chofer,Uni_Dis_Turno=@Turno WHERE Uni_Dis_Auto=@id_auto
  END
  ELSE
  RAISERROR('Existen inconsistencias en los datos',16,1)
