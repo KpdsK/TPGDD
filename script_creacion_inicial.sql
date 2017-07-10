@@ -828,7 +828,7 @@ IF OBJECT_ID('[DESCONOCIDOS4].FN_VIAJE_RANGO_OK','FN') IS NOT NULL
 	DROP FUNCTION [DESCONOCIDOS4].FN_VIAJE_RANGO_OK;
 GO
 
--- Devuelve '1' si el rango horario no se superpone con el de otro turno y 'NO' por el contrario
+-- Devuelve '1' si el rango horario no se superpone con el de otro viaje y '0' por el contrario
 CREATE FUNCTION [DESCONOCIDOS4].FN_VIAJE_RANGO_OK(@Clie INT,@Hini DATETIME,@Hfin DATETIME)
 RETURNS  BIT
 AS
@@ -845,6 +845,53 @@ BEGIN
   ELSE 
   SET @RESUL=0
   RETURN @RESUL
+END
+GO
+
+
+IF OBJECT_ID('[DESCONOCIDOS4].FN_VIAJE_RANGO_OK_CHO','FN') IS NOT NULL
+	DROP FUNCTION [DESCONOCIDOS4].FN_VIAJE_RANGO_OK_CHO;
+GO
+
+-- Devuelve '1' si el rango horario no se superpone con el de otro VIAJE y '0' por el contrario
+CREATE FUNCTION [DESCONOCIDOS4].FN_VIAJE_RANGO_OK_CHO(@Cho INT,@Hini DATETIME,@Hfin DATETIME)
+RETURNS  BIT
+AS
+BEGIN
+  DECLARE @RESUL BIT
+  DECLARE @CONT INT	
+  SET @CONT=0
+  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].VIAJE WHERE Viaje_Chofer=@Cho and  Viaje_Fecha_Hora_Inicio>=@Hini AND @Hini<=Viaje_Fecha_Hora_Fin)>0
+  SET @CONT=@CONT+1
+  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].VIAJE WHERE Viaje_Chofer=@Cho  and Viaje_Fecha_Hora_Inicio>=@Hfin AND @Hfin<=Viaje_Fecha_Hora_Fin)>0
+  SET @CONT=@CONT+1
+  IF @CONT=0
+  SET @RESUL=1
+  ELSE 
+  SET @RESUL=0
+  RETURN @RESUL
+END
+GO
+
+IF OBJECT_ID('[DESCONOCIDOS4].FN_VIAJE_RANGO_DENTRO_TURNO','FN') IS NOT NULL
+	DROP FUNCTION [DESCONOCIDOS4].FN_VIAJE_RANGO_DENTRO_TURNO;
+GO
+
+-- Devuelve '1' si el rango horario se encuentra dentro del turno seleccionado
+CREATE FUNCTION [DESCONOCIDOS4].FN_VIAJE_RANGO_DENTRO_TURNO(@Turno INT,@Hini DATETIME,@Hfin DATETIME)
+RETURNS  BIT
+AS
+BEGIN
+	DECLARE @horaIni INT
+	DECLARE @horaFin INT
+	DECLARE @RESUL BIT
+	SET @horaIni =DATEPART(HOUR,@Hini)
+	SET @horaFin =DATEPART(HOUR,@Hfin)
+	IF(SELECT count(*) FROM DESCONOCIDOS4.TURNO WHERE Turno_Id = @Turno AND Turno_Hora_Inicio<=@horaIni AND Turno_Hora_Fin>=@horaFin)=1
+	SET @RESUL=1
+	ELSE
+	SET @RESUL=0
+	RETURN @RESUL
 END
 GO
 
@@ -868,7 +915,11 @@ BEGIN
 	SET @CONT=@CONT+1
 	IF ([DESCONOCIDOS4].FN_VIAJE_RANGO_OK(@Clie,@Fecha_hora_ini,@Fecha_hora_fin )) =1
 	SET @CONT=@CONT+1
-	IF @CONT=4 
+	IF ([DESCONOCIDOS4].FN_VIAJE_RANGO_OK_CHO(@Chof,@Fecha_hora_ini,@Fecha_hora_fin))=1
+	SET @CONT=@CONT+1
+	IF([DESCONOCIDOS4].FN_VIAJE_RANGO_DENTRO_TURNO(@Turno,@Fecha_hora_ini,@Fecha_hora_fin))=1
+	SET @CONT=@CONT+1
+	IF @CONT=6
 	SET @RESUL='SI'
 	ELSE
 	SET @RESUL='NO'
