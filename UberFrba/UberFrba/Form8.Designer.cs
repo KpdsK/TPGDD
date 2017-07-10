@@ -225,6 +225,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmRegistroViaje";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Carga de Viajes";
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -325,6 +325,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAutomovil";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.grupoBusquedaABM.ResumeLayout(false);
             this.grupoBusquedaABM.PerformLayout();
             this.grupoDatosAutomovil.ResumeLayout(false);

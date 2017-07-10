@@ -6777,13 +6777,6 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CHOFERES_MAYOR_RECAUDACIONRow FindById_Chofer(int Id_Chofer) {
-                return ((CHOFERES_MAYOR_RECAUDACIONRow)(this.Rows.Find(new object[] {
-                            Id_Chofer})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 CHOFERES_MAYOR_RECAUDACIONDataTable cln = ((CHOFERES_MAYOR_RECAUDACIONDataTable)(base.Clone()));
                 cln.InitVars();
@@ -6813,14 +6806,11 @@ namespace UberFrba {
                 base.Columns.Add(this.columnDni_Chofer);
                 this.columnTotal_Recaudacion = new global::System.Data.DataColumn("Total Recaudacion", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotal_Recaudacion);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnId_Chofer}, true));
                 this.columnId_Chofer.AutoIncrement = true;
                 this.columnId_Chofer.AutoIncrementSeed = -1;
                 this.columnId_Chofer.AutoIncrementStep = -1;
                 this.columnId_Chofer.AllowDBNull = false;
                 this.columnId_Chofer.ReadOnly = true;
-                this.columnId_Chofer.Unique = true;
                 this.columnDni_Chofer.ReadOnly = true;
                 this.columnTotal_Recaudacion.ReadOnly = true;
             }
@@ -7069,13 +7059,6 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CHOFERES_VIAJE_MAS_LARGORow FindByNro_Viaje(int Nro_Viaje) {
-                return ((CHOFERES_VIAJE_MAS_LARGORow)(this.Rows.Find(new object[] {
-                            Nro_Viaje})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public override global::System.Data.DataTable Clone() {
                 CHOFERES_VIAJE_MAS_LARGODataTable cln = ((CHOFERES_VIAJE_MAS_LARGODataTable)(base.Clone()));
                 cln.InitVars();
@@ -7105,15 +7088,12 @@ namespace UberFrba {
                 base.Columns.Add(this.columnNro_Viaje);
                 this.columnKm_Recorridos = new global::System.Data.DataColumn("Km Recorridos", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnKm_Recorridos);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnNro_Viaje}, true));
                 this.columnCHOFER.AllowDBNull = false;
                 this.columnNro_Viaje.AutoIncrement = true;
                 this.columnNro_Viaje.AutoIncrementSeed = -1;
                 this.columnNro_Viaje.AutoIncrementStep = -1;
                 this.columnNro_Viaje.AllowDBNull = false;
                 this.columnNro_Viaje.ReadOnly = true;
-                this.columnNro_Viaje.Unique = true;
                 this.columnKm_Recorridos.AllowDBNull = false;
             }
             

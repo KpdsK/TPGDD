@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace UberFrba
 {
-    public partial class frmListados : Form
+    public partial class frmListados : Form, IGrilla
     {
         public frmListados()
         {
@@ -72,12 +72,18 @@ namespace UberFrba
             grillaListados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             grillaListados.AutoGenerateColumns = true;
             formularioListado.Controls["btnSeleccionar"].Visible = false;
+            ((DataGridView)formularioListado.Controls["grillaDatosResultadoBusqueda"]).ReadOnly = true;
             formularioListado.Controls["btnCancelar"].Text = "Salir";
+            formularioListado.frmListados = this; 
             formularioListado.Controls["btnCancelar"].Left =
                 (this.ClientSize.Width -
                 formularioListado.Controls["btnCancelar"].Width) / 2;
             this.Close();
             formularioListado.Show();
+        }
+
+        public void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filaDeDatos)
+        {
         }
 
         private void listadoChoferConViajeMasLargoRealizado()

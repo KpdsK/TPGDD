@@ -82,6 +82,7 @@
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grillaDatosResultadoBusqueda);
             this.Name = "frmResultadoBusquedaUsuarioABM";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmResultadoBusquedaUsuarioABM_Load);
             ((System.ComponentModel.ISupportInitialize)(this.grillaDatosResultadoBusqueda)).EndInit();
             this.ResumeLayout(false);
