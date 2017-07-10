@@ -35,13 +35,10 @@ C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.exe
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.pdb
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.csprojResolveAssemblyReference.cache
 C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\bin\Debug\UberFrba.exe.config
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.exe
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.pdb
 C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\bin\Debug\UberFrba.exe.manifest
 C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\bin\Debug\UberFrba.application
 C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\bin\Debug\UberFrba.exe
 C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\bin\Debug\UberFrba.pdb
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.csprojResolveAssemblyReference.cache
 C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.frmIngreso.resources
 C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.frmFacturarViaje.resources
 C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.frmListados.resources
@@ -58,3 +55,5 @@ C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.Properti
 C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.csproj.GenerateResource.Cache
 C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.exe.manifest
 C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.application
+C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.exe
+C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.pdb

@@ -600,7 +600,7 @@ namespace UberFrba
                 adaptador.modificarTurno
                             (Convert.ToInt32(c["lblIdTurno"].Text),
                             Convert.ToInt16(((NumericUpDown)c["selectorHoraInicio"]).Value),
-                            Convert.ToInt16(((NumericUpDown)c["selectorHoraFin"])   .Value),
+                            Convert.ToInt16(((NumericUpDown)c["selectorHoraFin"]).Value),
                             c["txtDescripcion"].Text,
                             Convert.ToDecimal(c["txtValorKilometro"].Text),
                             Convert.ToDecimal(c["txtPrecioBase"].Text),
@@ -991,7 +991,7 @@ namespace UberFrba
 
         private static bool esPuntoDecimalPermitido(char caracter)
         {
-            return (new KeysConverter()).ConvertToString(caracter).Equals(".");
+            return (new KeysConverter()).ConvertToString(caracter).Equals(",");
         }
         
         public static Boolean esDuplicadoDNI(string cadenaDNI)
@@ -1165,7 +1165,7 @@ namespace UberFrba
 
         public static Boolean validarCampoNumericoCon2Decimales(String cadenaAValidar)
         {
-            return evaluarCadenaConExpresion(cadenaAValidar, @"\d+(?:.\d{1,2})?");
+            return evaluarCadenaConExpresion(cadenaAValidar, @"\d+(?:,d{1,2})?");
         }
 
         private static bool evaluarCadenaConExpresion(String cadenaAValidar, String expresionRegular)
