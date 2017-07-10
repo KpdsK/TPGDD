@@ -113,16 +113,6 @@ namespace UberFrba
             MetodosGlobales.permitirSoloIngresoAlfanumerico(e);
         }
 
-        private void txtHoraInicio_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            MetodosGlobales.permitirSoloIngresoHorario(e);
-        }
-
-        private void txtHoraFin_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            MetodosGlobales.permitirSoloIngresoHorario(e);
-        }
-
         private void txtDescripcion_KeyPress(object sender, KeyPressEventArgs e)
         {
             MetodosGlobales.permitirSoloIngresoAlfanumerico(e);

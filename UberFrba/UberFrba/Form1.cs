@@ -431,23 +431,31 @@ namespace UberFrba
 
         public void accionBotonTurno(object sender, EventArgs e, frmABMTurno formulario, string funcion, string rol, object datos)
         {
-            if (formulario.verificarDatosDeFormulario())
+            try
             {
-                if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
+                if (formulario.verificarDatosDeFormulario())
                 {
-                    ejecutarMetodoDeAccionConParametros(
-                        obtenerNombreMetodo(funcion, rol),
-                        new object[] { 
-                            datos
-                            ,obtenerAdaptadorBD() });
-                    formulario.Close();
+                    if (MetodosGlobales.mensajeAlertaAntesDeAccion(rol, funcion))
+                    {
+                        ejecutarMetodoDeAccionConParametros(
+                            obtenerNombreMetodo(funcion, rol),
+                            new object[] { 
+                                datos
+                                ,obtenerAdaptadorBD() });
+                        formulario.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(MetodosGlobales.Mensajes.mensajeDatosNulos,
+                         MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos,
+                         MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 }
             }
-            else
+            catch (RangoHorarioDuplicadoException ex)
             {
-                MessageBox.Show(MetodosGlobales.Mensajes.mensajeDatosNulos,
-                     MetodosGlobales.Mensajes.mensajeTituloVentanaDatosNulos,
-                     MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                MessageBox.Show("El Rango horario no puede interceptar a otros.", "Error Rango Horario",
+                               MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -559,11 +567,11 @@ namespace UberFrba
             try
             {
                 adaptador.agregarTurno
-                            (Convert.ToInt16(c["txtHoraInicio"].Text),
-                            Convert.ToInt16(c["txtHoraFin"].Text),
+                            (Convert.ToInt16(((NumericUpDown)c["selectorHoraInicio"]).Value),
+                            Convert.ToInt16(((NumericUpDown)c["selectorHoraFin"]).Value),
                             c["txtDescripcion"].Text,
                             Convert.ToDecimal(c["txtValorKilometro"].Text),
-                            Convert.ToDecimal(c["txtPrecioBase"].Text),
+							 Convert.ToDecimal(c["txtPrecioBase"].Text),
                             Convert.ToBoolean(((CheckBox)c["ccHabilitado"]).Checked));
             }
             catch (SqlException e)
@@ -1004,7 +1012,7 @@ namespace UberFrba
             Boolean resultado = (Boolean)adaptador.rangoInterceptaAlgunoExistente(
                 horarioInicio,
                 horarioFin);
-            if (resultado)
+            if (!resultado)
             {
                 throw new RangoHorarioDuplicadoException();
             }
