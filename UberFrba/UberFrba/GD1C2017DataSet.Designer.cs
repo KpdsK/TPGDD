@@ -6705,6 +6705,10 @@ namespace UberFrba {
             
             private global::System.Data.DataColumn columnTotal_Recaudacion;
             
+            private global::System.Data.DataColumn columnNombre;
+            
+            private global::System.Data.DataColumn columnApellido;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public CHOFERES_MAYOR_RECAUDACIONDataTable() {
@@ -6764,6 +6768,22 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombreColumn {
+                get {
+                    return this.columnNombre;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ApellidoColumn {
+                get {
+                    return this.columnApellido;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -6799,15 +6819,24 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CHOFERES_MAYOR_RECAUDACIONRow AddCHOFERES_MAYOR_RECAUDACIONRow(decimal Dni_Chofer, decimal Total_Recaudacion) {
+            public CHOFERES_MAYOR_RECAUDACIONRow AddCHOFERES_MAYOR_RECAUDACIONRow(decimal Dni_Chofer, decimal Total_Recaudacion, string Nombre, string Apellido) {
                 CHOFERES_MAYOR_RECAUDACIONRow rowCHOFERES_MAYOR_RECAUDACIONRow = ((CHOFERES_MAYOR_RECAUDACIONRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Dni_Chofer,
-                        Total_Recaudacion};
+                        Total_Recaudacion,
+                        Nombre,
+                        Apellido};
                 rowCHOFERES_MAYOR_RECAUDACIONRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCHOFERES_MAYOR_RECAUDACIONRow);
                 return rowCHOFERES_MAYOR_RECAUDACIONRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public CHOFERES_MAYOR_RECAUDACIONRow FindById_Chofer(int Id_Chofer) {
+                return ((CHOFERES_MAYOR_RECAUDACIONRow)(this.Rows.Find(new object[] {
+                            Id_Chofer})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6830,6 +6859,8 @@ namespace UberFrba {
                 this.columnId_Chofer = base.Columns["Id Chofer"];
                 this.columnDni_Chofer = base.Columns["Dni Chofer"];
                 this.columnTotal_Recaudacion = base.Columns["Total Recaudacion"];
+                this.columnNombre = base.Columns["Nombre"];
+                this.columnApellido = base.Columns["Apellido"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6841,13 +6872,22 @@ namespace UberFrba {
                 base.Columns.Add(this.columnDni_Chofer);
                 this.columnTotal_Recaudacion = new global::System.Data.DataColumn("Total Recaudacion", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotal_Recaudacion);
+                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombre);
+                this.columnApellido = new global::System.Data.DataColumn("Apellido", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnApellido);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnId_Chofer}, true));
                 this.columnId_Chofer.AutoIncrement = true;
                 this.columnId_Chofer.AutoIncrementSeed = -1;
                 this.columnId_Chofer.AutoIncrementStep = -1;
                 this.columnId_Chofer.AllowDBNull = false;
                 this.columnId_Chofer.ReadOnly = true;
+                this.columnId_Chofer.Unique = true;
                 this.columnDni_Chofer.ReadOnly = true;
                 this.columnTotal_Recaudacion.ReadOnly = true;
+                this.columnNombre.MaxLength = 255;
+                this.columnApellido.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -6987,6 +7027,10 @@ namespace UberFrba {
             
             private global::System.Data.DataColumn columnKm_Recorridos;
             
+            private global::System.Data.DataColumn columnNombre;
+            
+            private global::System.Data.DataColumn columnApellido;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public CHOFERES_VIAJE_MAS_LARGODataTable() {
@@ -7046,6 +7090,22 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombreColumn {
+                get {
+                    return this.columnNombre;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ApellidoColumn {
+                get {
+                    return this.columnApellido;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -7081,12 +7141,14 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CHOFERES_VIAJE_MAS_LARGORow AddCHOFERES_VIAJE_MAS_LARGORow(int CHOFER, decimal Km_Recorridos) {
+            public CHOFERES_VIAJE_MAS_LARGORow AddCHOFERES_VIAJE_MAS_LARGORow(int CHOFER, decimal Km_Recorridos, string Nombre, string Apellido) {
                 CHOFERES_VIAJE_MAS_LARGORow rowCHOFERES_VIAJE_MAS_LARGORow = ((CHOFERES_VIAJE_MAS_LARGORow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CHOFER,
                         null,
-                        Km_Recorridos};
+                        Km_Recorridos,
+                        Nombre,
+                        Apellido};
                 rowCHOFERES_VIAJE_MAS_LARGORow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCHOFERES_VIAJE_MAS_LARGORow);
                 return rowCHOFERES_VIAJE_MAS_LARGORow;
@@ -7112,6 +7174,8 @@ namespace UberFrba {
                 this.columnCHOFER = base.Columns["CHOFER"];
                 this.columnNro_Viaje = base.Columns["Nro Viaje"];
                 this.columnKm_Recorridos = base.Columns["Km Recorridos"];
+                this.columnNombre = base.Columns["Nombre"];
+                this.columnApellido = base.Columns["Apellido"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7123,6 +7187,10 @@ namespace UberFrba {
                 base.Columns.Add(this.columnNro_Viaje);
                 this.columnKm_Recorridos = new global::System.Data.DataColumn("Km Recorridos", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnKm_Recorridos);
+                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombre);
+                this.columnApellido = new global::System.Data.DataColumn("Apellido", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnApellido);
                 this.columnCHOFER.AllowDBNull = false;
                 this.columnNro_Viaje.AutoIncrement = true;
                 this.columnNro_Viaje.AutoIncrementSeed = -1;
@@ -7130,6 +7198,8 @@ namespace UberFrba {
                 this.columnNro_Viaje.AllowDBNull = false;
                 this.columnNro_Viaje.ReadOnly = true;
                 this.columnKm_Recorridos.AllowDBNull = false;
+                this.columnNombre.MaxLength = 255;
+                this.columnApellido.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7267,6 +7337,10 @@ namespace UberFrba {
             
             private global::System.Data.DataColumn columnTotal_Facturado;
             
+            private global::System.Data.DataColumn columnNombre;
+            
+            private global::System.Data.DataColumn columnApellido;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public CLIENTES_MAYOR_CONSUMODataTable() {
@@ -7318,6 +7392,22 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombreColumn {
+                get {
+                    return this.columnNombre;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ApellidoColumn {
+                get {
+                    return this.columnApellido;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -7353,11 +7443,13 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CLIENTES_MAYOR_CONSUMORow AddCLIENTES_MAYOR_CONSUMORow(int CLIENTE, decimal Total_Facturado) {
+            public CLIENTES_MAYOR_CONSUMORow AddCLIENTES_MAYOR_CONSUMORow(int CLIENTE, decimal Total_Facturado, string Nombre, string Apellido) {
                 CLIENTES_MAYOR_CONSUMORow rowCLIENTES_MAYOR_CONSUMORow = ((CLIENTES_MAYOR_CONSUMORow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CLIENTE,
-                        Total_Facturado};
+                        Total_Facturado,
+                        Nombre,
+                        Apellido};
                 rowCLIENTES_MAYOR_CONSUMORow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCLIENTES_MAYOR_CONSUMORow);
                 return rowCLIENTES_MAYOR_CONSUMORow;
@@ -7382,6 +7474,8 @@ namespace UberFrba {
             internal void InitVars() {
                 this.columnCLIENTE = base.Columns["CLIENTE"];
                 this.columnTotal_Facturado = base.Columns["Total Facturado"];
+                this.columnNombre = base.Columns["Nombre"];
+                this.columnApellido = base.Columns["Apellido"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7391,8 +7485,14 @@ namespace UberFrba {
                 base.Columns.Add(this.columnCLIENTE);
                 this.columnTotal_Facturado = new global::System.Data.DataColumn("Total Facturado", typeof(decimal), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTotal_Facturado);
+                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombre);
+                this.columnApellido = new global::System.Data.DataColumn("Apellido", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnApellido);
                 this.columnCLIENTE.AllowDBNull = false;
                 this.columnTotal_Facturado.ReadOnly = true;
+                this.columnNombre.MaxLength = 255;
+                this.columnApellido.MaxLength = 255;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7532,6 +7632,14 @@ namespace UberFrba {
             
             private global::System.Data.DataColumn columnCantidad_de_Viajes;
             
+            private global::System.Data.DataColumn columnNombre;
+            
+            private global::System.Data.DataColumn columnApellido;
+            
+            private global::System.Data.DataColumn columnMarca_y_Modelo;
+            
+            private global::System.Data.DataColumn columnPatente;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public CLIENTES_MAS_VECES_MISMO_AUTODataTable() {
@@ -7591,6 +7699,38 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombreColumn {
+                get {
+                    return this.columnNombre;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn ApellidoColumn {
+                get {
+                    return this.columnApellido;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Marca_y_ModeloColumn {
+                get {
+                    return this.columnMarca_y_Modelo;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn PatenteColumn {
+                get {
+                    return this.columnPatente;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -7626,12 +7766,16 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public CLIENTES_MAS_VECES_MISMO_AUTORow AddCLIENTES_MAS_VECES_MISMO_AUTORow(int CLIENTE, int AUTOMOVIL, int Cantidad_de_Viajes) {
+            public CLIENTES_MAS_VECES_MISMO_AUTORow AddCLIENTES_MAS_VECES_MISMO_AUTORow(int CLIENTE, int AUTOMOVIL, int Cantidad_de_Viajes, string Nombre, string Apellido, string Marca_y_Modelo, string Patente) {
                 CLIENTES_MAS_VECES_MISMO_AUTORow rowCLIENTES_MAS_VECES_MISMO_AUTORow = ((CLIENTES_MAS_VECES_MISMO_AUTORow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         CLIENTE,
                         AUTOMOVIL,
-                        Cantidad_de_Viajes};
+                        Cantidad_de_Viajes,
+                        Nombre,
+                        Apellido,
+                        Marca_y_Modelo,
+                        Patente};
                 rowCLIENTES_MAS_VECES_MISMO_AUTORow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCLIENTES_MAS_VECES_MISMO_AUTORow);
                 return rowCLIENTES_MAS_VECES_MISMO_AUTORow;
@@ -7657,6 +7801,10 @@ namespace UberFrba {
                 this.columnCLIENTE = base.Columns["CLIENTE"];
                 this.columnAUTOMOVIL = base.Columns["AUTOMOVIL"];
                 this.columnCantidad_de_Viajes = base.Columns["Cantidad de Viajes"];
+                this.columnNombre = base.Columns["Nombre"];
+                this.columnApellido = base.Columns["Apellido"];
+                this.columnMarca_y_Modelo = base.Columns["Marca y Modelo"];
+                this.columnPatente = base.Columns["Patente"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -7668,9 +7816,21 @@ namespace UberFrba {
                 base.Columns.Add(this.columnAUTOMOVIL);
                 this.columnCantidad_de_Viajes = new global::System.Data.DataColumn("Cantidad de Viajes", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCantidad_de_Viajes);
+                this.columnNombre = new global::System.Data.DataColumn("Nombre", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombre);
+                this.columnApellido = new global::System.Data.DataColumn("Apellido", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnApellido);
+                this.columnMarca_y_Modelo = new global::System.Data.DataColumn("Marca y Modelo", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMarca_y_Modelo);
+                this.columnPatente = new global::System.Data.DataColumn("Patente", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPatente);
                 this.columnCLIENTE.AllowDBNull = false;
                 this.columnAUTOMOVIL.AllowDBNull = false;
                 this.columnCantidad_de_Viajes.ReadOnly = true;
+                this.columnNombre.MaxLength = 255;
+                this.columnApellido.MaxLength = 255;
+                this.columnMarca_y_Modelo.MaxLength = 26;
+                this.columnPatente.MaxLength = 10;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12118,6 +12278,40 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Nombre {
+                get {
+                    try {
+                        return ((string)(this[this.tableCHOFERES_MAYOR_RECAUDACION.NombreColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Nombre\' de la tabla \'CHOFERES_MAYOR_RECAUDACION\' es DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableCHOFERES_MAYOR_RECAUDACION.NombreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Apellido {
+                get {
+                    try {
+                        return ((string)(this[this.tableCHOFERES_MAYOR_RECAUDACION.ApellidoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Apellido\' de la tabla \'CHOFERES_MAYOR_RECAUDACION\' es DBN" +
+                                "ull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCHOFERES_MAYOR_RECAUDACION.ApellidoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsDni_ChoferNull() {
                 return this.IsNull(this.tableCHOFERES_MAYOR_RECAUDACION.Dni_ChoferColumn);
             }
@@ -12138,6 +12332,30 @@ namespace UberFrba {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTotal_RecaudacionNull() {
                 this[this.tableCHOFERES_MAYOR_RECAUDACION.Total_RecaudacionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombreNull() {
+                return this.IsNull(this.tableCHOFERES_MAYOR_RECAUDACION.NombreColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombreNull() {
+                this[this.tableCHOFERES_MAYOR_RECAUDACION.NombreColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsApellidoNull() {
+                return this.IsNull(this.tableCHOFERES_MAYOR_RECAUDACION.ApellidoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetApellidoNull() {
+                this[this.tableCHOFERES_MAYOR_RECAUDACION.ApellidoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -12187,6 +12405,64 @@ namespace UberFrba {
                     this[this.tableCHOFERES_VIAJE_MAS_LARGO.Km_RecorridosColumn] = value;
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Nombre {
+                get {
+                    try {
+                        return ((string)(this[this.tableCHOFERES_VIAJE_MAS_LARGO.NombreColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Nombre\' de la tabla \'CHOFERES_VIAJE_MAS_LARGO\' es DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableCHOFERES_VIAJE_MAS_LARGO.NombreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Apellido {
+                get {
+                    try {
+                        return ((string)(this[this.tableCHOFERES_VIAJE_MAS_LARGO.ApellidoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Apellido\' de la tabla \'CHOFERES_VIAJE_MAS_LARGO\' es DBNul" +
+                                "l.", e);
+                    }
+                }
+                set {
+                    this[this.tableCHOFERES_VIAJE_MAS_LARGO.ApellidoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombreNull() {
+                return this.IsNull(this.tableCHOFERES_VIAJE_MAS_LARGO.NombreColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombreNull() {
+                this[this.tableCHOFERES_VIAJE_MAS_LARGO.NombreColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsApellidoNull() {
+                return this.IsNull(this.tableCHOFERES_VIAJE_MAS_LARGO.ApellidoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetApellidoNull() {
+                this[this.tableCHOFERES_VIAJE_MAS_LARGO.ApellidoColumn] = global::System.Convert.DBNull;
+            }
         }
         
         /// <summary>
@@ -12233,6 +12509,39 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Nombre {
+                get {
+                    try {
+                        return ((string)(this[this.tableCLIENTES_MAYOR_CONSUMO.NombreColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Nombre\' de la tabla \'CLIENTES_MAYOR_CONSUMO\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCLIENTES_MAYOR_CONSUMO.NombreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Apellido {
+                get {
+                    try {
+                        return ((string)(this[this.tableCLIENTES_MAYOR_CONSUMO.ApellidoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Apellido\' de la tabla \'CLIENTES_MAYOR_CONSUMO\' es DBNull." +
+                                "", e);
+                    }
+                }
+                set {
+                    this[this.tableCLIENTES_MAYOR_CONSUMO.ApellidoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTotal_FacturadoNull() {
                 return this.IsNull(this.tableCLIENTES_MAYOR_CONSUMO.Total_FacturadoColumn);
             }
@@ -12241,6 +12550,30 @@ namespace UberFrba {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetTotal_FacturadoNull() {
                 this[this.tableCLIENTES_MAYOR_CONSUMO.Total_FacturadoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombreNull() {
+                return this.IsNull(this.tableCLIENTES_MAYOR_CONSUMO.NombreColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombreNull() {
+                this[this.tableCLIENTES_MAYOR_CONSUMO.NombreColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsApellidoNull() {
+                return this.IsNull(this.tableCLIENTES_MAYOR_CONSUMO.ApellidoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetApellidoNull() {
+                this[this.tableCLIENTES_MAYOR_CONSUMO.ApellidoColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -12299,6 +12632,74 @@ namespace UberFrba {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Nombre {
+                get {
+                    try {
+                        return ((string)(this[this.tableCLIENTES_MAS_VECES_MISMO_AUTO.NombreColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Nombre\' de la tabla \'CLIENTES_MAS_VECES_MISMO_AUTO\' es DB" +
+                                "Null.", e);
+                    }
+                }
+                set {
+                    this[this.tableCLIENTES_MAS_VECES_MISMO_AUTO.NombreColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Apellido {
+                get {
+                    try {
+                        return ((string)(this[this.tableCLIENTES_MAS_VECES_MISMO_AUTO.ApellidoColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Apellido\' de la tabla \'CLIENTES_MAS_VECES_MISMO_AUTO\' es " +
+                                "DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCLIENTES_MAS_VECES_MISMO_AUTO.ApellidoColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Marca_y_Modelo {
+                get {
+                    try {
+                        return ((string)(this[this.tableCLIENTES_MAS_VECES_MISMO_AUTO.Marca_y_ModeloColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Marca y Modelo\' de la tabla \'CLIENTES_MAS_VECES_MISMO_AUT" +
+                                "O\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCLIENTES_MAS_VECES_MISMO_AUTO.Marca_y_ModeloColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Patente {
+                get {
+                    try {
+                        return ((string)(this[this.tableCLIENTES_MAS_VECES_MISMO_AUTO.PatenteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Patente\' de la tabla \'CLIENTES_MAS_VECES_MISMO_AUTO\' es D" +
+                                "BNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableCLIENTES_MAS_VECES_MISMO_AUTO.PatenteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsCantidad_de_ViajesNull() {
                 return this.IsNull(this.tableCLIENTES_MAS_VECES_MISMO_AUTO.Cantidad_de_ViajesColumn);
             }
@@ -12307,6 +12708,54 @@ namespace UberFrba {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetCantidad_de_ViajesNull() {
                 this[this.tableCLIENTES_MAS_VECES_MISMO_AUTO.Cantidad_de_ViajesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombreNull() {
+                return this.IsNull(this.tableCLIENTES_MAS_VECES_MISMO_AUTO.NombreColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombreNull() {
+                this[this.tableCLIENTES_MAS_VECES_MISMO_AUTO.NombreColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsApellidoNull() {
+                return this.IsNull(this.tableCLIENTES_MAS_VECES_MISMO_AUTO.ApellidoColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetApellidoNull() {
+                this[this.tableCLIENTES_MAS_VECES_MISMO_AUTO.ApellidoColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsMarca_y_ModeloNull() {
+                return this.IsNull(this.tableCLIENTES_MAS_VECES_MISMO_AUTO.Marca_y_ModeloColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetMarca_y_ModeloNull() {
+                this[this.tableCLIENTES_MAS_VECES_MISMO_AUTO.Marca_y_ModeloColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPatenteNull() {
+                return this.IsNull(this.tableCLIENTES_MAS_VECES_MISMO_AUTO.PatenteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPatenteNull() {
+                this[this.tableCLIENTES_MAS_VECES_MISMO_AUTO.PatenteColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -14454,6 +14903,8 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Nom", global::System.Data.SqlDbType.VarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Ape", global::System.Data.SqlDbType.VarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@DNI", global::System.Data.SqlDbType.Decimal, 9, global::System.Data.ParameterDirection.Input, 18, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Habi_1", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Habi_2", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -14532,7 +14983,7 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOSDataTable obtenerDatosUsuario(string TipoUsuario, string Nom, string Ape, global::System.Nullable<decimal> DNI) {
+        public virtual GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOSDataTable obtenerDatosUsuario(string TipoUsuario, string Nom, string Ape, global::System.Nullable<decimal> DNI, global::System.Nullable<bool> Habi_1, global::System.Nullable<bool> Habi_2) {
             this.Adapter.SelectCommand = this.CommandCollection[1];
             if ((TipoUsuario == null)) {
                 this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -14557,6 +15008,18 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             }
             else {
                 this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((Habi_1.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[5].Value = ((bool)(Habi_1.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            if ((Habi_2.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[6].Value = ((bool)(Habi_2.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOSDataTable dataTable = new GD1C2017DataSet.PRC_OBTENER_DATOS_USUARIOSDataTable();
             this.Adapter.Fill(dataTable);
@@ -17826,6 +18289,8 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Id Chofer", "Id Chofer");
             tableMapping.ColumnMappings.Add("Dni Chofer", "Dni Chofer");
             tableMapping.ColumnMappings.Add("Total Recaudacion", "Total Recaudacion");
+            tableMapping.ColumnMappings.Add("Nombre", "Nombre");
+            tableMapping.ColumnMappings.Add("Apellido", "Apellido");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -17997,6 +18462,8 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             tableMapping.ColumnMappings.Add("CHOFER", "CHOFER");
             tableMapping.ColumnMappings.Add("Nro Viaje", "Nro Viaje");
             tableMapping.ColumnMappings.Add("Km Recorridos", "Km Recorridos");
+            tableMapping.ColumnMappings.Add("Nombre", "Nombre");
+            tableMapping.ColumnMappings.Add("Apellido", "Apellido");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -18167,6 +18634,8 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             tableMapping.DataSetTable = "CLIENTES_MAYOR_CONSUMO";
             tableMapping.ColumnMappings.Add("CLIENTE", "CLIENTE");
             tableMapping.ColumnMappings.Add("Total Facturado", "Total Facturado");
+            tableMapping.ColumnMappings.Add("Nombre", "Nombre");
+            tableMapping.ColumnMappings.Add("Apellido", "Apellido");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -18338,6 +18807,10 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             tableMapping.ColumnMappings.Add("CLIENTE", "CLIENTE");
             tableMapping.ColumnMappings.Add("AUTOMOVIL", "AUTOMOVIL");
             tableMapping.ColumnMappings.Add("Cantidad de Viajes", "Cantidad de Viajes");
+            tableMapping.ColumnMappings.Add("Nombre", "Nombre");
+            tableMapping.ColumnMappings.Add("Apellido", "Apellido");
+            tableMapping.ColumnMappings.Add("Marca y Modelo", "Marca y Modelo");
+            tableMapping.ColumnMappings.Add("Patente", "Patente");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
