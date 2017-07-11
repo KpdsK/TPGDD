@@ -1924,7 +1924,9 @@ GO
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_BUSCAR_CLIENTES
 @Nom VARCHAR(255),
 @Ape VARCHAR(255),
-@DNI NUMERIC(18,0)
+@DNI NUMERIC(18,0),
+@Habi_1 BIT,
+@Habi_2 BIT
 AS
 BEGIN
 
@@ -1946,9 +1948,9 @@ BEGIN
 	  ,Cliente_Id [idTipoRol]
 	  ,Cliente_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
-	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
+	  WHERE c.Cliente_Habilitado=@habi_1 or c.Cliente_Habilitado=@habi_2 and  ( P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
               AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')
-              AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI);
+              AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI));
 	END
 	ELSE
 	BEGIN
@@ -1968,8 +1970,8 @@ BEGIN
 	  ,Cliente_Id [idTipoRol]
 	  ,Cliente_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
-	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
-              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%');
+	  WHERE  c.Cliente_Habilitado=@habi_1 or c.Cliente_Habilitado=@habi_2 AND ( P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
+              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%'));
 	END
 END
 GO
@@ -2156,17 +2158,19 @@ CREATE PROC [DESCONOCIDOS4].PRC_OBTENER_DATOS_USUARIOS
 	@TipoUsuario VARCHAR(10),
 	@Nom VARCHAR(255),
 	@Ape VARCHAR(255),
-	@DNI NUMERIC(18,0)
+	@DNI NUMERIC(18,0),
+	@Habi_1 BIT,
+	@Habi_2 BIT
 )
 AS
 BEGIN
 IF (@TipoUsuario = 'Cliente')
 	BEGIN
-		EXEC [DESCONOCIDOS4].PRC_BUSCAR_CLIENTES @Nom, @Ape, @DNI
+		EXEC [DESCONOCIDOS4].PRC_BUSCAR_CLIENTES @Nom, @Ape, @DNI,@Habi_1,@Habi_2 
 	END
 ELSE
 	BEGIN
-		EXEC [DESCONOCIDOS4].PRC_BUSCAR_CHOFER @Nom, @Ape, @DNI
+		EXEC [DESCONOCIDOS4].PRC_BUSCAR_CHOFER @Nom, @Ape, @DNI,@Habi_1,@Habi_2
 	END
 END
 GO
@@ -2179,7 +2183,9 @@ GO
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_BUSCAR_CHOFER
 @Nom VARCHAR(255),
 @Ape VARCHAR(255),
-@DNI NUMERIC(18,0)
+@DNI NUMERIC(18,0),
+@Habi_1 BIT,
+@Habi_2 BIT
 AS
 BEGIN
 	IF (@DNI IS NOT NULL)
@@ -2200,9 +2206,9 @@ BEGIN
 	  ,Chofer_Id [idTipoRol]
 	  ,Chofer_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CHOFER C ON C.Chofer_Per_Id= P.Persona_Id
-	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
+	  WHERE C.Chofer_Habilitado=@Habi_1 or C.Chofer_Habilitado=@Habi_2 and ( P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
               AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')
-			  AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI);
+			  AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI));
 	END
 	ELSE
 	BEGIN
@@ -2222,11 +2228,14 @@ BEGIN
 	  ,Chofer_Id [idTipoRol]
 	  ,Chofer_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CHOFER C ON C.Chofer_Per_Id= P.Persona_Id
-	  WHERE   P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
-              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%');
+	  WHERE  C.Chofer_Habilitado=@Habi_1 or C.Chofer_Habilitado=@Habi_2 and (  P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
+              AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%'));
 	END
 END
 GO
+
+
+
 
 -- DAR DE ALTA CHOFER SIENDO CLIENTE
 IF OBJECT_ID (N'[DESCONOCIDOS4].PRC_ALTA_CHOFER_DESDE_CLI', N'P') IS NOT NULL
@@ -2697,32 +2706,31 @@ CREATE PROCEDURE [DESCONOCIDOS4].PRC_MODIFICACION_AUTO_DIS
 @Hab BIT
 AS 
 BEGIN TRAN
- IF @Hab=1
-	 IF ([DESCONOCIDOS4].FN_ASIGNACION_X_CHOFER_TURNO(@Chofer,@Turno)='NO' AND   [DESCONOCIDOS4].FN_CHOFER_YA_DESIGNADO(@Chofer)= 'NO'
-		 and [DESCONOCIDOS4].FN_ASIGNACION_X_CHOFER_TURNO([DESCONOCIDOS4].FN_ID_AUTO_X_PATENTE(@Patente), @Turno) ='NO')
-	  BEGIN
+  	IF ( SELECT count(*) FROM DESCONOCIDOS4.UNIDAD_DISPONIBLE WHERE Uni_Dis_Auto=@id_auto and CONCAT(Uni_Dis_Auto,Uni_Dis_Chofer,Uni_Dis_Turno)=CONCAT(@id_auto,@Chofer,@Turno))=1
+
+	   BEGIN
 		  UPDATE [DESCONOCIDOS4].AUTO 
 			SET  Auto_Patente=@Patente,Auto_Marca_Modelo=[DESCONOCIDOS4].FN_MARCAMOD_X_MARCA_MODELO(@Marca, @Modelo),
 			Auto_Detalle=[DESCONOCIDOS4].FN_DETALLE_AUTO(@Marca, @Modelo),Auto_Habilitado=@Hab WHERE Auto_Id=@id_auto
 		  UPDATE  [DESCONOCIDOS4].UNIDAD_DISPONIBLE 
 			SET 
-				Uni_Dis_Auto=@id_auto,Uni_Dis_Chofer=@Chofer,Uni_Dis_Turno=@Turno,Uni_Dis_Habilitado= 1 WHERE Uni_Dis_Auto=@id_auto
-	 END
+				Uni_Dis_Habilitado= @Hab WHERE Uni_Dis_Auto=@id_auto AND Uni_Dis_Chofer=@Chofer AND Uni_Dis_Turno=@Turno
+		END
 	 ELSE
-	 RAISERROR('Existen inconsistencias en los datos',16,1)
- ELSE
-	 IF ([DESCONOCIDOS4].FN_ASIGNACION_X_CHOFER_TURNO(@Chofer,@Turno)='NO' AND   [DESCONOCIDOS4].FN_CHOFER_YA_DESIGNADO(@Chofer)= 'NO'
+	   IF ([DESCONOCIDOS4].FN_ASIGNACION_X_CHOFER_TURNO(@Chofer,@Turno)='NO' AND   [DESCONOCIDOS4].FN_CHOFER_YA_DESIGNADO(@Chofer)= 'NO'
 		 and [DESCONOCIDOS4].FN_ASIGNACION_X_CHOFER_TURNO([DESCONOCIDOS4].FN_ID_AUTO_X_PATENTE(@Patente), @Turno) ='NO')
-	  BEGIN
-		  UPDATE [DESCONOCIDOS4].AUTO 
+		 BEGIN 
+		 UPDATE [DESCONOCIDOS4].AUTO 
 			SET  Auto_Patente=@Patente,Auto_Marca_Modelo=[DESCONOCIDOS4].FN_MARCAMOD_X_MARCA_MODELO(@Marca, @Modelo),
 			Auto_Detalle=[DESCONOCIDOS4].FN_DETALLE_AUTO(@Marca, @Modelo),Auto_Habilitado=@Hab WHERE Auto_Id=@id_auto
-		  UPDATE  [DESCONOCIDOS4].UNIDAD_DISPONIBLE 
-			SET 
-				Uni_Dis_Auto=@id_auto,Uni_Dis_Chofer=@Chofer,Uni_Dis_Turno=@Turno,Uni_Dis_Habilitado= 0 WHERE Uni_Dis_Auto=@id_auto
-	 END
-	 ELSE
-	 RAISERROR('Existen inconsistencias en los datos',16,1)
+		  INSERT INTO   [DESCONOCIDOS4].UNIDAD_DISPONIBLE (Uni_Dis_Auto,Uni_Dis_Chofer,Uni_Dis_Turno,Uni_Dis_Habilitado)
+		   VALUES(@id_auto,@Chofer,@Turno,@Hab)
+	
+		END
+	  ELSE 
+		RAISERROR('Existen inconsistencias en los datos',16,1)
+
+
 COMMIT;
 GO
 
@@ -2806,7 +2814,7 @@ GO
 			LEFT JOIN [DESCONOCIDOS4].CHOFER CH ON CH.Chofer_Id=U.Uni_Dis_Chofer
 			LEFT JOIN [DESCONOCIDOS4].PERSONA P ON P.Persona_Id= CH.Chofer_Per_Id 
 			LEFT JOIN [DESCONOCIDOS4].TURNO TUR ON TUR.Turno_Id = U.Uni_Dis_Turno
-			WHERE CH.Chofer_Habilitado=1 AND TUR.Turno_Habilitado=1 AND A.Auto_Habilitado=1 and
+			WHERE 
 			MR.Marca_Nombre LIKE ISNULL('%' + @Marca + '%', '%') AND 
 			MD.Modelo_Nombre LIKE ISNULL('%' + @Modelo + '%', '%') AND
 			A.Auto_Patente  LIKE ISNULL('%' + @Patente + '%', '%') AND
@@ -2886,13 +2894,13 @@ GO
 			LEFT JOIN [DESCONOCIDOS4].CHOFER CH ON CH.Chofer_Id=U.Uni_Dis_Chofer
 			LEFT JOIN [DESCONOCIDOS4].PERSONA P ON P.Persona_Id= CH.Chofer_Per_Id 
 			LEFT JOIN [DESCONOCIDOS4].TURNO TUR ON TUR.Turno_Id = U.Uni_Dis_Turno
-			WHERE --CH.Chofer_Habilitado=1 AND TUR.Turno_Habilitado=1 AND
+			WHERE 
 			MR.Marca_Nombre LIKE ISNULL('%' + @Marca + '%', '%') AND 
 			MD.Modelo_Nombre LIKE ISNULL('%' + @Modelo + '%', '%') AND
 			A.Auto_Patente  LIKE ISNULL('%' + @Patente + '%', '%') AND
 			P.Persona_Nombre  LIKE ISNULL('%' + @NomCh + '%', '%')  AND
 			P.Persona_Apellido  LIKE ISNULL('%' + @ApeCh + '%', '%') --AND	
-			--convert(varchar(50),P.Persona_Dni)  LIKE ISNULL('%' + convert(varchar(50),@DniChofer) + '%', '%')
+			
 		END
 		GO
 
