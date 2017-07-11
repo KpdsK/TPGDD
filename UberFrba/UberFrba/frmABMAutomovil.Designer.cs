@@ -54,6 +54,7 @@
             this.ccHabilitado = new System.Windows.Forms.CheckBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
+            this.lblIdAuto = new System.Windows.Forms.Label();
             this.grupoBusquedaABM.SuspendLayout();
             this.grupoDatosAutomovil.SuspendLayout();
             this.SuspendLayout();
@@ -257,6 +258,7 @@
             // 
             // grupoDatosAutomovil
             // 
+            this.grupoDatosAutomovil.Controls.Add(this.lblIdAuto);
             this.grupoDatosAutomovil.Controls.Add(this.comboModelo);
             this.grupoDatosAutomovil.Controls.Add(this.ccHabilitado);
             this.grupoDatosAutomovil.Controls.Add(this.btnCancelar);
@@ -314,6 +316,15 @@
             this.btnAceptar.TabIndex = 33;
             this.btnAceptar.UseVisualStyleBackColor = true;
             // 
+            // lblIdAuto
+            // 
+            this.lblIdAuto.AutoSize = true;
+            this.lblIdAuto.Location = new System.Drawing.Point(375, 114);
+            this.lblIdAuto.Name = "lblIdAuto";
+            this.lblIdAuto.Size = new System.Drawing.Size(0, 13);
+            this.lblIdAuto.TabIndex = 43;
+            this.lblIdAuto.Visible = false;
+            // 
             // frmAutomovil
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -362,5 +373,6 @@
         private System.Windows.Forms.ComboBox comboModelo;
         private System.Windows.Forms.TextBox txtBusquedaApellidoChofer;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblIdAuto;
     }
 }

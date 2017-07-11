@@ -491,7 +491,8 @@ namespace UberFrba
             try
             {
                 adaptador.modificarAutomovil
-                            (Convert.ToInt32(((ComboBox)c["comboMarca"]).SelectedValue),
+                            (Convert.ToInt32(((Label)(c["lblIdAuto"])).Text),
+                            Convert.ToInt32(((ComboBox)c["comboMarca"]).SelectedValue),
                             Convert.ToInt32(((ComboBox)c["comboModelo"]).SelectedValue),
                             c["txtPatente"].Text,
                             Convert.ToInt32(((ComboBox)c["comboTurno"]).SelectedValue),

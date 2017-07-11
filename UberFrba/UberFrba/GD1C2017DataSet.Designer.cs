@@ -76,8 +76,6 @@ namespace UberFrba {
         
         private FN_VIAJES_A_FACTURARDataTable tableFN_VIAJES_A_FACTURAR;
         
-        private PRC_MODIFICACION_AUTO_DISDataTable tablePRC_MODIFICACION_AUTO_DIS;
-        
         private PRC_LISTA_CHOFERES_POSIBLESDataTable tablePRC_LISTA_CHOFERES_POSIBLES;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
@@ -185,9 +183,6 @@ namespace UberFrba {
                 }
                 if ((ds.Tables["FN_VIAJES_A_FACTURAR"] != null)) {
                     base.Tables.Add(new FN_VIAJES_A_FACTURARDataTable(ds.Tables["FN_VIAJES_A_FACTURAR"]));
-                }
-                if ((ds.Tables["PRC_MODIFICACION_AUTO_DIS"] != null)) {
-                    base.Tables.Add(new PRC_MODIFICACION_AUTO_DISDataTable(ds.Tables["PRC_MODIFICACION_AUTO_DIS"]));
                 }
                 if ((ds.Tables["PRC_LISTA_CHOFERES_POSIBLES"] != null)) {
                     base.Tables.Add(new PRC_LISTA_CHOFERES_POSIBLESDataTable(ds.Tables["PRC_LISTA_CHOFERES_POSIBLES"]));
@@ -474,16 +469,6 @@ namespace UberFrba {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public PRC_MODIFICACION_AUTO_DISDataTable PRC_MODIFICACION_AUTO_DIS {
-            get {
-                return this.tablePRC_MODIFICACION_AUTO_DIS;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
         public PRC_LISTA_CHOFERES_POSIBLESDataTable PRC_LISTA_CHOFERES_POSIBLES {
             get {
                 return this.tablePRC_LISTA_CHOFERES_POSIBLES;
@@ -634,9 +619,6 @@ namespace UberFrba {
                 }
                 if ((ds.Tables["FN_VIAJES_A_FACTURAR"] != null)) {
                     base.Tables.Add(new FN_VIAJES_A_FACTURARDataTable(ds.Tables["FN_VIAJES_A_FACTURAR"]));
-                }
-                if ((ds.Tables["PRC_MODIFICACION_AUTO_DIS"] != null)) {
-                    base.Tables.Add(new PRC_MODIFICACION_AUTO_DISDataTable(ds.Tables["PRC_MODIFICACION_AUTO_DIS"]));
                 }
                 if ((ds.Tables["PRC_LISTA_CHOFERES_POSIBLES"] != null)) {
                     base.Tables.Add(new PRC_LISTA_CHOFERES_POSIBLESDataTable(ds.Tables["PRC_LISTA_CHOFERES_POSIBLES"]));
@@ -830,12 +812,6 @@ namespace UberFrba {
                     this.tableFN_VIAJES_A_FACTURAR.InitVars();
                 }
             }
-            this.tablePRC_MODIFICACION_AUTO_DIS = ((PRC_MODIFICACION_AUTO_DISDataTable)(base.Tables["PRC_MODIFICACION_AUTO_DIS"]));
-            if ((initTable == true)) {
-                if ((this.tablePRC_MODIFICACION_AUTO_DIS != null)) {
-                    this.tablePRC_MODIFICACION_AUTO_DIS.InitVars();
-                }
-            }
             this.tablePRC_LISTA_CHOFERES_POSIBLES = ((PRC_LISTA_CHOFERES_POSIBLESDataTable)(base.Tables["PRC_LISTA_CHOFERES_POSIBLES"]));
             if ((initTable == true)) {
                 if ((this.tablePRC_LISTA_CHOFERES_POSIBLES != null)) {
@@ -904,8 +880,6 @@ namespace UberFrba {
             base.Tables.Add(this.tableFN_VIAJES_A_RENDIR);
             this.tableFN_VIAJES_A_FACTURAR = new FN_VIAJES_A_FACTURARDataTable();
             base.Tables.Add(this.tableFN_VIAJES_A_FACTURAR);
-            this.tablePRC_MODIFICACION_AUTO_DIS = new PRC_MODIFICACION_AUTO_DISDataTable();
-            base.Tables.Add(this.tablePRC_MODIFICACION_AUTO_DIS);
             this.tablePRC_LISTA_CHOFERES_POSIBLES = new PRC_LISTA_CHOFERES_POSIBLESDataTable();
             base.Tables.Add(this.tablePRC_LISTA_CHOFERES_POSIBLES);
         }
@@ -1068,12 +1042,6 @@ namespace UberFrba {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializePRC_MODIFICACION_AUTO_DIS() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializePRC_LISTA_CHOFERES_POSIBLES() {
             return false;
         }
@@ -1210,9 +1178,6 @@ namespace UberFrba {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void FN_VIAJES_A_FACTURARRowChangeEventHandler(object sender, FN_VIAJES_A_FACTURARRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void PRC_MODIFICACION_AUTO_DISRowChangeEventHandler(object sender, PRC_MODIFICACION_AUTO_DISRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void PRC_LISTA_CHOFERES_POSIBLESRowChangeEventHandler(object sender, PRC_LISTA_CHOFERES_POSIBLESRowChangeEvent e);
@@ -9633,239 +9598,6 @@ namespace UberFrba {
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class PRC_MODIFICACION_AUTO_DISDataTable : global::System.Data.TypedTableBase<PRC_MODIFICACION_AUTO_DISRow> {
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_MODIFICACION_AUTO_DISDataTable() {
-                this.TableName = "PRC_MODIFICACION_AUTO_DIS";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal PRC_MODIFICACION_AUTO_DISDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected PRC_MODIFICACION_AUTO_DISDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_MODIFICACION_AUTO_DISRow this[int index] {
-                get {
-                    return ((PRC_MODIFICACION_AUTO_DISRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event PRC_MODIFICACION_AUTO_DISRowChangeEventHandler PRC_MODIFICACION_AUTO_DISRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event PRC_MODIFICACION_AUTO_DISRowChangeEventHandler PRC_MODIFICACION_AUTO_DISRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event PRC_MODIFICACION_AUTO_DISRowChangeEventHandler PRC_MODIFICACION_AUTO_DISRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event PRC_MODIFICACION_AUTO_DISRowChangeEventHandler PRC_MODIFICACION_AUTO_DISRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddPRC_MODIFICACION_AUTO_DISRow(PRC_MODIFICACION_AUTO_DISRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_MODIFICACION_AUTO_DISRow AddPRC_MODIFICACION_AUTO_DISRow() {
-                PRC_MODIFICACION_AUTO_DISRow rowPRC_MODIFICACION_AUTO_DISRow = ((PRC_MODIFICACION_AUTO_DISRow)(this.NewRow()));
-                object[] columnValuesArray = new object[0];
-                rowPRC_MODIFICACION_AUTO_DISRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowPRC_MODIFICACION_AUTO_DISRow);
-                return rowPRC_MODIFICACION_AUTO_DISRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                PRC_MODIFICACION_AUTO_DISDataTable cln = ((PRC_MODIFICACION_AUTO_DISDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new PRC_MODIFICACION_AUTO_DISDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_MODIFICACION_AUTO_DISRow NewPRC_MODIFICACION_AUTO_DISRow() {
-                return ((PRC_MODIFICACION_AUTO_DISRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new PRC_MODIFICACION_AUTO_DISRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(PRC_MODIFICACION_AUTO_DISRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.PRC_MODIFICACION_AUTO_DISRowChanged != null)) {
-                    this.PRC_MODIFICACION_AUTO_DISRowChanged(this, new PRC_MODIFICACION_AUTO_DISRowChangeEvent(((PRC_MODIFICACION_AUTO_DISRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.PRC_MODIFICACION_AUTO_DISRowChanging != null)) {
-                    this.PRC_MODIFICACION_AUTO_DISRowChanging(this, new PRC_MODIFICACION_AUTO_DISRowChangeEvent(((PRC_MODIFICACION_AUTO_DISRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.PRC_MODIFICACION_AUTO_DISRowDeleted != null)) {
-                    this.PRC_MODIFICACION_AUTO_DISRowDeleted(this, new PRC_MODIFICACION_AUTO_DISRowChangeEvent(((PRC_MODIFICACION_AUTO_DISRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.PRC_MODIFICACION_AUTO_DISRowDeleting != null)) {
-                    this.PRC_MODIFICACION_AUTO_DISRowDeleting(this, new PRC_MODIFICACION_AUTO_DISRowChangeEvent(((PRC_MODIFICACION_AUTO_DISRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemovePRC_MODIFICACION_AUTO_DISRow(PRC_MODIFICACION_AUTO_DISRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                GD1C2017DataSet ds = new GD1C2017DataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "PRC_MODIFICACION_AUTO_DISDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
         public partial class PRC_LISTA_CHOFERES_POSIBLESDataTable : global::System.Data.TypedTableBase<PRC_LISTA_CHOFERES_POSIBLESRow> {
             
             private global::System.Data.DataColumn columnidEnTablaSegunRol;
@@ -13298,21 +13030,6 @@ namespace UberFrba {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class PRC_MODIFICACION_AUTO_DISRow : global::System.Data.DataRow {
-            
-            private PRC_MODIFICACION_AUTO_DISDataTable tablePRC_MODIFICACION_AUTO_DIS;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal PRC_MODIFICACION_AUTO_DISRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tablePRC_MODIFICACION_AUTO_DIS = ((PRC_MODIFICACION_AUTO_DISDataTable)(this.Table));
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
         public partial class PRC_LISTA_CHOFERES_POSIBLESRow : global::System.Data.DataRow {
             
             private PRC_LISTA_CHOFERES_POSIBLESDataTable tablePRC_LISTA_CHOFERES_POSIBLES;
@@ -14311,40 +14028,6 @@ namespace UberFrba {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public FN_VIAJES_A_FACTURARRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class PRC_MODIFICACION_AUTO_DISRowChangeEvent : global::System.EventArgs {
-            
-            private PRC_MODIFICACION_AUTO_DISRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_MODIFICACION_AUTO_DISRowChangeEvent(PRC_MODIFICACION_AUTO_DISRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public PRC_MODIFICACION_AUTO_DISRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -19731,205 +19414,6 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
     [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class PRC_MODIFICACION_AUTO_DISTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public PRC_MODIFICACION_AUTO_DISTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::UberFrba.Properties.Settings.Default.GD1C2017ConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "DESCONOCIDOS4.PRC_MODIFICACION_AUTO_DIS";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.StoredProcedure;
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_auto", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Marca", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Modelo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Patente", global::System.Data.SqlDbType.VarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Turno", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Chofer", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Hab", global::System.Data.SqlDbType.Bit, 1, global::System.Data.ParameterDirection.Input, 1, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual GD1C2017DataSet.PRC_MODIFICACION_AUTO_DISDataTable obtenerChoferesHabilitados(global::System.Nullable<int> id_auto, global::System.Nullable<int> Marca, global::System.Nullable<int> Modelo, string Patente, global::System.Nullable<int> Turno, global::System.Nullable<int> Chofer, global::System.Nullable<bool> Hab) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((id_auto.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(id_auto.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            if ((Marca.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[2].Value = ((int)(Marca.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((Modelo.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[3].Value = ((int)(Modelo.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((Patente == null)) {
-                this.Adapter.SelectCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[4].Value = ((string)(Patente));
-            }
-            if ((Turno.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[5].Value = ((int)(Turno.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((Chofer.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[6].Value = ((int)(Chofer.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            if ((Hab.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[7].Value = ((bool)(Hab.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            GD1C2017DataSet.PRC_MODIFICACION_AUTO_DISDataTable dataTable = new GD1C2017DataSet.PRC_MODIFICACION_AUTO_DISDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
     public partial class PRC_LISTA_CHOFERES_POSIBLESTableAdapter : global::System.ComponentModel.Component {
         
         private global::System.Data.SqlClient.SqlDataAdapter _adapter;
@@ -20286,6 +19770,7 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[14])).CommandText = "DESCONOCIDOS4.PRC_MODIFICACION_AUTO_DIS";
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[14])).CommandType = global::System.Data.CommandType.StoredProcedure;
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[14])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@RETURN_VALUE", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.ReturnValue, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[14])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id_auto", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[14])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Marca", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[14])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Modelo", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 10, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             ((global::System.Data.SqlClient.SqlCommand)(this._commandCollection[14])).Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Patente", global::System.Data.SqlDbType.VarChar, 10, global::System.Data.ParameterDirection.Input, 0, 0, null, global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -21341,43 +20826,49 @@ namespace UberFrba.GD1C2017DataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int modificarAutomovil(global::System.Nullable<int> Marca, global::System.Nullable<int> Modelo, string Patente, global::System.Nullable<int> Turno, global::System.Nullable<int> Chofer, global::System.Nullable<bool> Hab) {
+        public virtual int modificarAutomovil(global::System.Nullable<int> id_auto, global::System.Nullable<int> Marca, global::System.Nullable<int> Modelo, string Patente, global::System.Nullable<int> Turno, global::System.Nullable<int> Chofer, global::System.Nullable<bool> Hab) {
             global::System.Data.SqlClient.SqlCommand command = ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[14]));
-            if ((Marca.HasValue == true)) {
-                command.Parameters[1].Value = ((int)(Marca.Value));
+            if ((id_auto.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(id_auto.Value));
             }
             else {
                 command.Parameters[1].Value = global::System.DBNull.Value;
             }
-            if ((Modelo.HasValue == true)) {
-                command.Parameters[2].Value = ((int)(Modelo.Value));
+            if ((Marca.HasValue == true)) {
+                command.Parameters[2].Value = ((int)(Marca.Value));
             }
             else {
                 command.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((Patente == null)) {
+            if ((Modelo.HasValue == true)) {
+                command.Parameters[3].Value = ((int)(Modelo.Value));
+            }
+            else {
                 command.Parameters[3].Value = global::System.DBNull.Value;
             }
-            else {
-                command.Parameters[3].Value = ((string)(Patente));
-            }
-            if ((Turno.HasValue == true)) {
-                command.Parameters[4].Value = ((int)(Turno.Value));
-            }
-            else {
+            if ((Patente == null)) {
                 command.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((Chofer.HasValue == true)) {
-                command.Parameters[5].Value = ((int)(Chofer.Value));
+            else {
+                command.Parameters[4].Value = ((string)(Patente));
+            }
+            if ((Turno.HasValue == true)) {
+                command.Parameters[5].Value = ((int)(Turno.Value));
             }
             else {
                 command.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((Hab.HasValue == true)) {
-                command.Parameters[6].Value = ((bool)(Hab.Value));
+            if ((Chofer.HasValue == true)) {
+                command.Parameters[6].Value = ((int)(Chofer.Value));
             }
             else {
                 command.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((Hab.HasValue == true)) {
+                command.Parameters[7].Value = ((bool)(Hab.Value));
+            }
+            else {
+                command.Parameters[7].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 

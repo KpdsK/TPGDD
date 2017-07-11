@@ -198,6 +198,7 @@ namespace UberFrba
                 = (Boolean)filaDeDatos.Row["Auto_Habilitado"];
 
             this.idAutomovil = (int)filaDeDatos.Row["Auto_id"];
+            this.lblIdAuto.Text = Convert.ToString(this.idAutomovil);
             asociarModeloASeleccionDeMarca();
         }
 
