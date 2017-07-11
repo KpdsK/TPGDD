@@ -3264,10 +3264,11 @@ TRANSACTION
 	 T.Turno_Habilitado,
 	 D.Uni_Dis_Auto,
 	 A.Auto_Habilitado
-	FROM DELETED D 
+	FROM INSERTED D 
 	LEFT JOIN DESCONOCIDOS4.CHOFER CH ON D.Uni_Dis_Chofer= CH.Chofer_Id
 	LEFT JOIN DESCONOCIDOS4.TURNO T ON D.Uni_Dis_Turno=T.Turno_Id
 	LEFT JOIN DESCONOCIDOS4.AUTO A ON D.Uni_Dis_Auto=A.Auto_Id
+	WHERE D.Uni_Dis_Habilitado=0
 
 	-- El trigger se activo por un turno que se deshabilito	
 	UPDATE DESCONOCIDOS4.CHOFER SET Chofer_Habilitado= 0 WHERE Chofer_Id IN (SELECT cho_id FROM  @Uni_Dis_Control WHERE Tur_habi=0 )
@@ -3758,8 +3759,11 @@ BEGIN TRANSACTION
 		   @FECHA_RENDICION	,
 		  (SELECT	   SUM(Viaje_Importe*0.3)	
 		FROM DESCONOCIDOS4.VIAJE 
-	   WHERE  Viaje_Chofer = @CHOFER  AND Viaje_Turno=@TURNO AND CONVERT(DATE,Viaje_Fecha_Hora_Fin) <= @FECHA_RENDICION AND Viaje_Nro NOT IN (SELECT * FROM [DESCONOCIDOS4].FN_VIAJES_RENDIDOS (@CHOFER, @TURNO))
-	   ))
+	   WHERE  Viaje_Chofer = @CHOFER  AND Viaje_Turno=@TURNO 
+	   AND CONVERT(DATE,Viaje_Fecha_Hora_Fin) <= @FECHA_RENDICION 
+	   AND Viaje_Nro NOT IN (SELECT * FROM [DESCONOCIDOS4].FN_VIAJES_RENDIDOS (@CHOFER, @TURNO))
+	   )
+	   )
 COMMIT
 GO
 
