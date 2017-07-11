@@ -139,6 +139,7 @@
             this.comboTurno.Name = "comboTurno";
             this.comboTurno.Size = new System.Drawing.Size(174, 21);
             this.comboTurno.TabIndex = 55;
+            this.comboTurno.SelectedIndexChanged += new System.EventHandler(this.comboTurno_SelectedIndexChanged);
             // 
             // lblTurno
             // 
