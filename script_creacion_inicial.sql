@@ -2494,8 +2494,8 @@ BEGIN TRANSACTION
 			SET @Fhora= DATEPART(HOUR,@Fecha_hora_fin)
 			SET @Fmin= DATEPART(MINUTE,@Fecha_hora_fin)
 
-			SET @Fecha_hora_ini_corr= CAST(concat(@Iaño,'-',@Imes,'-',@Idia,' ',@Ihora,':',@Imin) as DATETIME)
-			SET @Fecha_hora_fin_corr= CAST(concat(@Faño,'-',@Fmes,'-',@Fdia,' ',@Fhora,':',@Fmin) AS DATETIME)
+			SET @Fecha_hora_ini_corr= CAST(concat(@Iaño,'-',@Idia,'-',@Imes,' ',@Ihora,':',@Imin) as DATETIME)
+			SET @Fecha_hora_fin_corr= CAST(concat(@Faño,'-',@Fdia,'-',@Fmes,' ',@Fhora,':',@Fmin) AS DATETIME)
 			
  INSERT INTO  [DESCONOCIDOS4].VIAJE (Viaje_Chofer,Viaje_Cliente,Viaje_Automovil,Viaje_Turno,Viaje_Precio_Base,Viaje_Valor_km,Viaje_Importe,Viaje_Cantidad_Km,Viaje_Fecha_Hora_Inicio,Viaje_Fecha_Hora_Fin) 
   VALUES (
