@@ -440,9 +440,9 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtBusquedaNombre;
-        private System.Windows.Forms.TextBox txtBusquedaApellido;
-        private System.Windows.Forms.TextBox txtBusquedaDNI;
+        protected System.Windows.Forms.TextBox txtBusquedaNombre;
+        protected System.Windows.Forms.TextBox txtBusquedaApellido;
+        protected System.Windows.Forms.TextBox txtBusquedaDNI;
         private System.Windows.Forms.Label lblBusquedaNombre;
         private System.Windows.Forms.Label lblBuscarApellido;
         private System.Windows.Forms.Label lblBuscarDNI;

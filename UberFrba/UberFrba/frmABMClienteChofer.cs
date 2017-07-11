@@ -42,17 +42,7 @@ namespace UberFrba
         {
             if (validarDatosParaBusqueda())
             {
-                GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter adaptador
-                = new GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter();
-                DataTable tblDatosResultadoBusquedaUsuarios;
-                if (string.IsNullOrEmpty(this.txtBusquedaDNI.Text))
-                {
-                    tblDatosResultadoBusquedaUsuarios = adaptador.obtenerDatosUsuario(this.tipoUsuario, this.txtBusquedaNombre.Text, this.txtBusquedaApellido.Text, null);
-                }
-                else
-                {
-                    tblDatosResultadoBusquedaUsuarios = adaptador.obtenerDatosUsuario(this.tipoUsuario, this.txtBusquedaNombre.Text, this.txtBusquedaApellido.Text, int.Parse(this.txtBusquedaDNI.Text));
-                }
+                DataTable tblDatosResultadoBusquedaUsuarios = obtenerTablaDeDatosDeUsuario();
                 if (tblDatosResultadoBusquedaUsuarios != null && tblDatosResultadoBusquedaUsuarios.Rows.Count > 0)
                 {
                     frmGrillaParaBusquedaConSeleccionDeFilas formularioResultadoBusqueda = new frmGrillaParaBusquedaConSeleccionDeFilas();
@@ -71,6 +61,20 @@ namespace UberFrba
             } else {
                 MetodosGlobales.mansajeErrorValidacion();
             }
+        }
+
+        protected virtual DataTable obtenerTablaDeDatosDeUsuario()
+        {
+            GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter adaptador
+            = new GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter();
+            return (esVacioONuloDNI()) ?
+                adaptador.obtenerDatosUsuario(this.tipoUsuario, this.txtBusquedaNombre.Text, this.txtBusquedaApellido.Text, null)
+                :adaptador.obtenerDatosUsuario(this.tipoUsuario, this.txtBusquedaNombre.Text, this.txtBusquedaApellido.Text, int.Parse(this.txtBusquedaDNI.Text));
+        }
+
+        protected bool esVacioONuloDNI()
+        {
+            return string.IsNullOrEmpty(this.txtBusquedaDNI.Text);
         }
 
         private Boolean validarDatosParaBusqueda()
@@ -374,6 +378,15 @@ namespace UberFrba
                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 Application.Exit();
             }
+        }
+
+        protected override DataTable obtenerTablaDeDatosDeUsuario()
+        {
+            GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter adaptador
+            = new GD1C2017DataSetTableAdapters.PRC_OBTENER_DATOS_USUARIOSTableAdapter();
+            return (esVacioONuloDNI()) ?
+                adaptador.obtenerDatosUsuario(this.tipoUsuario, this.txtBusquedaNombre.Text, this.txtBusquedaApellido.Text, null)
+                : adaptador.obtenerDatosUsuario(this.tipoUsuario, this.txtBusquedaNombre.Text, this.txtBusquedaApellido.Text, int.Parse(this.txtBusquedaDNI.Text));
         }
     }
 }
