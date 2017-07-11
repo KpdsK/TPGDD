@@ -1962,7 +1962,7 @@ BEGIN
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
 	  WHERE c.Cliente_Habilitado=@habi_1 or c.Cliente_Habilitado=@habi_2 and  ( P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
               AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')
-              AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI));
+              AND convert(varchar(50),P.Persona_Dni) = convert(varchar(50),@DNI));
 	END
 	ELSE
 	BEGIN
@@ -2194,7 +2194,7 @@ BEGIN
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CHOFER C ON C.Chofer_Per_Id= P.Persona_Id
 	  WHERE C.Chofer_Habilitado=@Habi_1 or C.Chofer_Habilitado=@Habi_2 and ( P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
               AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')
-			  AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI));
+			  AND convert(varchar(50),P.Persona_Dni) = convert(varchar(50),@DNI));
 	END
 	ELSE
 	BEGIN
