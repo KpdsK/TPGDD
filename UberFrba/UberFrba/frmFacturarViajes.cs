@@ -26,10 +26,13 @@ namespace UberFrba
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter adaptador =
-                    new GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter();
-            DataTable tblViajesAFacturar = adaptador.viajesAFacturar((int)this.comboCliente.SelectedValue,
-                this.selectorFechaFacturacionHasta.Value.ToString("MM/dd/yyyy"));
+            GD1C2017DataSetTableAdapters.PRC_FACTURAR_A_CLIENTETableAdapter adaptador =
+                new GD1C2017DataSetTableAdapters.PRC_FACTURAR_A_CLIENTETableAdapter();
+            //GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter adaptador =
+                    //new GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter();
+            //DataTable tblViajesAFacturar = adaptador.viajesAFacturar((int)this.comboCliente.SelectedValue,
+            DataTable tblViajesAFacturar = adaptador.listaCabecerasFactura((int)this.comboCliente.SelectedValue,
+                Convert.ToDateTime(this.selectorFechaFacturacionHasta.Value.ToString("MM/dd/yyyy")));
             if (tblViajesAFacturar.Rows.Count > 0)
             {
                 frmGrilla formularioGrilla = new frmGrilla();
