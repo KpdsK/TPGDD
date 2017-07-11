@@ -1292,11 +1292,23 @@ GO
 CREATE PROCEDURE [DESCONOCIDOS4].PRC_MIGRA_UNIDAD_DISPONIBLE
 AS
 BEGIN TRANSACTION
-	  INSERT INTO [DESCONOCIDOS4].UNIDAD_DISPONIBLE(Uni_Dis_Auto,Uni_Dis_Chofer,Uni_Dis_Turno)
+	  DECLARE @Aux TABLE(id_auto INT,id_chofer INT, id_turno INT)
+
+	  INSERT INTO  @Aux	 (id_auto,id_chofer, id_turno)
 	  SELECT DISTINCT 
 	  [DESCONOCIDOS4].FN_ID_AUTO_X_PATENTE(Auto_Patente),
 	  [DESCONOCIDOS4].FN_ID_CHOFER_X_DNI(Chofer_Dni),
-	  [DESCONOCIDOS4].FN_ID_TURNO_X_DESC_MAES(Turno_Descripcion) FROM gd_esquema.Maestra
+	  [DESCONOCIDOS4].FN_ID_TURNO_X_DESC_MAES(Turno_Descripcion)
+	  FROM gd_esquema.Maestra	 
+	  INSERT INTO [DESCONOCIDOS4].UNIDAD_DISPONIBLE(Uni_Dis_Auto,Uni_Dis_Chofer,Uni_Dis_Turno) 
+	  -- Los choferes con id <14 trabajaran en el turno 1
+	  SELECT id_auto,id_chofer, 1 FROM @Aux WHERE id_chofer<14
+	  -- Los choferes con id entre 14 y 26 inclusive  trabajaran en el turno 2
+	  UNION
+	  SELECT id_auto,id_chofer, 2 FROM @Aux WHERE id_chofer>13 AND id_chofer<27
+	  UNION
+	  -- Los choferes con id > 26   trabajaran en el turno 3
+	  SELECT id_auto,id_chofer, 3 FROM @Aux WHERE id_chofer>26
 COMMIT
 GO
 
