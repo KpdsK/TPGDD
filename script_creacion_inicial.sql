@@ -1960,9 +1960,9 @@ BEGIN
 	  ,Cliente_Id [idTipoRol]
 	  ,Cliente_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CLIENTE C ON C.Cliente_Per_ID= P.Persona_Id
-	  WHERE c.Cliente_Habilitado=@habi_1 or c.Cliente_Habilitado=@habi_2 and  ( P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
+	  WHERE (c.Cliente_Habilitado=@habi_1 or c.Cliente_Habilitado=@habi_2) and  ( P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
               AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')
-              AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI));
+              AND convert(varchar(50),P.Persona_Dni) = convert(varchar(50),@DNI));
 	END
 	ELSE
 	BEGIN
@@ -2192,9 +2192,9 @@ BEGIN
 	  ,Chofer_Id [idTipoRol]
 	  ,Chofer_Habilitado [habilitado]
 	  FROM [DESCONOCIDOS4].PERSONA P INNER JOIN [DESCONOCIDOS4].CHOFER C ON C.Chofer_Per_Id= P.Persona_Id
-	  WHERE C.Chofer_Habilitado=@Habi_1 or C.Chofer_Habilitado=@Habi_2 and ( P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
+	  WHERE (C.Chofer_Habilitado=@Habi_1 or C.Chofer_Habilitado=@Habi_2) and ( P.Persona_Nombre LIKE ISNULL('%' + @Nom + '%', '%')
               AND P.Persona_Apellido LIKE ISNULL('%' + @Ape + '%', '%')
-			  AND convert(varchar(50),P.Persona_Dni) LIKE convert(varchar(50),@DNI));
+			  AND convert(varchar(50),P.Persona_Dni) = convert(varchar(50),@DNI));
 	END
 	ELSE
 	BEGIN
@@ -3668,7 +3668,7 @@ AS
 BEGIN
 --validacion habilitado
 DECLARE @HABILITADO INT
-SET @HABILITADO = (SELECT Chofer_Habilitado FROM DESCONOCIDOS4.CHOFER WHERE Chofer_Habilitado = @CHOFER)
+SET @HABILITADO = (SELECT Chofer_Habilitado FROM DESCONOCIDOS4.CHOFER WHERE Chofer_Id = @CHOFER)
 DECLARE @TURNOS_CHOFER TABLE( TURNOS int )
 INSERT INTO @TURNOS_CHOFER
 SELECT Uni_Dis_Turno FROM DESCONOCIDOS4.UNIDAD_DISPONIBLE WHERE Uni_Dis_Chofer =@CHOFER
@@ -3681,7 +3681,7 @@ IF (@HABILITADO = 1 AND @TURNO IN (SELECT * FROM @TURNOS_CHOFER))--fin validacio
 			Viaje_Turno				AS [Turno],
 			SUM(Viaje_Importe*0.3)	AS [Importe a Rendir]
 		FROM DESCONOCIDOS4.VIAJE 
-		WHERE  Viaje_Chofer = @CHOFER  AND CONVERT(DATE,Viaje_Fecha_Hora_Fin) <= CONVERT(DATE,@FECHA_RENDICION) AND Viaje_Nro NOT IN (SELECT * FROM [DESCONOCIDOS4].FN_VIAJES_RENDIDOS (@CHOFER, @TURNO))
+		WHERE  Viaje_Chofer = @CHOFER AND Viaje_Turno=@TURNO AND CONVERT(DATE,Viaje_Fecha_Hora_Fin) <= CONVERT(DATE,@FECHA_RENDICION) AND Viaje_Nro NOT IN (SELECT * FROM [DESCONOCIDOS4].FN_VIAJES_RENDIDOS (@CHOFER, @TURNO))
 		GROUP BY Viaje_Chofer,Viaje_Turno
 	END
 END
