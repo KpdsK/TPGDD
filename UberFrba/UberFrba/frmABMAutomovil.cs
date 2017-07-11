@@ -279,7 +279,7 @@ namespace UberFrba
             (this.Controls["grupoDatosAutomovil"].Controls["comboModelo"]).Enabled = false;
             (this.Controls["grupoDatosAutomovil"].Controls["comboTurno"]).Enabled = false;
             (this.Controls["grupoDatosAutomovil"].Controls["comboChofer"]).Enabled = false;
-            (this.Controls["grupoDatosAutomovil"].Controls["txtPatente"]).Enabled = false;
+            ((TextBox)this.Controls["grupoDatosAutomovil"].Controls["txtPatente"]).ReadOnly = true;
             (this.Controls["grupoDatosAutomovil"].Controls["ccHabilitado"]).Enabled = false;
         }
 
