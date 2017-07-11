@@ -247,6 +247,7 @@ CREATE TABLE [DESCONOCIDOS4].UNIDAD_DISPONIBLE(
 Uni_Dis_Auto INT NOT NULL,
 Uni_Dis_Chofer INT NOT NULL,
 Uni_Dis_Turno INT NOT NULL,
+Uni_Dis_Habilitado BIT DEFAULT 1
 );
 GO
 
@@ -2109,6 +2110,7 @@ AS
 BEGIN TRANSACTION 
   UPDATE [DESCONOCIDOS4].CHOFER  SET Chofer_Habilitado=0 WHERE Chofer_Id=@ID_CHO
   UPDATE [DESCONOCIDOS4].USUARIO_ROL   SET UsuRol_Habilitado=0 WHERE UsuRol_Usu_Id =DESCONOCIDOS4.FN_USU_X_CHOFER(@ID_CHO)
+  UPDATE [DESCONOCIDOS4].UNIDAD_DISPONIBLE SET Uni_Dis_Habilitado= 0 WHERE Uni_Dis_Chofer=@ID_CHO
 COMMIT;
 GO
 
@@ -2598,6 +2600,7 @@ CREATE PROCEDURE [DESCONOCIDOS4].PRC_BAJA_TURNO
 AS
 BEGIN TRANSACTION 
   UPDATE [DESCONOCIDOS4].TURNO  SET Turno_Habilitado=0 WHERE Turno_Id=@Turno_id
+  UPDATE [DESCONOCIDOS4].UNIDAD_DISPONIBLE SET Uni_Dis_Habilitado= 0 WHERE Uni_Dis_Turno=@Turno_id
 COMMIT;
 GO
 
@@ -2694,18 +2697,32 @@ CREATE PROCEDURE [DESCONOCIDOS4].PRC_MODIFICACION_AUTO_DIS
 @Hab BIT
 AS 
 BEGIN TRAN
- IF ([DESCONOCIDOS4].FN_ASIGNACION_X_CHOFER_TURNO(@Chofer,@Turno)='NO' AND   [DESCONOCIDOS4].FN_CHOFER_YA_DESIGNADO(@Chofer)= 'NO'
-	 and [DESCONOCIDOS4].FN_ASIGNACION_X_CHOFER_TURNO([DESCONOCIDOS4].FN_ID_AUTO_X_PATENTE(@Patente), @Turno) ='NO')
-  BEGIN
-	  UPDATE [DESCONOCIDOS4].AUTO 
-		SET  Auto_Patente=@Patente,Auto_Marca_Modelo=[DESCONOCIDOS4].FN_MARCAMOD_X_MARCA_MODELO(@Marca, @Modelo),
-		Auto_Detalle=[DESCONOCIDOS4].FN_DETALLE_AUTO(@Marca, @Modelo),Auto_Habilitado=@Hab WHERE Auto_Id=@id_auto
-	  UPDATE  [DESCONOCIDOS4].UNIDAD_DISPONIBLE 
-		SET 
-			Uni_Dis_Auto=@id_auto,Uni_Dis_Chofer=@Chofer,Uni_Dis_Turno=@Turno WHERE Uni_Dis_Auto=@id_auto
- END
+ IF @Hab=1
+	 IF ([DESCONOCIDOS4].FN_ASIGNACION_X_CHOFER_TURNO(@Chofer,@Turno)='NO' AND   [DESCONOCIDOS4].FN_CHOFER_YA_DESIGNADO(@Chofer)= 'NO'
+		 and [DESCONOCIDOS4].FN_ASIGNACION_X_CHOFER_TURNO([DESCONOCIDOS4].FN_ID_AUTO_X_PATENTE(@Patente), @Turno) ='NO')
+	  BEGIN
+		  UPDATE [DESCONOCIDOS4].AUTO 
+			SET  Auto_Patente=@Patente,Auto_Marca_Modelo=[DESCONOCIDOS4].FN_MARCAMOD_X_MARCA_MODELO(@Marca, @Modelo),
+			Auto_Detalle=[DESCONOCIDOS4].FN_DETALLE_AUTO(@Marca, @Modelo),Auto_Habilitado=@Hab WHERE Auto_Id=@id_auto
+		  UPDATE  [DESCONOCIDOS4].UNIDAD_DISPONIBLE 
+			SET 
+				Uni_Dis_Auto=@id_auto,Uni_Dis_Chofer=@Chofer,Uni_Dis_Turno=@Turno,Uni_Dis_Habilitado= 1 WHERE Uni_Dis_Auto=@id_auto
+	 END
+	 ELSE
+	 RAISERROR('Existen inconsistencias en los datos',16,1)
  ELSE
- RAISERROR('Existen inconsistencias en los datos',16,1)
+	 IF ([DESCONOCIDOS4].FN_ASIGNACION_X_CHOFER_TURNO(@Chofer,@Turno)='NO' AND   [DESCONOCIDOS4].FN_CHOFER_YA_DESIGNADO(@Chofer)= 'NO'
+		 and [DESCONOCIDOS4].FN_ASIGNACION_X_CHOFER_TURNO([DESCONOCIDOS4].FN_ID_AUTO_X_PATENTE(@Patente), @Turno) ='NO')
+	  BEGIN
+		  UPDATE [DESCONOCIDOS4].AUTO 
+			SET  Auto_Patente=@Patente,Auto_Marca_Modelo=[DESCONOCIDOS4].FN_MARCAMOD_X_MARCA_MODELO(@Marca, @Modelo),
+			Auto_Detalle=[DESCONOCIDOS4].FN_DETALLE_AUTO(@Marca, @Modelo),Auto_Habilitado=@Hab WHERE Auto_Id=@id_auto
+		  UPDATE  [DESCONOCIDOS4].UNIDAD_DISPONIBLE 
+			SET 
+				Uni_Dis_Auto=@id_auto,Uni_Dis_Chofer=@Chofer,Uni_Dis_Turno=@Turno,Uni_Dis_Habilitado= 0 WHERE Uni_Dis_Auto=@id_auto
+	 END
+	 ELSE
+	 RAISERROR('Existen inconsistencias en los datos',16,1)
 COMMIT;
 GO
 
@@ -2719,7 +2736,7 @@ CREATE PROCEDURE [DESCONOCIDOS4].PRC_BAJA_AUTO_DIS
 AS
 BEGIN TRANSACTION 
   UPDATE [DESCONOCIDOS4].AUTO  SET Auto_Habilitado=0 WHERE Auto_Id=@Auto_ID
-  DELETE [DESCONOCIDOS4].UNIDAD_DISPONIBLE WHERE Uni_Dis_Auto=@Auto_ID
+  UPDATE [DESCONOCIDOS4].UNIDAD_DISPONIBLE SET Uni_Dis_Habilitado= 0 WHERE Uni_Dis_Auto=@Auto_ID
 COMMIT;
 GO
 
@@ -2978,7 +2995,6 @@ IF OBJECT_ID (N'[DESCONOCIDOS4].TR_ACTUALIZAR_INTENTOS_FALLIDOS', N'TR') IS NOT 
 		DROP TRIGGER  [DESCONOCIDOS4].TR_ACTUALIZAR_INTENTOS_FALLIDOS;
 GO
 
-
 CREATE TRIGGER  [DESCONOCIDOS4].TR_ACTUALIZAR_INTENTOS_FALLIDOS ON [DESCONOCIDOS4].USUARIO
 AFTER UPDATE
 AS
@@ -3200,6 +3216,52 @@ SELECT Nombre, ISNUMERIC(Ascendente) Ascendente, Metodo, Descripcion FROM @Tabla
 RETURNS
 END
 GO
+--------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------- CONTROL DE UNIDAD DISPONIBLE -----------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------
+IF OBJECT_ID (N'[DESCONOCIDOS4].TR_ACTUALIZAR_UNIDAD_DISPONIBLE', N'TR') IS NOT NULL
+		DROP TRIGGER  [DESCONOCIDOS4].TR_ACTUALIZAR_UNIDAD_DISPONIBLE;
+GO
+
+CREATE TRIGGER  [DESCONOCIDOS4].TR_ACTUALIZAR_UNIDAD_DISPONIBLE ON [DESCONOCIDOS4].UNIDAD_DISPONIBLE
+FOR  UPDATE
+AS
+BEGIN
+TRANSACTION 
+	DECLARE @Uni_Dis_Control TABLE (
+	cho_id INT,
+	cho_habi BIT,
+	Tur_id INT,
+	Tur_habi BIT,
+	Auto_id INT,
+	Auto_habi BIT)
+		
+	INSERT INTO @Uni_Dis_Control (cho_id,cho_habi,Tur_id,Tur_habi,Auto_id,Auto_habi)
+	SELECT
+	 D.Uni_Dis_Chofer,
+	 CH.Chofer_Habilitado,
+	 D.Uni_Dis_Turno,
+	 T.Turno_Habilitado,
+	 D.Uni_Dis_Auto,
+	 A.Auto_Habilitado
+	FROM DELETED D 
+	LEFT JOIN DESCONOCIDOS4.CHOFER CH ON D.Uni_Dis_Chofer= CH.Chofer_Id
+	LEFT JOIN DESCONOCIDOS4.TURNO T ON D.Uni_Dis_Turno=T.Turno_Id
+	LEFT JOIN DESCONOCIDOS4.AUTO A ON D.Uni_Dis_Auto=A.Auto_Id
+
+	-- El trigger se activo por un turno que se deshabilito	
+	UPDATE DESCONOCIDOS4.CHOFER SET Chofer_Habilitado= 0 WHERE Chofer_Id IN (SELECT cho_id FROM  @Uni_Dis_Control WHERE Tur_habi=0 )
+	UPDATE DESCONOCIDOS4.AUTO SET Auto_Habilitado= 0 WHERE Auto_Id IN (SELECT Auto_id FROM  @Uni_Dis_Control WHERE Tur_habi=0)
+	
+	--el trigger se activo  por un chofer que se deshabilito	
+	UPDATE DESCONOCIDOS4.AUTO SET Auto_Habilitado=0 WHERE Auto_Id IN (SELECT Auto_id FROM  @Uni_Dis_Control WHERE cho_habi=0 )
+
+	--el trigger se activo  por un auto que se deshabilito
+    UPDATE DESCONOCIDOS4.CHOFER SET Chofer_Habilitado=0 WHERE Chofer_Id IN (SELECT cho_id FROM  @Uni_Dis_Control WHERE Auto_habi=0 )
+	
+COMMIT
+GO
+
 
 
 --------------------------------------------------------------------------------------------------------------------------
