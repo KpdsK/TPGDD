@@ -32,7 +32,7 @@ namespace UberFrba
                     //new GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter();
             //DataTable tblViajesAFacturar = adaptador.viajesAFacturar((int)this.comboCliente.SelectedValue,
             DataTable tblViajesAFacturar = adaptador.listaCabecerasFactura((int)this.comboCliente.SelectedValue,
-                Convert.ToDateTime(this.selectorFechaFacturacionHasta.Value.ToString("MM/dd/yyyy")));
+                Convert.ToDateTime(this.selectorFechaFacturacionHasta.Value.ToString("dd/MM/yyyy")));
             if (tblViajesAFacturar.Rows.Count > 0)
             {
                 frmGrilla formularioGrilla = new frmGrilla();
@@ -42,6 +42,9 @@ namespace UberFrba
                 grillaInformacionFacturacion.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
                 grillaInformacionFacturacion.AutoGenerateColumns = true;
                 formularioGrilla.formulario = this;
+                formularioGrilla.Controls["btnVerDetalles"].Visible = true;
+                formularioGrilla.Controls["btnVerDetalles"].Click += (senders, es) =>
+                    verDetalleViajes(sender, e, formularioGrilla);
                 formularioGrilla.Controls["btnSeleccionar"].Text = "Facturar Viajes";
                 formularioGrilla.Controls["btnSeleccionar"].Click += (senders, es) =>
                     facturarViajes(sender, e, formularioGrilla);
@@ -55,6 +58,12 @@ namespace UberFrba
                         , MessageBoxButtons.OK
                         , MessageBoxIcon.Information);
             }
+        }
+
+        private void verDetalleViajes(object sender, EventArgs e, frmGrilla formularioGrilla)
+        {
+            DataRowView fila = ((DataRowView)(((DataGridView)formularioGrilla.Controls["grillaDatos"]).CurrentRow).DataBoundItem);
+            completarFormularioConDatosDeUsuarioSeleccionado(fila);
         }
 
         private void facturarViajes(object sender, EventArgs e, frmGrilla formularioResultadoBusqueda)
@@ -89,6 +98,25 @@ namespace UberFrba
 
         public void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filaDeDatos)
         {
+             GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter adaptador =
+                    new GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter();
+            DataTable tblDetalleViajes = adaptador.viajesAFacturar((int)this.comboCliente.SelectedValue,
+                this.selectorFechaFacturacionHasta.Value.ToString("dd/MM/yyyy"));
+            if (tblDetalleViajes.Rows.Count > 0)
+            {
+                frmGrilla formularioGrillaDetalleViajes = new frmGrilla();
+                DataGridView grillaDetalleViajes = (DataGridView)formularioGrillaDetalleViajes.Controls["grillaDatos"];
+                grillaDetalleViajes.DataSource = tblDetalleViajes;
+                grillaDetalleViajes.ReadOnly = true;
+                grillaDetalleViajes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                grillaDetalleViajes.AutoGenerateColumns = true;
+                formularioGrillaDetalleViajes.formulario = this;
+                formularioGrillaDetalleViajes.Controls["btnSeleccionar"].Visible = false;
+                formularioGrillaDetalleViajes.Controls["btnCancelar"].Text = "Volver";
+                
+                formularioGrillaDetalleViajes.Show();
+                this.Close();
+            }
         }
     }
 }

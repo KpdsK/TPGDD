@@ -31,6 +31,7 @@
             this.grillaDatos = new System.Windows.Forms.DataGridView();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnSeleccionar = new System.Windows.Forms.Button();
+            this.btnVerDetalles = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grillaDatos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -71,6 +72,16 @@
             this.btnSeleccionar.UseVisualStyleBackColor = true;
             this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
             // 
+            // btnVerDetalles
+            // 
+            this.btnVerDetalles.Location = new System.Drawing.Point(314, 273);
+            this.btnVerDetalles.Name = "btnVerDetalles";
+            this.btnVerDetalles.Size = new System.Drawing.Size(108, 30);
+            this.btnVerDetalles.TabIndex = 3;
+            this.btnVerDetalles.Text = "Ver Detalles";
+            this.btnVerDetalles.UseVisualStyleBackColor = true;
+            this.btnVerDetalles.Visible = false;
+            // 
             // frmGrilla
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -78,6 +89,7 @@
             this.CancelButton = this.btnCancelar;
             this.ClientSize = new System.Drawing.Size(737, 315);
             this.ControlBox = false;
+            this.Controls.Add(this.btnVerDetalles);
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.grillaDatos);
@@ -94,5 +106,6 @@
         protected System.Windows.Forms.DataGridView grillaDatos;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnSeleccionar;
+        private System.Windows.Forms.Button btnVerDetalles;
     }
 }
