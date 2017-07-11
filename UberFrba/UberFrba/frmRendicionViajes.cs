@@ -74,18 +74,26 @@ namespace UberFrba
             DataTable tblViajesARendir = adaptador.viajesARendir((int)this.comboChofer.SelectedValue,
                 this.selectorDiaRendicionAChofer.Value.ToString("MM/dd/yyyy"),
                 (int)this.comboTurno.SelectedValue);
-            frmGrilla formularioGrilla = new frmGrilla();
-            DataGridView grillaInformacionRendicion = (DataGridView)formularioGrilla.Controls["grillaDatos"];
-            grillaInformacionRendicion.DataSource = tblViajesARendir;
-            grillaInformacionRendicion.ReadOnly = true;
-            grillaInformacionRendicion.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            grillaInformacionRendicion.AutoGenerateColumns = true;
-            formularioGrilla.formulario = this;
-            formularioGrilla.Controls["btnSeleccionar"].Text = "Rendir Viajes";
-            formularioGrilla.Controls["btnSeleccionar"].Click += (senders, es) => 
+            if (tblViajesARendir.Rows.Count > 0)
+            {
+                frmGrilla formularioGrilla = new frmGrilla();
+                DataGridView grillaInformacionRendicion = (DataGridView)formularioGrilla.Controls["grillaDatos"];
+                grillaInformacionRendicion.DataSource = tblViajesARendir;
+                grillaInformacionRendicion.ReadOnly = true;
+                grillaInformacionRendicion.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                grillaInformacionRendicion.AutoGenerateColumns = true;
+                formularioGrilla.formulario = this;
+                formularioGrilla.Controls["btnSeleccionar"].Text = "Rendir Viajes";
+                formularioGrilla.Controls["btnSeleccionar"].Click += (senders, es) => 
                 rendirViajes(sender, e, formularioGrilla);
-            formularioGrilla.Show();
-            this.Close();
+                formularioGrilla.Show();
+                this.Close();
+            } else {
+                MessageBox.Show("No hay Viajes a Rendir"
+                        , "Datos Vacios"
+                        , MessageBoxButtons.OK
+                        , MessageBoxIcon.Information);
+            }
         }
 
         private void rendirViajes(object sender, EventArgs e, frmGrilla formulario)

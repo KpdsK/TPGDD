@@ -26,23 +26,32 @@ namespace UberFrba
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-
             GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter adaptador =
-                new GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter();
+                    new GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter();
             DataTable tblViajesAFacturar = adaptador.viajesAFacturar((int)this.comboCliente.SelectedValue,
                 this.selectorFechaFacturacionHasta.Value.ToString("MM/dd/yyyy"));
-            frmGrilla formularioGrilla = new frmGrilla();
-            DataGridView grillaInformacionFacturacion = (DataGridView)formularioGrilla.Controls["grillaDatos"];
-            grillaInformacionFacturacion.DataSource = tblViajesAFacturar;
-            grillaInformacionFacturacion.ReadOnly = true;
-            grillaInformacionFacturacion.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            grillaInformacionFacturacion.AutoGenerateColumns = true;
-            formularioGrilla.formulario = this;
-            formularioGrilla.Controls["btnSeleccionar"].Text = "Facturar Viajes";
-            formularioGrilla.Controls["btnSeleccionar"].Click += (senders, es) =>
-                facturarViajes(sender, e, formularioGrilla);
-            formularioGrilla.Show();
-            this.Close();
+            if (tblViajesAFacturar.Rows.Count > 0)
+            {
+                frmGrilla formularioGrilla = new frmGrilla();
+                DataGridView grillaInformacionFacturacion = (DataGridView)formularioGrilla.Controls["grillaDatos"];
+                grillaInformacionFacturacion.DataSource = tblViajesAFacturar;
+                grillaInformacionFacturacion.ReadOnly = true;
+                grillaInformacionFacturacion.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                grillaInformacionFacturacion.AutoGenerateColumns = true;
+                formularioGrilla.formulario = this;
+                formularioGrilla.Controls["btnSeleccionar"].Text = "Facturar Viajes";
+                formularioGrilla.Controls["btnSeleccionar"].Click += (senders, es) =>
+                    facturarViajes(sender, e, formularioGrilla);
+                formularioGrilla.Show();
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("No hay Viajes a Facturar"
+                        , "Datos Vacios"
+                        , MessageBoxButtons.OK
+                        , MessageBoxIcon.Information);
+            }
         }
 
         private void facturarViajes(object sender, EventArgs e, frmGrilla formularioResultadoBusqueda)
