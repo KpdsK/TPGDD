@@ -27,38 +27,62 @@ namespace UberFrba
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            GD1C2017DataSetTableAdapters.PRC_FACTURAR_A_CLIENTETableAdapter adaptador =
-                new GD1C2017DataSetTableAdapters.PRC_FACTURAR_A_CLIENTETableAdapter();
-            //GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter adaptador =
-                    //new GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter();
-            //DataTable tblViajesAFacturar = adaptador.viajesAFacturar((int)this.comboCliente.SelectedValue,
-            DataTable tblViajesAFacturar = adaptador.listaCabecerasFactura((int)this.comboCliente.SelectedValue,
-                Convert.ToDateTime(this.selectorFechaFacturacionHasta.Value.ToString("dd/MM/yyyy")));
+            DataTable tblViajesAFacturar = obtenerTablaDatosEncabezadoFacturas();
+            construirGrillaSiHayResultados(tblViajesAFacturar);
+        }
+
+        private void construirGrillaSiHayResultados(DataTable tblViajesAFacturar)
+        {
             if (tblViajesAFacturar.Rows.Count > 0)
             {
-                frmGrilla formularioGrilla = new frmGrilla();
-                DataGridView grillaInformacionFacturacion = (DataGridView)formularioGrilla.Controls["grillaDatos"];
-                grillaInformacionFacturacion.DataSource = tblViajesAFacturar;
-                grillaInformacionFacturacion.ReadOnly = true;
-                grillaInformacionFacturacion.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                grillaInformacionFacturacion.AutoGenerateColumns = true;
-                formularioGrilla.formulario = this;
-                formularioGrilla.Controls["btnVerDetalles"].Visible = true;
-                formularioGrilla.Controls["btnVerDetalles"].Click += (senders, es) =>
-                    verDetalleViajes(sender, e, formularioGrilla);
-                formularioGrilla.Controls["btnSeleccionar"].Text = "Facturar Viajes";
-                formularioGrilla.Controls["btnSeleccionar"].Click += (senders, es) =>
-                    facturarViajes(sender, e, formularioGrilla);
-                formularioGrilla.Show();
+                frmGrilla formularioGrilla = construirFormularioGrilla(tblViajesAFacturar);
+                configuracionesAdicionalesAFormularioGrilla(formularioGrilla);
                 this.Close();
             }
             else
             {
-                MessageBox.Show("No hay Viajes a Facturar"
-                        , "Datos Vacios"
-                        , MessageBoxButtons.OK
-                        , MessageBoxIcon.Information);
+                mensajeSinViajesAFacturar();
             }
+        }
+
+        private static void mensajeSinViajesAFacturar()
+        {
+            MessageBox.Show("No hay Viajes a Facturar"
+                    , "Datos Vacios"
+                    , MessageBoxButtons.OK
+                    , MessageBoxIcon.Information);
+        }
+
+        private void configuracionesAdicionalesAFormularioGrilla(frmGrilla formularioGrilla)
+        {
+            formularioGrilla.Controls["btnVerDetalles"].Visible = true;
+            formularioGrilla.Controls["btnVerDetalles"].Click += (sender, e) =>
+                verDetalleViajes(sender, e, formularioGrilla);
+            formularioGrilla.Controls["btnSeleccionar"].Text = "Facturar Viajes";
+            formularioGrilla.Controls["btnSeleccionar"].Click += (senders, es) =>
+                facturarViajes(senders, es, formularioGrilla);
+            formularioGrilla.Show();
+        }
+
+        private frmGrilla construirFormularioGrilla(DataTable tblViajesAFacturar)
+        {
+            frmGrilla formularioGrilla = new frmGrilla();
+            DataGridView grillaInformacionFacturacion = (DataGridView)formularioGrilla.Controls["grillaDatos"];
+            grillaInformacionFacturacion.DataSource = tblViajesAFacturar;
+            grillaInformacionFacturacion.ReadOnly = true;
+            grillaInformacionFacturacion.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            grillaInformacionFacturacion.AutoGenerateColumns = true;
+            formularioGrilla.formulario = this;
+            return formularioGrilla;
+        }
+
+        private DataTable obtenerTablaDatosEncabezadoFacturas()
+        {
+            GD1C2017DataSetTableAdapters.PRC_FACTURAR_A_CLIENTETableAdapter adaptador =
+                new GD1C2017DataSetTableAdapters.PRC_FACTURAR_A_CLIENTETableAdapter();
+            DataTable tblViajesAFacturar = adaptador.listaCabecerasFactura((int)this.comboCliente.SelectedValue,
+                Convert.ToDateTime(this.selectorFechaFacturacionHasta.Value.ToString("dd/MM/yyyy")));
+            return tblViajesAFacturar;
         }
 
         private void verDetalleViajes(object sender, EventArgs e, frmGrilla formularioGrilla)
