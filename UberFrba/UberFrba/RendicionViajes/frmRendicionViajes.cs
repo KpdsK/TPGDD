@@ -74,7 +74,7 @@ namespace UberFrba
 
             DataTable tblViajesARendir = obtenerTablaDatosCabeceraRendicion();
             MethodInfo metodoAEjecutar = this.GetType().GetMethod("configuracionesAdicionalesGrillaCabeceraRendicion", BindingFlags.NonPublic | BindingFlags.Instance);
-            ArmadoGrilla.construirGrillaSiHayResultados(tblViajesARendir, metodoAEjecutar, this);
+            ArmadoGrilla.construirGrillaSiHayResultados(tblViajesARendir, metodoAEjecutar, this, false);
         }
 
         private void configuracionesAdicionalesGrillaCabeceraRendicion(frmGrilla formularioGrilla)
@@ -132,7 +132,7 @@ namespace UberFrba
         {
             DataTable tblViajesARendir = obtenerTablaDatosDetalleRendicionViajes();
             MethodInfo metodoAEjecutar = this.GetType().GetMethod("configuracionesAdicionalesGrillaDetalleRendicion", BindingFlags.NonPublic | BindingFlags.Instance);
-            ArmadoGrilla.construirGrillaSiHayResultados(tblViajesARendir, metodoAEjecutar, this);
+            ArmadoGrilla.construirGrillaSiHayResultados(tblViajesARendir, metodoAEjecutar, this, false);
         }
 
         private void configuracionesAdicionalesGrillaDetalleRendicion(frmGrilla formularioGrillaDetalleViajesRendir)

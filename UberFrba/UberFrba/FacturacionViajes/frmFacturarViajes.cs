@@ -30,7 +30,7 @@ namespace UberFrba
         {
             DataTable tblViajesAFacturar = obtenerTablaDatosEncabezadoFacturas();
             MethodInfo metodoAEjecutar = this.GetType().GetMethod("configuracionesAdicionalesAFormularioGrilla", BindingFlags.NonPublic | BindingFlags.Instance);
-            ArmadoGrilla.construirGrillaSiHayResultados(tblViajesAFacturar, metodoAEjecutar, this);
+            ArmadoGrilla.construirGrillaSiHayResultados(tblViajesAFacturar, metodoAEjecutar, this, false);
         }
 
         public void cerrar()
@@ -106,7 +106,7 @@ namespace UberFrba
         {
             DataTable tblDetalleViajes = obtenerTablaDatosDetalleFacturas();
             MethodInfo metodoAEjecutar = this.GetType().GetMethod("configuracionesAdicionalesDetalleViajes", BindingFlags.NonPublic | BindingFlags.Instance);
-            ArmadoGrilla.construirGrillaSiHayResultados(tblDetalleViajes, metodoAEjecutar, this);
+            ArmadoGrilla.construirGrillaSiHayResultados(tblDetalleViajes, metodoAEjecutar, this, false);
         }
 
         private void configuracionesAdicionalesDetalleViajes(frmGrilla formularioGrillaDetalleViajes)

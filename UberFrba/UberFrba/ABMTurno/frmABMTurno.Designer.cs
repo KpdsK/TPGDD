@@ -281,23 +281,23 @@
 
         #endregion
 
-        private System.Windows.Forms.GroupBox grupoDatosTurno;
+        protected System.Windows.Forms.GroupBox grupoDatosTurno;
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.Label lblChofer;
         private System.Windows.Forms.Label lblTurno;
         private System.Windows.Forms.Label lblPatente;
-        private System.Windows.Forms.TextBox txtValorKilometro;
+        protected System.Windows.Forms.TextBox txtValorKilometro;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox grupoBusquedaTurno;
         private System.Windows.Forms.Button btnBuscar;
         private System.Windows.Forms.Label lblBuscarDNI;
         private System.Windows.Forms.TextBox txtBusquedaDescripcion;
-        private System.Windows.Forms.CheckBox ccHabilitado;
-        private System.Windows.Forms.TextBox txtDescripcion;
-        private System.Windows.Forms.TextBox txtPrecioBase;
-        private System.Windows.Forms.Label lblIdTurno;
+        protected System.Windows.Forms.CheckBox ccHabilitado;
+        protected System.Windows.Forms.TextBox txtDescripcion;
+        protected System.Windows.Forms.TextBox txtPrecioBase;
+        protected System.Windows.Forms.Label lblIdTurno;
         protected System.Windows.Forms.NumericUpDown selectorHoraFin;
         protected System.Windows.Forms.NumericUpDown selectorHoraInicio;
     }

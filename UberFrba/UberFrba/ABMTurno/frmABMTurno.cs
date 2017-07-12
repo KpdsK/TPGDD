@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UberFrba.Clases;
 
 namespace UberFrba
 {
@@ -25,23 +27,20 @@ namespace UberFrba
         private void btnBuscar_Click(object sender, EventArgs e)
         {
             DataTable tblListadoTurnos = obtenerTablaDeDatos();
+            MethodInfo metodoAEjecutar = this.GetType().GetMethod("configuracionesAdicionalesGrillaABMTurnos", BindingFlags.NonPublic | BindingFlags.Instance);
+            ArmadoGrilla.construirGrillaSiHayResultados(tblListadoTurnos, metodoAEjecutar, this, true);
+        }
 
-            if (tblListadoTurnos != null && tblListadoTurnos.Rows.Count > 0)
-            {
-                frmGrillaParaBusquedaConSeleccionDeFilas formularioResultadoBusqueda = new frmGrillaParaBusquedaConSeleccionDeFilas();
-                DataGridView grillaBusquedaTurnos = (DataGridView)formularioResultadoBusqueda.Controls["grillaDatos"];
-                grillaBusquedaTurnos.DataSource = tblListadoTurnos;
-                grillaBusquedaTurnos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                grillaBusquedaTurnos.AutoGenerateColumns = true;
-                formularioResultadoBusqueda.formulario = this;
-                formularioResultadoBusqueda.Controls["btnSeleccionar"].Text = "Seleccionar Turno";
-                formularioResultadoBusqueda.Show();
-            }
-            else
-            {
-                MessageBox.Show("No Existe Turno habilitado, coincidente con los parametros de busqueda.",
+        public void mensajeNoHayDatosParaGrilla()
+        {
+            MessageBox.Show("No Existe Turno habilitado, coincidente con los parametros de busqueda.",
                     "Automovil No Encontrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+        }
+
+        protected void configuracionesAdicionalesGrillaABMTurnos(frmGrilla formularioGrilla)
+        {
+            formularioGrilla.Controls["btnSeleccionar"].Text = "Seleccionar Turno";
+            formularioGrilla.Show();
         }
 
         public virtual DataTable obtenerTablaDeDatos()
@@ -54,11 +53,11 @@ namespace UberFrba
             limpiarSelectoresHorario();
             this.selectorHoraInicio.Value = Convert.ToInt16(filaDeDatos.Row["Turno_Hora_Inicio"].ToString());
             this.selectorHoraFin.Value = Convert.ToInt16(filaDeDatos.Row["Turno_Hora_Fin"].ToString());
-            ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtValorKilometro"]).Text = filaDeDatos.Row["Turno_Valor_Kilometro"].ToString();
-            ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtPrecioBase"]).Text = filaDeDatos.Row["Turno_Precio_Base"].ToString();
-            ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtDescripcion"]).Text = filaDeDatos.Row["Turno_Descripcion"].ToString();
-            ((Label)(this.Controls["grupoDatosTurno"]).Controls["lblIdTurno"]).Text = filaDeDatos.Row["Turno_Id"].ToString();
-            ((CheckBox)(this.Controls["grupoDatosTurno"]).Controls["ccHabilitado"]).Checked = (Boolean)filaDeDatos.Row["Turno_Habilitado"];
+            this.txtValorKilometro.Text = filaDeDatos.Row["Turno_Valor_Kilometro"].ToString();
+            this.txtPrecioBase.Text = filaDeDatos.Row["Turno_Precio_Base"].ToString();
+            this.txtDescripcion.Text = filaDeDatos.Row["Turno_Descripcion"].ToString();
+            this.lblIdTurno.Text = filaDeDatos.Row["Turno_Id"].ToString();
+            this.ccHabilitado.Checked = (Boolean)filaDeDatos.Row["Turno_Habilitado"];
             accionesAdicionales();
         }
 
@@ -70,22 +69,10 @@ namespace UberFrba
             this.selectorHoraFin.Maximum = 24;
         }
 
-
-
-
         public void cerrar()
         {
             this.Close();
         }
-
-        public void mensajeNoHayDatosParaGrilla()
-        {
-            MessageBox.Show("No hay Viajes a Facturar"
-                    , "Datos Vacios"
-                    , MessageBoxButtons.OK
-                    , MessageBoxIcon.Information);
-        }
-
 
         public virtual void construirBotonAccion()
         {
@@ -229,17 +216,17 @@ namespace UberFrba
         public override void accionesAdicionales()
         {
             inhabilitarControles();
-            this.Controls["grupoDatosTurno"].Visible = true;
+            this.grupoDatosTurno.Visible = true;
         }
 
         private void inhabilitarControles()
         {
             ((NumericUpDown)(this.selectorHoraInicio)).ReadOnly = true;
             ((NumericUpDown)(this.selectorHoraFin)).ReadOnly = true;
-            ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtValorKilometro"]).ReadOnly = true;
-            ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtPrecioBase"]).ReadOnly = true;
-            ((TextBox)(this.Controls["grupoDatosTurno"]).Controls["txtDescripcion"]).ReadOnly = true;
-            ((CheckBox)(this.Controls["grupoDatosTurno"]).Controls["ccHabilitado"]).Enabled=false;
+            this.txtValorKilometro.ReadOnly = true;
+            this.txtPrecioBase.ReadOnly = true;
+            this.txtDescripcion.ReadOnly = true;
+            this.ccHabilitado.Enabled=false;
         }
 
         public override DataTable obtenerTablaDeDatos()

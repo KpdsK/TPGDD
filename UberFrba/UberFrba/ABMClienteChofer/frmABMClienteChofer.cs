@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Net.Mail;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -44,24 +45,22 @@ namespace UberFrba
             if (validarDatosParaBusqueda())
             {
                 DataTable tblDatosResultadoBusquedaUsuarios = obtenerTablaDeDatosDeUsuario();
-                if (tblDatosResultadoBusquedaUsuarios != null && tblDatosResultadoBusquedaUsuarios.Rows.Count > 0)
-                {
-                    frmGrillaParaBusquedaConSeleccionDeFilas formularioResultadoBusqueda = new frmGrillaParaBusquedaConSeleccionDeFilas();
-                    DataGridView grillaBusquedaUsuarios = (DataGridView)formularioResultadoBusqueda.Controls["grillaDatos"];
-                    grillaBusquedaUsuarios.DataSource = tblDatosResultadoBusquedaUsuarios;
-                    grillaBusquedaUsuarios.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                    grillaBusquedaUsuarios.AutoGenerateColumns = true;
-                    formularioResultadoBusqueda.formulario = this;
-                    formularioResultadoBusqueda.Controls["btnSeleccionar"].Text = "Seleccionar " + this.tipoUsuario;
-                    formularioResultadoBusqueda.Show();
-                }
-                else
-                {
-                    MessageBox.Show("No Existe " + this.tipoUsuario + " coincidente con los parametros de busqueda");
-                }
+                MethodInfo metodoAEjecutar = this.GetType().GetMethod("configuracionesAdicionalesGrillaABMClienteChofer", BindingFlags.NonPublic | BindingFlags.Instance);
+                ArmadoGrilla.construirGrillaSiHayResultados(tblDatosResultadoBusquedaUsuarios, metodoAEjecutar, this, true);
             } else {
                 MetodosGlobales.mansajeErrorValidacion();
             }
+        }
+
+        public void mensajeNoHayDatosParaGrilla()
+        {
+            MessageBox.Show("No Existe " + this.tipoUsuario + " coincidente con los parametros de busqueda");
+        }
+
+        protected void configuracionesAdicionalesGrillaABMClienteChofer(frmGrilla formularioGrilla)
+        {
+            formularioGrilla.Controls["btnSeleccionar"].Text = "Seleccionar " + this.tipoUsuario;
+            formularioGrilla.Show();
         }
 
         protected virtual DataTable obtenerTablaDeDatosDeUsuario()
@@ -94,23 +93,10 @@ namespace UberFrba
             this.Close();
         }
 
-
         public void cerrar()
         {
             this.Close();
         }
-
-        public void mensajeNoHayDatosParaGrilla()
-        {
-            MessageBox.Show("No hay Viajes a Facturar"
-                    , "Datos Vacios"
-                    , MessageBoxButtons.OK
-                    , MessageBoxIcon.Information);
-        }
-
-
-
-
 
         public void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filadeDatos)
         {

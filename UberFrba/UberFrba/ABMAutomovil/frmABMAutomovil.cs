@@ -4,9 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UberFrba.Clases;
 
 namespace UberFrba
 {
@@ -141,24 +143,15 @@ namespace UberFrba
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
             DataTable tblListadoAutomoviles = obtenerTablaDeDatos();
-            if (tblListadoAutomoviles != null && tblListadoAutomoviles.Rows.Count > 0)
-            {
-                frmGrillaParaBusquedaConSeleccionDeFilas formularioResultadoBusqueda = new frmGrillaParaBusquedaConSeleccionDeFilas();
-                DataGridView grillaBusquedaAutomoviles = (DataGridView)formularioResultadoBusqueda.Controls["grillaDatos"];
-                grillaBusquedaAutomoviles.DataSource = tblListadoAutomoviles;
-                grillaBusquedaAutomoviles.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                grillaBusquedaAutomoviles.AutoGenerateColumns = true;
-                formularioResultadoBusqueda.formulario = this;
-                formularioResultadoBusqueda.Controls["btnSeleccionar"].Text = "Seleccionar Automovil";
-                formularioResultadoBusqueda.Show();
-            }
-            else
-            {
-                MessageBox.Show("No Existe Automovil habilitado, coincidente con los parametros de busqueda.",
-                    "Automovil No Encontrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            MethodInfo metodoAEjecutar = this.GetType().GetMethod("configuracionesAdicionalesGrillaABMAutomovil", BindingFlags.NonPublic | BindingFlags.Instance);
+            ArmadoGrilla.construirGrillaSiHayResultados(tblListadoAutomoviles, metodoAEjecutar, this, true);
         }
 
+        protected void configuracionesAdicionalesGrillaABMClienteChofer(frmGrilla formularioGrilla)
+        {
+            formularioGrilla.Controls["btnSeleccionar"].Text = "Seleccionar Automovil";
+            formularioGrilla.Show();
+        }
 
         public void cerrar()
         {
@@ -167,14 +160,9 @@ namespace UberFrba
 
         public void mensajeNoHayDatosParaGrilla()
         {
-            MessageBox.Show("No hay Viajes a Facturar"
-                    , "Datos Vacios"
-                    , MessageBoxButtons.OK
-                    , MessageBoxIcon.Information);
+            MessageBox.Show("No Existe Automovil habilitado, coincidente con los parametros de busqueda.",
+                    "Automovil No Encontrado", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-
-
 
         public virtual DataTable obtenerTablaDeDatos()
         {
