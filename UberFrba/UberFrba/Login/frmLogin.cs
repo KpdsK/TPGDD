@@ -12,6 +12,13 @@ using System.Data.SqlClient;
 using System.Net.Mail;
 using System.Text.RegularExpressions;
 
+/*
+ * Toma los datos de Usuario y contraseña, encripta esta ultima con el algoritmo SHA256 y 
+ * consulta a la BD con estos datos. Si el usuario y contraseña son validos y el usuario esta habilitado,
+ * Retorna del SP de la BD, una lista con datos del usuario y todos los roles disponibles, 
+ * habilitados para este usuario. Esto lo utiliza para crear el formulario de seleccion de rol.
+ */
+
 namespace UberFrba
 {
     public partial class frmIngreso : Form
@@ -102,8 +109,6 @@ namespace UberFrba
                 MetodosGlobales.mansajeErrorValidacion();
             }
         }
-
-        
 
         private bool validarDatosDelFormulario()
         {

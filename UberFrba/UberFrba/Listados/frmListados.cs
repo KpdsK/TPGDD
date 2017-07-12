@@ -10,6 +10,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using UberFrba.Clases;
 
+/*
+ * Los listados estan harcodeados en en diccionario de datos, cada seleccion asocia con un nombre de metodo. Cada
+ * uno de estos metodos ejecuta un listado, que se mostrara el la grilla, esto se hace con Reflection,
+ * llegando a la ejecucion del metodo desde una cadena con el nombre. Reflection tambien es utilizado para reutilizar el
+ * codigo para armar las distintas grillas sobre el mismo formulario y en la ejecucion de las funcionalidades disponibles
+ * en el menu.
+ */
+
 namespace UberFrba
 {
     public partial class frmListados : Form, IGrilla
@@ -39,7 +47,7 @@ namespace UberFrba
 
         public void mensajeNoHayDatosParaGrilla()
         {
-            MessageBox.Show("No hay turno asociado al Automovil"
+            MessageBox.Show("No hay datos para mostrar en este listado."
                         , "Datos Vacios"
                         , MessageBoxButtons.OK
                         , MessageBoxIcon.Information);

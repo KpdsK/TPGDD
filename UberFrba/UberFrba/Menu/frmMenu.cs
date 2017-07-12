@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/*
+ * Este formulario es creado por el anterior, el frmRol. Este formulario contiene el menu.
+ */
+
 namespace UberFrba
 {
     public partial class frmPrincipal : Form

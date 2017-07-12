@@ -9,7 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UberFrba.Clases;
-
+/*
+ * Se utiliza como en todos los ABM herencia para reutilizar codigo. Diferenciando la funcionalidad segun la accion
+ * a realizar (Alta, Baja o Modificacion).
+ * Estos formularios se dividen en 2 partes, la parte de busqueda y la parte de datos.
+ */
 namespace UberFrba
 {
     public partial class frmABMTurno : Form, IGrilla

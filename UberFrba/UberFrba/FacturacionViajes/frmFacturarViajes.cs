@@ -9,7 +9,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UberFrba.Clases;
-
+/*
+ * Al igual que en facturacion de viajes, este formulario crea uno de grilla con los datos del encabezado de la
+ * rendicion, luego con el boton ver detalles, se accede a una segunda grilla que muestra los detalles de la 
+ * rendicion (los viajes que la componen).
+ */
 namespace UberFrba
 {
     public partial class frmFacturarViaje : Form, IGrilla

@@ -8,7 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+/*
+ * Este formulario permite seleccion simple y multiple, paso de un lado al otro, por unidades 
+ * o grupos de funcionalidades
+ * 
+ */
 namespace UberFrba
 {
     public abstract partial class frmRol : Form

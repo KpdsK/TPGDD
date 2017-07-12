@@ -34,26 +34,3 @@ C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.application
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.exe
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.pdb
 C:\Users\pds\Desktop\TPGDD\UberFrba\UberFrba\obj\Debug\UberFrba.csprojResolveAssemblyReference.cache
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.frmIngreso.resources
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.frmFacturarViaje.resources
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.frmListados.resources
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.frmRol.resources
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.frmRoles.resources
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.frmPrincipal.resources
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.frmABM.resources
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.frmGrilla.resources
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.frmAutomovil.resources
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.frmABMTurno.resources
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.frmRegistroViaje.resources
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.frmRendirViaje.resources
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.Properties.Resources.resources
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.csproj.GenerateResource.Cache
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\bin\Debug\UberFrba.exe.config
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\bin\Debug\UberFrba.exe.manifest
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\bin\Debug\UberFrba.application
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\bin\Debug\UberFrba.exe
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\bin\Debug\UberFrba.pdb
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.exe.manifest
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.application
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.exe
-C:\Users\pds\Desktop\TPGDD - copia\UberFrba\UberFrba\obj\Debug\UberFrba.pdb

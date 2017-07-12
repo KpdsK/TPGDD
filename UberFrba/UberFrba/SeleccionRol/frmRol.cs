@@ -10,6 +10,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/*
+ * Al seleccionar el usuario un rol y presionar el boton Iniciar, con los datos que retorna de la consulta a la BD
+ * con el rol previamente elegido, obtiene la funcionalidad permitida al rol y arma el menu en base a esto.
+ * Tambien guarda en el Singleton datos del usuario, principalmente lo referido al rol.
+ */
 namespace UberFrba
 {
     public partial class frmRoles : Form

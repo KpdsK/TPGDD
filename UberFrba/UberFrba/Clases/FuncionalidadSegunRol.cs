@@ -8,6 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/*
+ * Esta clase inicialmente tenia otro sentido, fue el ancestro de los tipos de roles. Al permitir ABM de roles,
+ * se modifico para que los roles preexistentes, o creados en tiempo de ejecucion por el usuario, puedan tener 
+ * dinamicamente las funciones asignadas en el formulario ABM rol. Se opto por tener una sola clase, con todas las
+ * funciones del sistema, y una lista que indique cuales son las que tiene habilitadas este usuario/rol.
+ */
+
 namespace UberFrba
 {
     public class FuncionalidadSegunRol

@@ -9,7 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UberFrba.Clases;
-
+/*
+ * El combo chofer se arma con todos los choferes que son parte de una unidad disponible (Chofer, Auto, Turno),
+ * el combo turno se construye con el/los turno/s que posee el chofer en la misma entidad.
+ */
 namespace UberFrba
 {
     public partial class frmRendirViaje : Form, IGrilla
