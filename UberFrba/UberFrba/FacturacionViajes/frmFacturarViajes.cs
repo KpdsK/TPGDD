@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UberFrba.Clases;
 
 namespace UberFrba
 {
@@ -15,8 +16,8 @@ namespace UberFrba
         public frmFacturarViaje()
         {
             InitializeComponent();
-            this.selectorFechaFacturacionHasta.MinDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1); 
-            this.selectorFechaFacturacionHasta.MaxDate = DateTime.Now;
+            this.selectorFechaFacturacionHasta.MinDate = new DateTime((FechaAplicacion.obtenerFechaAplicacion()).Year, (FechaAplicacion.obtenerFechaAplicacion()).Month, 1);
+            this.selectorFechaFacturacionHasta.MaxDate = FechaAplicacion.obtenerFechaAplicacion();
         }
 
         public Boolean construite()

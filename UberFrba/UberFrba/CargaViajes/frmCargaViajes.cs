@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UberFrba.Clases;
 
 namespace UberFrba
 {
@@ -104,7 +105,7 @@ namespace UberFrba
 
         private static DateTime obtenerFechaHora(String hora)
         {
-            return DateTime.Parse(DateTime.Now.ToString("dd/MM/yyyy ") + (!hora.Equals("24") ? hora + ":00:00" : "23:59:59"));
+            return DateTime.Parse((FechaAplicacion.obtenerFechaAplicacion()).ToString("dd/MM/yyyy ") + (!hora.Equals("24") ? hora + ":00:00" : "23:59:59"));
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

@@ -111,15 +111,4 @@ namespace UberFrba
                 && Validaciones.validarCampoClave(textoClave.Text));
         }
     }
-   
-    //public class ArgumentosParaEventoBotonAgregar : EventArgs
-    //{
-    //    public frmABM formulario { set; get; }
-    //}
-    
-    //public static class VariablesGlobales
-    //{
-    //    public const string NOMBRE_ROL_ADMINISTRADOR = "ADMINISTRATIVO";
-    //}
-
 }
