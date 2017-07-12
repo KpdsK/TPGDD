@@ -147,7 +147,7 @@ namespace UberFrba
             ArmadoGrilla.construirGrillaSiHayResultados(tblListadoAutomoviles, metodoAEjecutar, this, true);
         }
 
-        protected void configuracionesAdicionalesGrillaABMClienteChofer(frmGrilla formularioGrilla)
+        protected void configuracionesAdicionalesGrillaABMAutomovil(frmGrilla formularioGrilla)
         {
             formularioGrilla.Controls["btnSeleccionar"].Text = "Seleccionar Automovil";
             formularioGrilla.Show();

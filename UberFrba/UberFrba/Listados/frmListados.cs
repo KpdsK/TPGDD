@@ -79,22 +79,22 @@ namespace UberFrba
             construirFormularioGrilla(tblListadoChoferesMayorRecaudacion);
         }
 
-        private void construirFormularioGrilla(DataTable tblListadoChoferesMayorRecaudacion)
+        private void construirFormularioGrilla(DataTable tablaConDatosListados)
         {
-            frmGrilla formularioListado = new frmGrilla();
-            DataGridView grillaListados = (DataGridView)formularioListado.Controls["grillaDatos"];
-            grillaListados.DataSource = tblListadoChoferesMayorRecaudacion;
-            grillaListados.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            grillaListados.AutoGenerateColumns = true;
-            formularioListado.Controls["btnSeleccionar"].Visible = false;
-            ((DataGridView)formularioListado.Controls["grillaDatos"]).ReadOnly = true;
-            formularioListado.Controls["btnCancelar"].Text = "Salir";
-            formularioListado.formulario = this; 
-            formularioListado.Controls["btnCancelar"].Left =
+            MethodInfo metodoAEjecutar = this.GetType().GetMethod("configuracionesAdicionalesGrillaListados", BindingFlags.NonPublic | BindingFlags.Instance);
+            ArmadoGrilla.construirGrillaSiHayResultados(tablaConDatosListados, metodoAEjecutar, this, false);
+        }
+
+        private void configuracionesAdicionalesGrillaListados(frmGrilla formularioGrilla)
+        {
+            formularioGrilla.Controls["btnSeleccionar"].Visible = false;
+            ((DataGridView)formularioGrilla.Controls["grillaDatos"]).ReadOnly = true;
+            formularioGrilla.Controls["btnCancelar"].Text = "Salir";
+            formularioGrilla.Controls["btnCancelar"].Left =
                 (this.ClientSize.Width -
-                formularioListado.Controls["btnCancelar"].Width) / 2;
+                formularioGrilla.Controls["btnCancelar"].Width) / 2;
             this.Close();
-            formularioListado.Show();
+            formularioGrilla.Show();
         }
 
         public void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filaDeDatos)

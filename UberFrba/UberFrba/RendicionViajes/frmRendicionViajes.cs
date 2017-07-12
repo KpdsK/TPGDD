@@ -71,7 +71,6 @@ namespace UberFrba
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-
             DataTable tblViajesARendir = obtenerTablaDatosCabeceraRendicion();
             MethodInfo metodoAEjecutar = this.GetType().GetMethod("configuracionesAdicionalesGrillaCabeceraRendicion", BindingFlags.NonPublic | BindingFlags.Instance);
             ArmadoGrilla.construirGrillaSiHayResultados(tblViajesARendir, metodoAEjecutar, this, false);
