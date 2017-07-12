@@ -73,6 +73,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IGrilla.cs" />
+    <Compile Include="Validaciones.cs" />
+    <Compile Include="MetodosGlobales.cs" />
+    <Compile Include="Excepciones.cs" />
+    <Compile Include="FuncionalidadSegunRol.cs" />
+    <Compile Include="SingletonDatosUsuario.cs" />
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -226,7 +232,9 @@
     <None Include="UberFrba_ClaveTemporal.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

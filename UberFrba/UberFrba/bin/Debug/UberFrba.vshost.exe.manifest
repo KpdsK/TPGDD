@@ -42,24 +42,24 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="UberFrba.exe" size="472576">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="UberFrba.exe" size="472064">
       <assemblyIdentity name="UberFrba" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>zc4pitGHITc7TDi4uKqq80MwvlUOHwcT1N8e/Se8GOo=</dsig:DigestValue>
+        <dsig:DigestValue>86u/5vgGAKK3PjD5eRNObg0GALL80F3/dvgPJIcIKQ8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="UberFrba.exe.config" size="531">
+  <file name="UberFrba.exe.config" size="623">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>QVO2pkOHcGYQO3AwFDQJs0z3CWFA9pHThMs+6P6n19k=</dsig:DigestValue>
+      <dsig:DigestValue>9l1+nZzr+KCl5SkKDHdEFFXHU+oxRSCLXDdnG0+Zu20=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>
