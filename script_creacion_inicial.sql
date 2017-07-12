@@ -862,9 +862,9 @@ BEGIN
   DECLARE @RESUL BIT
   DECLARE @CONT INT	
   SET @CONT=0
-  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].VIAJE WHERE Viaje_Chofer=@Cho AND   Viaje_Turno=@Turno and (Viaje_Fecha_Hora_Inicio>=@Hini AND @Hini<=Viaje_Fecha_Hora_Fin))>0
+  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].VIAJE WHERE Viaje_Chofer=@Cho AND   Viaje_Turno=@Turno and (Viaje_Fecha_Hora_Inicio<=@Hini AND Viaje_Fecha_Hora_Fin>= @Hini))>0
   SET @CONT=@CONT+1
-  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].VIAJE WHERE Viaje_Chofer=@Cho AND  Viaje_Turno=@Turno AND  (Viaje_Fecha_Hora_Inicio>=@Hfin AND @Hfin<=Viaje_Fecha_Hora_Fin))>0
+  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].VIAJE WHERE Viaje_Chofer=@Cho AND  Viaje_Turno=@Turno AND  (Viaje_Fecha_Hora_Inicio<=@Hfin AND Viaje_Fecha_Hora_Fin>=@Hfin))>0
   SET @CONT=@CONT+1
   IF @CONT=0
   SET @RESUL=1
@@ -917,10 +917,10 @@ BEGIN
 	IF @Cant_KM >0
 	SET @CONT=@CONT+1
 	--QUE EL RANGO DEL VIAJE ESTE OK
-	IF ([DESCONOCIDOS4].FN_VIAJE_RANGO_OK(@Clie,@Fecha_hora_ini,@Fecha_hora_fin )) =1
+	IF ([DESCONOCIDOS4].FN_VIAJE_RANGO_OK(@Clie,@Fecha_hora_ini,@Fecha_hora_fin,@Turno )) =1
 	SET @CONT=@CONT+1
 	-- QUE EL RANGO DE HORAS NO SE SUPERPONGA CON EL DE OTRO VIAJE DEL MISMO CHOFER
-	IF ([DESCONOCIDOS4].FN_VIAJE_RANGO_OK_CHO(@Chof,@Fecha_hora_ini,@Fecha_hora_fin))=1
+	IF ([DESCONOCIDOS4].FN_VIAJE_RANGO_OK_CHO(@Chof,@Fecha_hora_ini,@Fecha_hora_fin,@Turno))=1
 	SET @CONT=@CONT+1
 	-- QUE EL VIAJE ESTE DENTRO DEL TURNO  SELECCIONADO
 	IF([DESCONOCIDOS4].FN_VIAJE_RANGO_DENTRO_TURNO(@Turno,@Fecha_hora_ini,@Fecha_hora_fin))=1
@@ -945,9 +945,9 @@ BEGIN
   DECLARE @RESUL BIT
   DECLARE @CONT INT	
   SET @CONT=0
-  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].TURNO WHERE Turno_Habilitado=1 AND Turno_Hora_Inicio>=@Hini AND @Hini<=Turno_Hora_Fin)>0
+  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].TURNO WHERE Turno_Habilitado=1 AND (Turno_Hora_Inicio>=@Hini or @Hini<=Turno_Hora_Fin))>0
   SET @CONT=@CONT+1
-  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].TURNO WHERE Turno_Habilitado=1 AND Turno_Hora_Inicio>=@Hfin AND @Hfin<=Turno_Hora_Fin)>0
+  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].TURNO WHERE Turno_Habilitado=1 AND (Turno_Hora_Inicio>=@Hfin or @Hfin<=Turno_Hora_Fin))>0
   SET @CONT=@CONT+1
   IF @CONT=0
   SET @RESUL=1
