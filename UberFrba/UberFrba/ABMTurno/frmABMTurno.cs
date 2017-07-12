@@ -70,6 +70,23 @@ namespace UberFrba
             this.selectorHoraFin.Maximum = 24;
         }
 
+
+
+
+        public void cerrar()
+        {
+            this.Close();
+        }
+
+        public void mensajeNoHayDatosParaGrilla()
+        {
+            MessageBox.Show("No hay Viajes a Facturar"
+                    , "Datos Vacios"
+                    , MessageBoxButtons.OK
+                    , MessageBoxIcon.Information);
+        }
+
+
         public virtual void construirBotonAccion()
         {
         }

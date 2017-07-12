@@ -37,6 +37,20 @@ namespace UberFrba
             this.comboListados.ValueMember = "Key";
         }
 
+        public void mensajeNoHayDatosParaGrilla()
+        {
+            MessageBox.Show("No hay turno asociado al Automovil"
+                        , "Datos Vacios"
+                        , MessageBoxButtons.OK
+                        , MessageBoxIcon.Information);
+        }
+
+        public void cerrar()
+        {
+            this.Close();
+        }
+
+
         public void construite()
         {
             this.Show();

@@ -94,6 +94,24 @@ namespace UberFrba
             this.Close();
         }
 
+
+        public void cerrar()
+        {
+            this.Close();
+        }
+
+        public void mensajeNoHayDatosParaGrilla()
+        {
+            MessageBox.Show("No hay Viajes a Facturar"
+                    , "Datos Vacios"
+                    , MessageBoxButtons.OK
+                    , MessageBoxIcon.Information);
+        }
+
+
+
+
+
         public void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filadeDatos)
         {
             ((TextBox)(this.Controls["grupoDatosPersona"]).Controls["txtNombre"]).Text = filadeDatos.Row["Persona_Nombre"].ToString();

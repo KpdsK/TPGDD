@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,24 +29,16 @@ namespace UberFrba
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             DataTable tblViajesAFacturar = obtenerTablaDatosEncabezadoFacturas();
-            construirGrillaSiHayResultados(tblViajesAFacturar);
+            MethodInfo metodoAEjecutar = this.GetType().GetMethod("configuracionesAdicionalesAFormularioGrilla", BindingFlags.NonPublic | BindingFlags.Instance);
+            ArmadoGrilla.construirGrillaSiHayResultados(tblViajesAFacturar, metodoAEjecutar, this);
         }
 
-        private void construirGrillaSiHayResultados(DataTable tblViajesAFacturar)
+        public void cerrar()
         {
-            if (tblViajesAFacturar.Rows.Count > 0)
-            {
-                frmGrilla formularioGrilla = construirFormularioGrilla(tblViajesAFacturar);
-                configuracionesAdicionalesAFormularioGrilla(formularioGrilla);
-                this.Close();
-            }
-            else
-            {
-                mensajeSinViajesAFacturar();
-            }
+            this.Close();
         }
 
-        private static void mensajeSinViajesAFacturar()
+        public void mensajeNoHayDatosParaGrilla()
         {
             MessageBox.Show("No hay Viajes a Facturar"
                     , "Datos Vacios"
@@ -62,18 +55,6 @@ namespace UberFrba
             formularioGrilla.Controls["btnSeleccionar"].Click += (senders, es) =>
                 facturarViajes(senders, es, formularioGrilla);
             formularioGrilla.Show();
-        }
-
-        private frmGrilla construirFormularioGrilla(DataTable tblViajesAFacturar)
-        {
-            frmGrilla formularioGrilla = new frmGrilla();
-            DataGridView grillaInformacionFacturacion = (DataGridView)formularioGrilla.Controls["grillaDatos"];
-            grillaInformacionFacturacion.DataSource = tblViajesAFacturar;
-            grillaInformacionFacturacion.ReadOnly = true;
-            grillaInformacionFacturacion.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            grillaInformacionFacturacion.AutoGenerateColumns = true;
-            formularioGrilla.formulario = this;
-            return formularioGrilla;
         }
 
         private DataTable obtenerTablaDatosEncabezadoFacturas()
@@ -123,25 +104,26 @@ namespace UberFrba
 
         public void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filaDeDatos)
         {
-             GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter adaptador =
-                    new GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter();
+            DataTable tblDetalleViajes = obtenerTablaDatosDetalleFacturas();
+            MethodInfo metodoAEjecutar = this.GetType().GetMethod("configuracionesAdicionalesDetalleViajes", BindingFlags.NonPublic | BindingFlags.Instance);
+            ArmadoGrilla.construirGrillaSiHayResultados(tblDetalleViajes, metodoAEjecutar, this);
+        }
+
+        private void configuracionesAdicionalesDetalleViajes(frmGrilla formularioGrillaDetalleViajes)
+        {
+            formularioGrillaDetalleViajes.Controls["btnSeleccionar"].Visible = false;
+            formularioGrillaDetalleViajes.Controls["btnCancelar"].Text = "Volver";
+
+            formularioGrillaDetalleViajes.Show();
+        }
+
+        private DataTable obtenerTablaDatosDetalleFacturas()
+        {
+            GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter adaptador =
+                   new GD1C2017DataSetTableAdapters.FN_VIAJES_A_FACTURARTableAdapter();
             DataTable tblDetalleViajes = adaptador.viajesAFacturar((int)this.comboCliente.SelectedValue,
                 this.selectorFechaFacturacionHasta.Value.ToString("dd/MM/yyyy"));
-            if (tblDetalleViajes.Rows.Count > 0)
-            {
-                frmGrilla formularioGrillaDetalleViajes = new frmGrilla();
-                DataGridView grillaDetalleViajes = (DataGridView)formularioGrillaDetalleViajes.Controls["grillaDatos"];
-                grillaDetalleViajes.DataSource = tblDetalleViajes;
-                grillaDetalleViajes.ReadOnly = true;
-                grillaDetalleViajes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                grillaDetalleViajes.AutoGenerateColumns = true;
-                formularioGrillaDetalleViajes.formulario = this;
-                formularioGrillaDetalleViajes.Controls["btnSeleccionar"].Visible = false;
-                formularioGrillaDetalleViajes.Controls["btnCancelar"].Text = "Volver";
-                
-                formularioGrillaDetalleViajes.Show();
-                this.Close();
-            }
+            return tblDetalleViajes;
         }
     }
 }

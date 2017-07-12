@@ -159,6 +159,23 @@ namespace UberFrba
             }
         }
 
+
+        public void cerrar()
+        {
+            this.Close();
+        }
+
+        public void mensajeNoHayDatosParaGrilla()
+        {
+            MessageBox.Show("No hay Viajes a Facturar"
+                    , "Datos Vacios"
+                    , MessageBoxButtons.OK
+                    , MessageBoxIcon.Information);
+        }
+
+
+
+
         public virtual DataTable obtenerTablaDeDatos()
         {
             return new DataTable();
