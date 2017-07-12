@@ -10,5 +10,7 @@ namespace UberFrba
     public interface IGrilla
     {
         void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filaDeDatos);
+        void mensajeNoHayDatosParaGrilla();
+        void cerrar();
     }
 }

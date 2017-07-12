@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Clases\ArmadoGrilla.cs" />
     <Compile Include="Clases\FechaAplicacion.cs" />
     <Compile Include="Interfaces\IGrilla.cs" />
     <Compile Include="Clases\Validaciones.cs" />

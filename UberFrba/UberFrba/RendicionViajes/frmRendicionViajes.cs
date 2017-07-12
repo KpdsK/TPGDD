@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -70,35 +71,44 @@ namespace UberFrba
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            
+
+            DataTable tblViajesARendir = obtenerTablaDatosCabeceraRendicion();
+            MethodInfo metodoAEjecutar = this.GetType().GetMethod("configuracionesAdicionalesGrillaCabeceraRendicion", BindingFlags.NonPublic | BindingFlags.Instance);
+            ArmadoGrilla.construirGrillaSiHayResultados(tblViajesARendir, metodoAEjecutar, this, false);
+        }
+
+        private void configuracionesAdicionalesGrillaCabeceraRendicion(frmGrilla formularioGrilla)
+        {
+            formularioGrilla.Controls["btnVerDetalles"].Visible = true;
+            formularioGrilla.Controls["btnVerDetalles"].Click += (sender, e) =>
+                verDetalleViajes(sender, e, formularioGrilla);
+            formularioGrilla.Controls["btnSeleccionar"].Text = "Rendir Viajes";
+            formularioGrilla.Controls["btnSeleccionar"].Click += (senders, es) =>
+            rendirViajes(senders, es, formularioGrilla);
+            formularioGrilla.Show();
+        }
+
+        private DataTable obtenerTablaDatosCabeceraRendicion()
+        {
             GD1C2017DataSetTableAdapters.PRC_REGISTRO_VIAJETableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.PRC_REGISTRO_VIAJETableAdapter();
             DataTable tblViajesARendir = adaptador.listadoEncabezadoRendiciones((int)this.comboChofer.SelectedValue,
                 Convert.ToDateTime(this.selectorDiaRendicionAChofer.Value.ToString("dd/MM/yyyy")),
                 (int)this.comboTurno.SelectedValue);
-            if (tblViajesARendir.Rows.Count > 0)
-            {
-                frmGrilla formularioGrilla = new frmGrilla();
-                DataGridView grillaInformacionRendicion = (DataGridView)formularioGrilla.Controls["grillaDatos"];
-                grillaInformacionRendicion.DataSource = tblViajesARendir;
-                grillaInformacionRendicion.ReadOnly = true;
-                grillaInformacionRendicion.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                grillaInformacionRendicion.AutoGenerateColumns = true;
-                formularioGrilla.formulario = this;
-                formularioGrilla.Controls["btnVerDetalles"].Visible = true;
-                formularioGrilla.Controls["btnVerDetalles"].Click += (senders, es) =>
-                    verDetalleViajes(sender, e, formularioGrilla);
-                formularioGrilla.Controls["btnSeleccionar"].Text = "Rendir Viajes";
-                formularioGrilla.Controls["btnSeleccionar"].Click += (senders, es) => 
-                rendirViajes(sender, e, formularioGrilla);
-                formularioGrilla.Show();
-                this.Close();
-            } else {
-                MessageBox.Show("No hay Viajes a Rendir"
+            return tblViajesARendir;
+        }
+
+        public void mensajeNoHayDatosParaGrilla()
+        {
+            MessageBox.Show("No hay Viajes a Rendir"
                         , "Datos Vacios"
                         , MessageBoxButtons.OK
                         , MessageBoxIcon.Information);
-            }
+        }
+
+        public void cerrar()
+        {
+            this.Close();
         }
 
         private void verDetalleViajes(object sender, EventArgs e, frmGrilla formularioGrilla)
@@ -120,25 +130,26 @@ namespace UberFrba
 
         public void completarFormularioConDatosDeUsuarioSeleccionado(DataRowView filaDeDatos)
         {
+            DataTable tblViajesARendir = obtenerTablaDatosDetalleRendicionViajes();
+            MethodInfo metodoAEjecutar = this.GetType().GetMethod("configuracionesAdicionalesGrillaDetalleRendicion", BindingFlags.NonPublic | BindingFlags.Instance);
+            ArmadoGrilla.construirGrillaSiHayResultados(tblViajesARendir, metodoAEjecutar, this, false);
+        }
+
+        private void configuracionesAdicionalesGrillaDetalleRendicion(frmGrilla formularioGrillaDetalleViajesRendir)
+        {
+            formularioGrillaDetalleViajesRendir.Controls["btnSeleccionar"].Visible = false;
+            formularioGrillaDetalleViajesRendir.Controls["btnCancelar"].Text = "Volver";
+            formularioGrillaDetalleViajesRendir.Show();
+        }
+
+        private DataTable obtenerTablaDatosDetalleRendicionViajes()
+        {
             GD1C2017DataSetTableAdapters.FN_VIAJES_A_RENDIRTableAdapter adaptador =
                 new GD1C2017DataSetTableAdapters.FN_VIAJES_A_RENDIRTableAdapter();
             DataTable tblViajesARendir = adaptador.viajesARendir((int)this.comboChofer.SelectedValue,
                 this.selectorDiaRendicionAChofer.Value.ToString("dd/MM/yyyy"),
                 (int)this.comboTurno.SelectedValue);
-            if (tblViajesARendir.Rows.Count > 0)
-            {
-                frmGrilla formularioGrillaDetalleViajesRendir = new frmGrilla();
-                DataGridView grillaDetalleViajes = (DataGridView)formularioGrillaDetalleViajesRendir.Controls["grillaDatos"];
-                grillaDetalleViajes.DataSource = tblViajesARendir;
-                grillaDetalleViajes.ReadOnly = true;
-                grillaDetalleViajes.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-                grillaDetalleViajes.AutoGenerateColumns = true;
-                formularioGrillaDetalleViajesRendir.formulario = this;
-                formularioGrillaDetalleViajesRendir.Controls["btnSeleccionar"].Visible = false;
-                formularioGrillaDetalleViajesRendir.Controls["btnCancelar"].Text = "Volver";
-                formularioGrillaDetalleViajesRendir.Show();
-                this.Close();
-            }
+            return tblViajesARendir;
         }
     }
 }
