@@ -22,7 +22,7 @@ namespace UberFrba
         public frmABM()
         {
             InitializeComponent();
-            this.selectorFechaNacimiento.MaxDate = (FechaAplicacion.obtenerFechaAplicacion()).AddYears(-18);  //DateTime.Now.AddYears(-18);
+            this.selectorFechaNacimiento.MaxDate = (FechaAplicacion.obtenerFechaAplicacion()).AddYears(-18);
             this.selectorFechaNacimiento.Value = (FechaAplicacion.obtenerFechaAplicacion()).AddYears(-18);
             this.selectorFechaNacimiento.Format = DateTimePickerFormat.Custom;
             this.selectorFechaNacimiento.CustomFormat = "dd 'de' MMMM 'de' yyyy";

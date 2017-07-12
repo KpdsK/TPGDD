@@ -93,8 +93,11 @@ namespace UberFrba
             limpiarLimites(this.selectorDiaHoraFin);
             this.selectorDiaHoraInicio.MinDate = obtenerFechaHora(horaInicio);
             this.selectorDiaHoraInicio.MaxDate = obtenerFechaHora(horaFin);
+            this.selectorDiaHoraInicio.Value = this.selectorDiaHoraInicio.MinDate;
             this.selectorDiaHoraFin.MinDate = obtenerFechaHora(horaInicio);
             this.selectorDiaHoraFin.MaxDate = obtenerFechaHora(horaFin);
+            this.selectorDiaHoraFin.Value = this.selectorDiaHoraFin.MaxDate;
+
         }
 
         private void limpiarLimites(DateTimePicker selectorHorario)
