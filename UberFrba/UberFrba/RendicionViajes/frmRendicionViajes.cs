@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UberFrba.Clases;
 
 namespace UberFrba
 {
@@ -15,7 +16,7 @@ namespace UberFrba
         public frmRendirViaje()
         {
             InitializeComponent();
-            this.selectorDiaRendicionAChofer.MaxDate = DateTime.Now;
+            this.selectorDiaRendicionAChofer.MaxDate = FechaAplicacion.obtenerFechaAplicacion();
         }
 
         public Boolean construite()

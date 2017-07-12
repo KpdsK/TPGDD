@@ -73,76 +73,83 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmLogin.cs">
+    <Compile Include="Clases\FechaAplicacion.cs" />
+    <Compile Include="Interfaces\IGrilla.cs" />
+    <Compile Include="Clases\Validaciones.cs" />
+    <Compile Include="Clases\MetodosGlobales.cs" />
+    <Compile Include="Clases\Excepciones.cs" />
+    <Compile Include="Clases\FuncionalidadSegunRol.cs" />
+    <Compile Include="Clases\SingletonDatosUsuario.cs" />
+    <Compile Include="Login\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmLogin.Designer.cs">
+    <Compile Include="Login\frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmFacturarViajes.cs">
+    <Compile Include="FacturacionViajes\frmFacturarViajes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmFacturarViajes.Designer.cs">
+    <Compile Include="FacturacionViajes\frmFacturarViajes.Designer.cs">
       <DependentUpon>frmFacturarViajes.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmListados.cs">
+    <Compile Include="Listados\frmListados.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmListados.Designer.cs">
+    <Compile Include="Listados\frmListados.Designer.cs">
       <DependentUpon>frmListados.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmABMRol.cs">
+    <Compile Include="ABMRol\frmABMRol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmABMRol.Designer.cs">
+    <Compile Include="ABMRol\frmABMRol.Designer.cs">
       <DependentUpon>frmABMRol.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRol.cs">
+    <Compile Include="SeleccionRol\frmRol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRol.Designer.cs">
+    <Compile Include="SeleccionRol\frmRol.Designer.cs">
       <DependentUpon>frmRol.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmMenu.cs">
+    <Compile Include="Menu\frmMenu.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmMenu.Designer.cs">
+    <Compile Include="Menu\frmMenu.Designer.cs">
       <DependentUpon>frmMenu.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmABMClienteChofer.cs">
+    <Compile Include="ABMClienteChofer\frmABMClienteChofer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmABMClienteChofer.Designer.cs">
+    <Compile Include="ABMClienteChofer\frmABMClienteChofer.Designer.cs">
       <DependentUpon>frmABMClienteChofer.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmGrilla.cs">
+    <Compile Include="Grilla\frmGrilla.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmGrilla.Designer.cs">
+    <Compile Include="Grilla\frmGrilla.Designer.cs">
       <DependentUpon>frmGrilla.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmABMAutomovil.cs">
+    <Compile Include="ABMAutomovil\frmABMAutomovil.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmABMAutomovil.Designer.cs">
+    <Compile Include="ABMAutomovil\frmABMAutomovil.Designer.cs">
       <DependentUpon>frmABMAutomovil.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmABMTurno.cs">
+    <Compile Include="ABMTurno\frmABMTurno.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmABMTurno.Designer.cs">
+    <Compile Include="ABMTurno\frmABMTurno.Designer.cs">
       <DependentUpon>frmABMTurno.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCargaViajes.cs">
+    <Compile Include="CargaViajes\frmCargaViajes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCargaViajes.Designer.cs">
+    <Compile Include="CargaViajes\frmCargaViajes.Designer.cs">
       <DependentUpon>frmCargaViajes.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmRendicionViajes.cs">
+    <Compile Include="RendicionViajes\frmRendicionViajes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmRendicionViajes.Designer.cs">
+    <Compile Include="RendicionViajes\frmRendicionViajes.Designer.cs">
       <DependentUpon>frmRendicionViajes.cs</DependentUpon>
     </Compile>
     <Compile Include="GD1C2017DataSet.cs">
@@ -156,40 +163,40 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="frmLogin.resx">
+    <EmbeddedResource Include="Login\frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmFacturarViajes.resx">
+    <EmbeddedResource Include="FacturacionViajes\frmFacturarViajes.resx">
       <DependentUpon>frmFacturarViajes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmListados.resx">
+    <EmbeddedResource Include="Listados\frmListados.resx">
       <DependentUpon>frmListados.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmABMRol.resx">
+    <EmbeddedResource Include="ABMRol\frmABMRol.resx">
       <DependentUpon>frmABMRol.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRol.resx">
+    <EmbeddedResource Include="SeleccionRol\frmRol.resx">
       <DependentUpon>frmRol.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmMenu.resx">
+    <EmbeddedResource Include="Menu\frmMenu.resx">
       <DependentUpon>frmMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmABMClienteChofer.resx">
+    <EmbeddedResource Include="ABMClienteChofer\frmABMClienteChofer.resx">
       <DependentUpon>frmABMClienteChofer.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmGrilla.resx">
+    <EmbeddedResource Include="Grilla\frmGrilla.resx">
       <DependentUpon>frmGrilla.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmABMAutomovil.resx">
+    <EmbeddedResource Include="ABMAutomovil\frmABMAutomovil.resx">
       <DependentUpon>frmABMAutomovil.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmABMTurno.resx">
+    <EmbeddedResource Include="ABMTurno\frmABMTurno.resx">
       <DependentUpon>frmABMTurno.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCargaViajes.resx">
+    <EmbeddedResource Include="CargaViajes\frmCargaViajes.resx">
       <DependentUpon>frmCargaViajes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmRendicionViajes.resx">
+    <EmbeddedResource Include="RendicionViajes\frmRendicionViajes.resx">
       <DependentUpon>frmRendicionViajes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -226,7 +233,9 @@
     <None Include="UberFrba_ClaveTemporal.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

@@ -49,17 +49,17 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>zc4pitGHITc7TDi4uKqq80MwvlUOHwcT1N8e/Se8GOo=</dsig:DigestValue>
+        <dsig:DigestValue>MvfM7NbWWYdLG868RRfszshMbc0jbBPNVeVZoDhbrLE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="UberFrba.exe.config" size="531">
+  <file name="UberFrba.exe.config" size="623">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>QVO2pkOHcGYQO3AwFDQJs0z3CWFA9pHThMs+6P6n19k=</dsig:DigestValue>
+      <dsig:DigestValue>MNgAhcRV2HyU5AcqOLsNbww/g1xfJ3+5dKA1aB+xgm0=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

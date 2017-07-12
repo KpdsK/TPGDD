@@ -859,13 +859,13 @@ CREATE FUNCTION [DESCONOCIDOS4].FN_VIAJE_RANGO_OK_CHO(@Cho INT,@Hini DATETIME,@H
 RETURNS  BIT
 AS
 BEGIN
+
   DECLARE @RESUL BIT
   DECLARE @CONT INT	
   SET @CONT=0
-  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].VIAJE WHERE Viaje_Chofer=@Cho and  Viaje_Fecha_Hora_Inicio>=@Hini AND @Hini<=Viaje_Fecha_Hora_Fin)>0
+  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].VIAJE WHERE Viaje_Chofer=@Cho and   ((@Hini between Viaje_Fecha_Hora_Inicio AND Viaje_Fecha_Hora_Fin ) or  (@Hfin between Viaje_Fecha_Hora_Inicio AND Viaje_Fecha_Hora_Fin )))>0
   SET @CONT=@CONT+1
-  IF(SELECT COUNT(*) FROM [DESCONOCIDOS4].VIAJE WHERE Viaje_Chofer=@Cho  and Viaje_Fecha_Hora_Inicio>=@Hfin AND @Hfin<=Viaje_Fecha_Hora_Fin)>0
-  SET @CONT=@CONT+1
+  
   IF @CONT=0
   SET @RESUL=1
   ELSE 

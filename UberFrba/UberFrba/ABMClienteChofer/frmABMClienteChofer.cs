@@ -8,6 +8,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UberFrba.Clases;
 
 namespace UberFrba
 {
@@ -21,8 +22,8 @@ namespace UberFrba
         public frmABM()
         {
             InitializeComponent();
-            this.selectorFechaNacimiento.MaxDate = DateTime.Now.AddYears(-18);
-            this.selectorFechaNacimiento.Value = DateTime.Now.AddYears(-18);
+            this.selectorFechaNacimiento.MaxDate = (FechaAplicacion.obtenerFechaAplicacion()).AddYears(-18);
+            this.selectorFechaNacimiento.Value = (FechaAplicacion.obtenerFechaAplicacion()).AddYears(-18);
             this.selectorFechaNacimiento.Format = DateTimePickerFormat.Custom;
             this.selectorFechaNacimiento.CustomFormat = "dd 'de' MMMM 'de' yyyy";
         }

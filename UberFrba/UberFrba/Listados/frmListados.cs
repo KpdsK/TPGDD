@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UberFrba.Clases;
 
 namespace UberFrba
 {
@@ -16,7 +17,7 @@ namespace UberFrba
         public frmListados()
         {
             InitializeComponent();
-            this.selectorAnio.MaxDate = DateTime.Now;
+            this.selectorAnio.MaxDate = FechaAplicacion.obtenerFechaAplicacion();
             armarComboListados();
         }
 

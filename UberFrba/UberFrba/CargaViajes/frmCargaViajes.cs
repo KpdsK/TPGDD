@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UberFrba.Clases;
 
 namespace UberFrba
 {
@@ -92,8 +93,11 @@ namespace UberFrba
             limpiarLimites(this.selectorDiaHoraFin);
             this.selectorDiaHoraInicio.MinDate = obtenerFechaHora(horaInicio);
             this.selectorDiaHoraInicio.MaxDate = obtenerFechaHora(horaFin);
+            this.selectorDiaHoraInicio.Value = this.selectorDiaHoraInicio.MinDate;
             this.selectorDiaHoraFin.MinDate = obtenerFechaHora(horaInicio);
             this.selectorDiaHoraFin.MaxDate = obtenerFechaHora(horaFin);
+            this.selectorDiaHoraFin.Value = this.selectorDiaHoraFin.MaxDate;
+
         }
 
         private void limpiarLimites(DateTimePicker selectorHorario)
@@ -104,7 +108,7 @@ namespace UberFrba
 
         private static DateTime obtenerFechaHora(String hora)
         {
-            return DateTime.Parse(DateTime.Now.ToString("dd/MM/yyyy ") + (!hora.Equals("24") ? hora + ":00:00" : "23:59:59"));
+            return DateTime.Parse((FechaAplicacion.obtenerFechaAplicacion()).ToString("dd/MM/yyyy ") + (!hora.Equals("24") ? hora + ":00:00" : "23:59:59"));
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
