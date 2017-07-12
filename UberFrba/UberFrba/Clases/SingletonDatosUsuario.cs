@@ -4,6 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+ * Se opto por el patron singleton para la existencia de una clase que contenga los datos del usuario,
+ * durante la ejecucion del sistema.
+ * Tiene los datos del usuario, del rol, etc.
+ */
 namespace UberFrba
 {
     public class SingletonDatosUsuario

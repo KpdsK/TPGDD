@@ -10,7 +10,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UberFrba.Clases;
-
+/*
+ * Se utiliza como en todos los ABM herencia para reutilizar codigo. Diferenciando la funcionalidad segun la accion
+ * a realizar (Alta, Baja o Modificacion).
+ * 
+ */
 namespace UberFrba
 {
     public partial class frmABM : Form, IGrilla

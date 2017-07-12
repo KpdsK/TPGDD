@@ -4,6 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+/*
+ * Contiene las excepciones creadas para manejar los errores de duplicidad de datos unicos en la BD.
+ */
+
 namespace UberFrba
 {
     public class DNIDuplicadoException : Exception

@@ -7,7 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+/*
+ * Formulario de grilla, este es utilizado por todas las funciones que necesitan de una grilla para mostrar datos,
+ * ya sea con o sin seleccion de los mismos. Los botones se reutilizan, asignando manejadores de eventos desde 
+ * aquellos formularios que lo crean.
+ */
 namespace UberFrba
 {
     public partial class frmGrilla : Form

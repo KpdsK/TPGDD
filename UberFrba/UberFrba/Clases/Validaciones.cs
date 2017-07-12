@@ -6,6 +6,14 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
+/*
+ * Esta clase contiene todas las validaciones que se realizan en los formularios luego de presionar el boton 
+ * que ejecuta la accion que brinda el formulario.
+ * Se evalua mediante expresiones regulares el contenido y su ubicacion.
+ * En algunos casos se recurre tambien a metodos que buscan en la BD, por elementos existentes, caso patente, dni,
+ * telefono, rango horario.
+ * Para el caso del correo electronico se valida tambien con una funcion de biblioteca.
+ */
 namespace UberFrba
 {
     public static class Validaciones

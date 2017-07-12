@@ -6,7 +6,11 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+/*
+ * Maneja el armado de las grillas de toda la aplicacion, el unico formulario de grilla es utilizado en toda
+ * la aplicacion. En esta clase maneja mediante mensajes el codigo comun para la creacion de las distintas grillas.
+ * Hay grillas con seleccion de items (para busqueda) y otras que son meramente informativas, sin seleccion.
+ */
 namespace UberFrba.Clases
 {
     static class ArmadoGrilla

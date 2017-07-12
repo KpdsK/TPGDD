@@ -10,7 +10,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using UberFrba.Clases;
-
+/*
+ * El combo chofer se construye con los choferes habilitados en la BD, en base a este se construye el combo turno
+ * con los turnos que tiene el chofer seleccionado (la app esta preparada para que un chofer tenga distintos turnos
+ * y autos, aunque ahora no se utilice, con pequeñas modificaciones en los sp de la BD), la tupla seleccionada de chofer
+ * y turno, completan el cuadro de texto de automovil. Tambien la seleccion del turno, limita las posibilidades de 
+ * seleccion de horario inicio y fin del viaje, al inicio del turno y fin del mismo respectivamente.
+ */
 namespace UberFrba
 {
     public partial class frmRegistroViaje : Form

@@ -6,6 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+/*
+ * Esta clase contiene metodos estaticos que son de uso comun en varias partes de la aplicacion.
+ * Objetivo, disminuir el codigo, reutilizando codigo.
+ */
 namespace UberFrba
 {
     public static class MetodosGlobales
